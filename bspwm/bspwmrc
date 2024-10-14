@@ -27,6 +27,5 @@ sxhkd &
 dunst &
 nitrogen --restore &
 setxkbmap -layout br &
-setxkbmap -option ctrl:nocaps &
 xsetroot -cursor_name left_ptr &
 
