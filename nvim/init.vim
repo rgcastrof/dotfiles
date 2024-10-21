@@ -11,6 +11,7 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'goolord/alpha-nvim'
+Plug 'szw/vim-maximizer'
 
 " Themes
 Plug 'folke/tokyonight.nvim'
@@ -39,17 +40,12 @@ set smartindent
 set cursorline
 set termguicolors
 
-"
-" Paleta de cores para o ayu
-"let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
-"colorscheme ayu
 
 "Paleta de cores para o onedark
 "let g:onedark_config = {
 "   \ 'style': 'darker',
 "\}
+
 colorscheme tokyonight
 
 " highlight Normal guibg=NONE ctermbg=NONE
@@ -338,8 +334,10 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 nnoremap <C-f> <cmd>Telescope find_files<cr>
 nnoremap <C-e> <cmd>NvimTreeToggle<cr>
 nnoremap <C-q> :bd<CR>
-nnoremap <C-b>% :vnew<CR>
-nnoremap <C-b>" :new<CR>
+nnoremap <C-s>% :vnew<CR>
+nnoremap <C-s>" :new<CR>
+nnoremap <C-s>z :MaximizerToggle<CR>
+nnoremap <C-s>t :belowright new<CR>:terminal<CR>:resize 10<CR>
 map <C-h> <C-w>h
 map <C-l> <C-w>l
 map <C-k> <C-w>k
