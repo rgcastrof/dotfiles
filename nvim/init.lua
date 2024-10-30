@@ -13,6 +13,7 @@ vim.cmd([[
     Plug 'jiangmiao/auto-pairs'
     Plug 'goolord/alpha-nvim'
     Plug 'szw/vim-maximizer'
+    Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Lsp's
     Plug 'williamboman/mason.nvim'
@@ -54,7 +55,12 @@ vim.cmd("set colorcolumn=80")
 vim.cmd("set smartindent")
 vim.cmd("set cursorline")
 vim.cmd("set termguicolors")
-vim.cmd("colorscheme onedark")
+
+-- colorscheme
+require('onedark').setup {
+    style = 'deep'
+}
+require('onedark').load()
 
 
 -- Lualine
@@ -82,6 +88,16 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+-- Indent blankline
+-- Configuração básica
+require("ibl").setup {
+    indent = {
+        char = "┊",
+    },
+    scope = {
+        show_start = false,
+    }
+}
 
 -- Alpha-nvim(dashboard)
 local alpha = require("alpha")
@@ -201,14 +217,13 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 vim.cmd("nnoremap <C-f> <cmd>Telescope find_files<cr>")
-vim.cmd("nnoremap <C-e> <cmd>Neotree toggle<cr>")
+vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
 map("n", "<C-q>", ":bd<CR>", opts)
 map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
-map("n", "<C-p>", "vim.lsp.buf.hover", opts)
 vim.cmd("map <C-h> <C-w>h")
 vim.cmd("map <C-l> <C-w>l")
 vim.cmd("map <C-k> <C-w>k")
