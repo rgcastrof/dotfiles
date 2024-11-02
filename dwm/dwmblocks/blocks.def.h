@@ -7,9 +7,9 @@ static const Block blocks[] = {
   {"", "~/.dwmblocks/SSID.sh", 5, 0},
   // {"󰖨 ", "~/.dwmblocks/brightness.sh", 1, 0},
   {"󰕾 ", "~/.dwmblocks/volume.sh" , 1,  0},
-  {"󰁹 ", "~/.dwmblocks/battery.sh", 30, 0},
+  {"󰁹 ", "~/.dwmblocks/battery.sh", 10, 0},
   // {" ", "date +'%d.%m'",       1,      0},
-  {"󰥔 ", "date +'%H:%M'",		30,		0},
+  {"󰥔 ", "date +'%d %b. às %H:%M'",		30,		0},
   
 };
 
