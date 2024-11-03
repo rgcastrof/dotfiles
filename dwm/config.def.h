@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "󰣇", "󰈹", " ", "", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -73,6 +73,8 @@ static const Key keys[] = {
     { MODKEY,                       XK_o,      spawn,          SHCMD("~/scripts/volume_down.sh") },
     { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/scripts/bright_up.sh") },
     { MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("~/scripts/bright_down.sh") },
+    { MODKEY,                       XK_s,      spawn,          SHCMD("~/scripts/screenshot.sh") },
+    { MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/scripts/fullscreenshot.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
