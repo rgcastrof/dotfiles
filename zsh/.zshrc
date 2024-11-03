@@ -18,8 +18,9 @@ my_prompt() {
     git_status=""
   fi
   # Retorna o prompt personalizado
-  echo "➜  %F{blue}%1~%f$git_branch$git_status"
+  echo "➜ %F{blue}%1~%f$git_branch$git_status"
 }
+
 setopt prompt_subst
 PROMPT='$(my_prompt) '
 
@@ -46,8 +47,8 @@ alias ..='cd ..'
 alias poweroff='systemctl poweroff'
 alias reboot='systemctl reboot'
 
+
 #Alias
-alias vi='nvim'
 alias fetch='clear && neofetch'
 alias mute='pactl set-sink-volume @DEFAULT_SINK@ 0%'
 alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
@@ -56,3 +57,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+source /home/rogerio/Git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+if [[ $TERM == "st-256color" ]]; then
+    if command -v tmux &> /dev/null; then
+        if [ -z "$TMUX" ]; then
+            tmux
+        fi
+    fi
+fi
