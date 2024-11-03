@@ -6,6 +6,8 @@ static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int splitstatus        = 1;
+static const char *splitdelim       = ";";
 static const char *fonts[]          = { "HackNerdFont:size=11" };
 static const char dmenufont[]       = "HackNerdFont:size=11";
 static const char col_gray1[]       = "#17202a";

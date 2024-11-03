@@ -3,13 +3,10 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 
   // {"Mem ", "free -h | grep Mem | awk '{print $3}'", 1, 0},
-  // {"   ", "~/.dwmblocks/SSID.sh", 5, 0},
-  // {"󰖨 ", "~/.dwmblocks/brightness.sh", 1, 0},
+  {"", "date +'%a %d %b %H:%M;'",		30,		0},
   {"", "~/.dwmblocks/volume.sh" , 1,  0},
   {"", "~/.dwmblocks/battery.sh", 10, 0},
   {"", "~/.dwmblocks/SSID.sh", 5, 0},
-  {"", "date +'%a %d %b %H:%M'",		30,		0},
-  // {" ", "date +'%d.%m'",       1,      0},
   
 };
 
