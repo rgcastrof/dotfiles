@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
+    "height": 23,
     "modules-left": ["river/tags"],
     "modules-center": ["clock"],
     "modules-right": ["wireplumber", "battery", "network"],
@@ -18,11 +18,19 @@
 },
 
 "wireplumber": {
-    "format": "{icon}  ",
-    "format-muted": "",
-    "on-click": "helvum",
-    "format-icons": ["", "", ""]
-},
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon}  ",
+        "format-muted": "  ",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
 
 
     "battery": {
