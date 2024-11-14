@@ -1,51 +1,54 @@
-@define-color foreground #eff0f1;
-@define-color foreground-inactive #7f8c8d;
-@define-color foreground-active #eff0f1;
 @define-color background #232629;
-@define-color background-alt #31363b;
+@define-color background-active #3e4348;
+@define-color foreground #eff0f1;
 
 * {
-    font-family: Mononoki Nerd Font;
+    border: none;
+    border-radius: 0;
+    font-family: JetBrains Mono Nerd Font;
     font-size: 17px;
-    padding: 0;
-    margin: 0;
+    min-height: 0;
 }
 
-#waybar {
+window#waybar {
+    background: @background;
     color: @foreground;
+}
+
+
+#tags button {
+    padding: 0 5px;
+    background: transparent;
+    color: white;
+    border-bottom: 3px solid transparent;
+}
+
+#tags button.occupied {
+    background: @background;
+    color: gray;
+}
+
+#tags button.focused {
+    background: @background-active;
+    color: @foreground;
+}
+
+#mode, #clock, #battery {
+    padding: 0 10px;
+}
+
+
+#clock {
     background-color: @background;
+    color: @foreground;
 }
 
-#workspaces button {
-    padding-left: 1em;
-    padding-right: 1.3em;
-}
-
-#workspaces button.empty {
-    color: @foreground-inactive;
-}
-
-#workspaces button.active {
-    background-color: @background-alt;
-    color: @foreground-active;
-    border-radius: 3px;
-}
-
-#wireplumber,
-#bat,
-#tray,
-#usage,
-#net {
+#battery {
     background-color: @background;
-    border-radius: 3px;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    margin-left: 0.3em;
+    color: @foreground;
 }
 
-#battery,
-#memory,
-#language,
-#network {
-    margin-right: 0.8em;
+#battery.charging {
+    color: green;
+    background-color: @background;
 }

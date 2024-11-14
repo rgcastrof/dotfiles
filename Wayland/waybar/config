@@ -1,76 +1,39 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 26,
-    "spacing": 5,
-
-    "modules-left": ["hyprland/workspaces"],
+    "height": 30,
+    "modules-left": ["river/tags"],
     "modules-center": ["clock"],
     "modules-right": ["wireplumber", "battery", "network"],
 
-    "group/usage": {
-        "orientation": "horizontal",
-        "modules": ["memory", "temperature"]
-    },
+    "river/tags": {
+        "num-tags": 5,
+        "tag-labels": [
+        "  󰣇  ", "  \udb80\ude39  ", "  \udb82\ude1e  ", "    ", "  \uf001  ",
+        ]
+},
 
-    "group/bat": {
-        "orientation": "horizontal",
-        "modules": ["battery"]
-    },
+"river/window": {
+    "format": "{}"
+},
 
-    "group/net": {
-        "orientation": "horizontal",
-        "modules": ["network"]
-    },
+"wireplumber": {
+    "format": "{icon}  ",
+    "format-muted": "",
+    "on-click": "helvum",
+    "format-icons": ["", "", ""]
+},
 
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "on-click": "activate",
-        "format-icons": {
-            "1": "\uf489",
-            "2": "\udb80\ude39",
-            "3": "\udb82\ude1e",
-            "4": "\uf001",
-            "5": "\ue217",
-        },
-        "icon-size": 50,
-        "sort-by-number": true,
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-        }
-    },
-
-    "clock": {
-        "format": "{:%b %d   %H:%M}"
-    },
-
-    "wireplumber": {
-        "format": "\udb81\udd7e  {volume}%",
-        "max-volume": 100,
-        "scroll-step": 5
-    },
 
     "battery": {
-        "bat": "BAT0",
-        "interval": 60,
-        "format": "{icon}     {capacity}%",
-        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "format": "{icon}  ",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "format": "{:%b %d  %H:%M}"
     },
 
-    "backlight": {
-        "format": "\udb80\udcdf  {percent}%"
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": "\uf4bc  {used:0.1f}G"
-    },
-
-    "network": {
+     "network": {
         "format": "",
         "format-ethernet": "\udb83\udc9d ",
         "format-wifi": "{icon} ",
@@ -81,9 +44,4 @@
         "tooltip-format-disconnected": "Disconnected",
     },
 
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 16
-    }
 }
