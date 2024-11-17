@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 # Auto-start programs
 riverctl spawn waybar
 riverctl spawn dunst &
@@ -10,7 +11,7 @@ riverctl map normal Super T spawn foot
 
 
 # Launcher
-riverctl map normal Super Space spawn "tofi-drun --drun-launch=true"
+riverctl map normal Super Space spawn "wmenu-run"
 
 # Browser
 riverctl map normal Super B spawn firefox
@@ -194,7 +195,7 @@ riverctl rule-add -app-id "bar" csd
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 3 -outer-padding 3 &
+rivertile -view-padding 0 -outer-padding 0 &
 
 
 # Input setups

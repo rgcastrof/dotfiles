@@ -19,8 +19,8 @@
 
 "wireplumber": {
         "scroll-step": 5, // %, can be a float
-        "format": "{icon}  ",
-        "format-muted": "  ",
+        "format":"{icon} ",
+        "format-muted": " ",
         "format-icons": {
             "headphone": "",
             "headset": "",
@@ -34,7 +34,12 @@
 
 
     "battery": {
-        "format": "{icon}  ",
+        "bat": "BAT0",
+        "interval": 30,
+        "states": {
+            "warning": 20,
+        },
+        "format": " {icon} ",
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
@@ -44,7 +49,7 @@
      "network": {
         "format": "",
         "format-ethernet": "\udb83\udc9d ",
-        "format-wifi": "{icon} ",
+        "format-wifi": " {icon} ",
         "format-disconnected": "\udb83\udc9c ",
         "format-icons": ["\udb82\udd2f", "\udb82\udd1f", "\udb82\udd22", "\udb82\udd25", "\udb82\udd28"],
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
