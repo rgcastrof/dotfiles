@@ -14,6 +14,7 @@ vim.cmd([[
     Plug 'goolord/alpha-nvim'
     Plug 'szw/vim-maximizer'
     Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'ThePrimeagen/harpoon', {'branch': 'harpoon2'}
 
     " Lsp's
     Plug 'williamboman/mason.nvim'
@@ -37,7 +38,6 @@ vim.cmd([[
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'ellisonleao/gruvbox.nvim'
     Plug 'navarasu/onedark.nvim'
-    Plug 'ayu-theme/ayu-vim'
 
     call plug#end()
 ]])
@@ -96,6 +96,7 @@ require("ibl").setup {
     },
     scope = {
         show_start = false,
+        show_end = false,
     }
 }
 
@@ -110,22 +111,27 @@ local function footer()
 end
 
 dashboard.section.header.val = {
-"                                                                             ",
-"                                                                             ",
-"██╗   ██╗██╗    ███╗   ███╗██████╗ ██████╗  ██████╗ ██╗   ██╗███████╗██████╗ ",
-"██║   ██║██║    ████╗ ████║██╔══██╗██╔══██╗██╔═══██╗██║   ██║██╔════╝██╔══██╗",
-"██║   ██║██║    ██╔████╔██║██████╔╝██████╔╝██║   ██║██║   ██║█████╗  ██║  ██║",
-"╚██╗ ██╔╝██║    ██║╚██╔╝██║██╔═══╝ ██╔══██╗██║   ██║╚██╗ ██╔╝██╔══╝  ██║  ██║",
-" ╚████╔╝ ██║    ██║ ╚═╝ ██║██║     ██║  ██║╚██████╔╝ ╚████╔╝ ███████╗██████╔╝",
-"  ╚═══╝  ╚═╝    ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝   ╚═══╝  ╚══════╝╚═════╝ ",
-"                                                                             ",
-"                                                                             ",
+"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀",
+"⠀⠀⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⠀⠀",
+"⠀⠀⣿⣿⣿⣿⡟⠛⠛⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⠛⠛⠛⠛⢻⣿⣿⣿⣿⠀⠀",
+"⠀⠀⣿⣿⡟⠛⠃⠀⠀⠀⠀⠛⠛⣿⣿⣿⣿⠛⠛⠀⠀⠀⠀⠘⠛⢻⣿⣿⠀⠀",
+"⣶⣶⣿⣿⡇⠀⠀⠀⢸⣿⣷⣶⠀⣿⣿⣿⣿⠀⠀⠀⠀⣿⣿⣶⡆⢸⣿⣿⣶⣶",
+"⣿⣿⣿⣿⡇⠀⠀⠀⢸⣿⠿⠿⠀⣿⣿⣿⣿⠀⠀⠀⠀⣿⣿⠿⠇⢸⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣧⣤⡄⠀⠀⠀⠀⣤⣤⣿⣿⣿⣿⣤⣤⠀⠀⠀⠀⢠⣤⣼⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⣿⣧⣤⣤⣤⣤⣿⣿⣿⣿⣿⣿⣿⣿⣤⣤⣤⣤⣼⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿",
+"⣿⣿⣿⣿⣿⠀⢹⣿⣿⣿⣿⣿⣿⡇⠀⠀⠘⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿",
+"⣿⣿⡏⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⠁⠀⠀⠀⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⢻⣿⣿",
 }
 
 
 dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
+  dashboard.button("f", "  > Find file", ":cd $HOME/workspace | Telescope find_files<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("u", "  > Update", ":PlugUpdate<CR>"),
   dashboard.button("s", "  > Settings", ":edit $HOME/.config/nvim/init.lua<CR>"),
@@ -137,12 +143,36 @@ dashboard.section.footer.val = footer()
 alpha.setup(dashboard.opts)
 
 
+-- harpoon setup
+local harpoon = require("harpoon")
+
+harpoon:setup()
+
+vim.keymap.set("n", "<C-a>", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+
+
 -- Lsps
 require("mason").setup()
 require("mason-lspconfig").setup {
     ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "jdtls" },
 }
 local lspconfig = require('lspconfig')
+lspconfig.jdtls.setup {
+    root_dir = function(fname)
+        -- Verifica se existe a pasta 'src' na raiz ou uma pasta específica para projetos Java
+        return require'lspconfig'.util.root_pattern('src') (fname)
+    end,
+}
 
 
 -- Reserve a space in the gutter
@@ -180,7 +210,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 lspconfig.lua_ls.setup {}
 lspconfig.clangd.setup {}
-lspconfig.jdtls.setup {}
+lspconfig.jdtls.setup {
+    root_dir = function(fname)
+        return vim.fn.getcwd()  -- Define o diretório atual como raiz do projeto
+    end,
+}
+
 lspconfig.rust_analyzer.setup {}
 
 
@@ -224,7 +259,7 @@ map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
-vim.cmd("map <C-h> <C-w>h")
-vim.cmd("map <C-l> <C-w>l")
-vim.cmd("map <C-k> <C-w>k")
-vim.cmd("map <C-j> <C-w>j")
+vim.cmd("map <C-s>h <C-w>h")
+vim.cmd("map <C-s>l <C-w>l")
+vim.cmd("map <C-s>k <C-w>k")
+vim.cmd("map <C-s>j <C-w>j")
