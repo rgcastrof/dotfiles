@@ -34,7 +34,6 @@ vim.cmd([[
     " Themes
     Plug 'folke/tokyonight.nvim'
     Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'rebelot/kanagawa.nvim'
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'ellisonleao/gruvbox.nvim'
     Plug 'navarasu/onedark.nvim'
@@ -58,9 +57,14 @@ vim.cmd("set termguicolors")
 
 -- colorscheme
 require('onedark').setup {
-    style = 'deep'
+    style = 'warm'
 }
 require('onedark').load()
+
+vim.cmd([[
+    highlight Normal guibg=NONE ctermbg=NONE
+    highlight EndOfBuffer guibg=NONE ctermbg=NONE
+]])
 
 
 -- Lualine
