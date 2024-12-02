@@ -134,7 +134,8 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
-static const char *browcmd[] = {"firefox", NULL};
+static const char *browcmd[] = { "firefox", NULL };
+static const char *rangercmd[] = { "foot", "-e", "ranger", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -142,6 +143,11 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_space,      spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_t,          spawn,          {.v = termcmd} },
     { MODKEY,                    XKB_KEY_b,          spawn,          {.v = browcmd} },
+    { MODKEY,                    XKB_KEY_r,          spawn,          {.v = rangercmd} },
+    { MODKEY,                    XKB_KEY_p,          spawn,          SHCMD("~/scripts/volume_up.sh") },
+    { MODKEY,                    XKB_KEY_o,          spawn,          SHCMD("~/scripts/volume_down.sh") },
+    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_P,          spawn,          SHCMD("~/scripts/bright_up.sh") },
+    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_O,          spawn,          SHCMD("~/scripts/bright_down.sh") },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
