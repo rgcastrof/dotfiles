@@ -108,7 +108,7 @@ require'nvim-treesitter.configs'.setup {
 -- Configuração básica
 require("ibl").setup {
     indent = {
-        char = "┊",
+        char = "│",
     },
     scope = {
         show_start = false,
@@ -202,14 +202,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 lspconfig.lua_ls.setup {}
 lspconfig.clangd.setup {}
-lspconfig.jdtls.setup {
+
+-- Configuração do LSP (JDTLS)
+require('lspconfig').jdtls.setup({
   on_attach = function(client, bufnr)
-    -- Verifica se o campo existe antes de tentar desativá-lo
+    -- Desativar semanticTokensProvider para JDTLS
     if client.server_capabilities.semanticTokensProvider then
       client.server_capabilities.semanticTokensProvider = nil
     end
   end,
-}
+})
+
+-- Desativa semanticTokensProvider para todos os LSPs após a ativação
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.server_capabilities.semanticTokensProvider then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end,
+})
+
 
 
 
