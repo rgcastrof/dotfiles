@@ -14,7 +14,7 @@ vim.cmd([[
     Plug 'goolord/alpha-nvim'
     Plug 'szw/vim-maximizer'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'ThePrimeagen/harpoon', {'branch': 'harpoon2'}
+    Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 
     " Lsp's
     Plug 'williamboman/mason.nvim'
@@ -57,20 +57,32 @@ vim.cmd("set termguicolors")
 
 -- colorscheme
 require('onedark').setup {
-    style = 'warm'
+    style = 'dark'
 }
 require('onedark').load()
 
-vim.cmd([[
-    highlight Normal guibg=NONE ctermbg=NONE
-    highlight EndOfBuffer guibg=NONE ctermbg=NONE
-]])
+--vim.cmd([[
+--    highlight Normal guibg=NONE ctermbg=NONE
+--    highlight EndOfBuffer guibg=NONE ctermbg=NONE
+--]])
 
 
+require("bufferline").setup {
+
+    options = {
+        always_show_bufferline = false,
+    },
+    highlights = {
+        fill = {
+            bg = "#1e2127",
+        },
+    },
+}
 -- Lualine
 require('lualine').setup {
   options = { theme = 'onedark' }
 }
+
 
 -- Treesiter
 require'nvim-treesitter.configs'.setup {
@@ -147,23 +159,6 @@ dashboard.section.footer.val = footer()
 alpha.setup(dashboard.opts)
 
 
--- harpoon setup
-local harpoon = require("harpoon")
-
-harpoon:setup()
-
-vim.keymap.set("n", "<C-a>", function() harpoon:list():add() end)
-vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-
-vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
-
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-
 
 -- Lsps
 require("mason").setup()
@@ -171,13 +166,6 @@ require("mason-lspconfig").setup {
     ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "jdtls" },
 }
 local lspconfig = require('lspconfig')
-lspconfig.jdtls.setup {
-    root_dir = function(fname)
-        -- Verifica se existe a pasta 'src' na raiz ou uma pasta específica para projetos Java
-        return require'lspconfig'.util.root_pattern('src') (fname)
-    end,
-}
-
 
 -- Reserve a space in the gutter
 -- This will avoid an annoying layout shift in the screen
@@ -215,10 +203,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 lspconfig.lua_ls.setup {}
 lspconfig.clangd.setup {}
 lspconfig.jdtls.setup {
-    root_dir = function(fname)
-        return vim.fn.getcwd()  -- Define o diretório atual como raiz do projeto
-    end,
+  on_attach = function(client, bufnr)
+    -- Verifica se o campo existe antes de tentar desativá-lo
+    if client.server_capabilities.semanticTokensProvider then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end,
 }
+
+
 
 lspconfig.rust_analyzer.setup {}
 
@@ -258,6 +251,7 @@ local opts = { noremap = true, silent = true }
 vim.cmd("nnoremap <C-f> <cmd>Telescope find_files<cr>")
 vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
+map("n", "<C-Tab>", ":bnext<CR>", opts)
 map("n", "<C-q>", ":bd<CR>", opts)
 map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
