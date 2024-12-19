@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMonoNerdFont:pixelsize=17:antialias=true:autohint=true";
+static char *font = "AgaveNerdFont:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 10;
 
 /*
@@ -94,19 +94,19 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.85;
+float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#0c0e15",
-	"#f65866",
-	"#8bcd5b",
-	"#efbd5d",
-	"#41a7fc",
-	"#c75ae8",
-	"#34bfd0",
-	"#ffffff",
+	"#181a1f",
+	"#e86671",
+	"#98c379",
+	"#e5c07b",
+	"#61afef",
+	"#c678dd",
+	"#56b6c2",
+	"#848b98",
 
 	/* 8 bright colors */
 	"#5C6370",
@@ -123,8 +123,8 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"#93a4c3", /* default foreground colour */
-	"#1a212e", /* default background colour */
+	"#abb2bf", /* default foreground colour */
+	"#282c34", /* default background colour */
 };
 
 
