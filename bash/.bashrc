@@ -43,8 +43,7 @@ alias reboot='systemctl reboot'
 alias fetch='clear && neofetch'
 alias mute='pactl set-sink-volume @DEFAULT_SINK@ 0%'
 alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
+alias dwls='dwl -s somebar'
 
-
-. "$HOME/.cargo/env"
 
 eval "$(zoxide init bash)"

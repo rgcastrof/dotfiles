@@ -38,6 +38,8 @@ static const Rule rules[] = {
 	/* examples: */
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+    { "imv",              NULL,       0,            1,           -1 },
+    { "mpv",              NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -134,7 +136,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
-static const char *browcmd[] = { "firefox", NULL };
+static const char *browcmd[] = { "librewolf", NULL };
 static const char *rangercmd[] = { "foot", "-e", "ranger", NULL };
 
 static const Key keys[] = {
