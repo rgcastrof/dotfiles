@@ -57,7 +57,7 @@ vim.cmd("set termguicolors")
 
 -- colorscheme
 require('onedark').setup {
-    style = 'dark'
+    style = 'warmer'
 }
 require('onedark').load()
 
@@ -251,7 +251,7 @@ cmp.setup({
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-vim.cmd("nnoremap <C-f> <cmd>Telescope find_files<cr>")
+vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
 vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
 map("n", "<C-Tab>", ":bnext<CR>", opts)
