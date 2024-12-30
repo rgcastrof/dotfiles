@@ -135,7 +135,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "wmenu-run", NULL };
+static const char *menucmd[] = { "wmenu-run", "-N", "1B1B1B", "-n", "FFFFFF", "-S", "FFAD00", "-s", "1B1B1B", "-l", "7", NULL };
 static const char *browcmd[] = { "librewolf", NULL };
 static const char *rangercmd[] = { "foot", "-e", "ranger", NULL };
 
