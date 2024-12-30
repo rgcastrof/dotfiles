@@ -43,7 +43,6 @@ wayland-protocols
 wireless_tools
 wlroots
 wmenu
-xclip
 xorg-xwayland
 yt-dlp
 zoxide
