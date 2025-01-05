@@ -35,15 +35,20 @@ alias ll='ls -l'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ..='cd ..'
-alias poweroff='systemctl poweroff'
-alias reboot='systemctl reboot'
+
+
+# Xbps
+alias xu='sudo xbps-install -Su'
+alias xi='sudo xbps-install -S'
+alias xr='sudo xbps-remove -R'
+alias xo='sudo xbps-remove -o'
+alias xq='xbps-query -Rs'
 
 
 #Alias
 alias fetch='clear && neofetch'
 alias mute='pactl set-sink-volume @DEFAULT_SINK@ 0%'
 alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
-alias dwls='dwl -s somebar'
 
 
 eval "$(zoxide init bash)"
