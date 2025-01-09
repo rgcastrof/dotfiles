@@ -3,3 +3,4 @@
 dwmblocks &
 nitrogen --restore &
 dunst &
+picom &

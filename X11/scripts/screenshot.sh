@@ -1,3 +1,3 @@
 #!/bin/bash
 
-import screenshot.png
+/usr/bin/scrot -s
