@@ -1,8 +1,9 @@
+-- Plugins List
+
 vim.cmd([[
-    "Plugins
     call plug#begin()
 
-    " List your plugins here
+    " General Plugins
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
@@ -41,6 +42,8 @@ vim.cmd([[
     call plug#end()
 ]])
 
+
+-- General settings
 vim.cmd("syntax on")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
@@ -50,10 +53,10 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set mouse=a")
 vim.cmd("set scrolloff=8")
-vim.cmd("set colorcolumn=80")
 vim.cmd("set smartindent")
 vim.cmd("set cursorline")
 vim.cmd("set termguicolors")
+
 
 -- colorscheme
 require('onedark').setup {
@@ -61,7 +64,12 @@ require('onedark').setup {
 }
 require('onedark').load()
 
+-- Transparency background
+vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+vim.cmd("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
 
+
+-- Bufferline
 require("bufferline").setup {
 
     options = {
@@ -73,6 +81,8 @@ require("bufferline").setup {
         },
     },
 }
+
+
 -- Lualine
 require('lualine').setup {
   options = { theme = 'onedark' }
@@ -90,20 +100,15 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled
-    -- (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
 }
 
+
 -- Indent blankline
--- Configuração básica
 require("ibl").setup {
     indent = {
-        char = "│",
+        char = "┊",
     },
     scope = {
         show_start = false,
@@ -111,12 +116,13 @@ require("ibl").setup {
     }
 }
 
+
 -- Alpha-nvim(dashboard)
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
 local function footer()
-  local datetime = os.date(" %A, %d de %B às %H:%M")
+  local datetime = os.date(" %A, %B %d at %H:%M %p")
 
   return datetime
 end
@@ -134,7 +140,6 @@ dashboard.section.header.val = {
 "                                                                             ",
 }
 
-
 dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("f", "  > Find file", ":cd $HOME/workspace | Telescope find_files<CR>"),
@@ -149,7 +154,6 @@ dashboard.section.footer.val = footer()
 alpha.setup(dashboard.opts)
 
 
-
 -- Lsps
 require("mason").setup()
 require("mason-lspconfig").setup {
@@ -159,7 +163,7 @@ local lspconfig = require('lspconfig')
 
 -- Reserve a space in the gutter
 -- This will avoid an annoying layout shift in the screen
-vim.opt.signcolumn = 'yes'
+--vim.opt.signcolumn = 'yes'
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
@@ -190,20 +194,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- Lsp's setup
 lspconfig.lua_ls.setup {}
 lspconfig.clangd.setup {}
 
--- Configuração do LSP (JDTLS)
+-- LSP Configuration (JDTLS)
 require('lspconfig').jdtls.setup({
   on_attach = function(client, bufnr)
-    -- Desativar semanticTokensProvider para JDTLS
+    -- Deactivate semanticTokensProvider for JDTLS
     if client.server_capabilities.semanticTokensProvider then
       client.server_capabilities.semanticTokensProvider = nil
     end
   end,
 })
 
--- Desativa semanticTokensProvider para todos os LSPs após a ativação
+-- Deactivate semanticTokensProvider for all LSPs after activation
+-- for treesiter works correctly with java
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -212,12 +218,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
-
-
-
-
-lspconfig.rust_analyzer.setup {}
-
 
 local cmp = require('cmp')
 
@@ -247,6 +247,15 @@ cmp.setup({
   },
 })
 
+
+-- Add signs icons
+local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+
 -- macros
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
@@ -254,7 +263,8 @@ local opts = { noremap = true, silent = true }
 vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
 vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
-map("n", "<C-Tab>", ":bnext<CR>", opts)
+map("n", "<C-l>", ":bnext<CR>", opts)
+map("n", "<C-h>", ":bprevious<CR>", opts)
 map("n", "<C-q>", ":bd<CR>", opts)
 map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
