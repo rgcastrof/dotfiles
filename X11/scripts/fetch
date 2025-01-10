@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Macros
+User=$(whoami)
+Hostname=$(hostname)
+OS=$(awk -F= '/^PRETTY_NAME/ {gsub(/"/, "", $2); print $2}' /etc/os-release)
+Kernel=$(uname -r)
+Packages=$(xbps-query -l | wc -l)
+Product_family=$(cat /sys/devices/virtual/dmi/id/product_family)
+Product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
+Shell_name=$(ps -p $(ps -p $$ -o ppid=) -o comm=)
+Shell=$($SHELL --version | grep $Shell_name | awk '{gsub(/,/, "", $2); print $2, $4}')
+Mem_total=$(free -h | grep Mem | awk '{print $2}')
+Mem_used=$(free -h | grep Mem | awk '{print $3}')
+
+
+cat <<'EOF'
+[1;32m                __.;=====;.__[0m
+[1;32m            _.=+==++=++=+=+===;.[0m
+[1;32m             -=+++=+===+=+=+++++=_[0m
+[1;32m        .     -=:``     `--==+=++==.[0m
+[1;32m       _vi,    `            --+=++++:[0m
+[1;32m      .uvnvi.       _._       -==+==+.[0m
+[1;32m     .vvnvnI`    .;==|==;.     :|=||=|.[0m
+[1;30m+QmQQm[1;32mpvvnv;[1;30m _yYsyQQWUUQQQm #QmQ#[1;32m:[1;30mQQQWUV$QQm.[0m
+[1;30m -QQWQW[1;32mpvvo[1;30mwZ?.wQQQE[1;32m==<[1;30mQWWQ/QWQW.QQWW[1;32m(:[1;30m jQWQE[0m
+[1;30m  -$QQQQmmU'  jQQQ[1;32m@+=<[1;30mQWQQ)mQQQ.mQQQC[1;32m+;[1;30mjWQQ@'[0m
+[1;30m   -$WQ8Y[1;32mnI:[1;30m   QWQQwgQQWV[1;32m`[1;30mmWQQ.jQWQQgyyWW@![0m
+[1;32m     -1vvnvv.     `~+++`        ++|+++[0m
+[1;32m      +vnvnnv,                 `-|===[0m
+[1;32m       +vnvnvns.           .      :=-[0m
+[1;32m        -Invnvvnsi..___..=sv=.     `[0m
+[1;32m          +Invnvnvnnnnnnnnvvnn;.[0m
+[1;32m            ~|Invnvnvvnvvvnnv}+`[0m
+[1;32m               -~|{*l}*|~[0m
+EOF
+
+
+
+# Commands
+echo -e "\e[1m$User\e[0m@\e[1m$Hostname\e[0m
+\e[1mdistro\e[0m-> $OS
+\e[1mhost\e[0m-> $Product_name ($Product_family)
+\e[1mkernel\e[0m-> $Kernel
+\e[1mshell\e[0m-> $Shell
+\e[1mxpkgs\e[0m-> $Packages
+\e[1mmemory\e[0m-> $Mem_used / $Mem_total"
