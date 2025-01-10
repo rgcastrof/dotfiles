@@ -29,13 +29,11 @@ vim.cmd([[
     " Snippets
     Plug 'rafamadriz/friendly-snippets'
     Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
-
     Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v4.x'}
 
     " Themes
     Plug 'folke/tokyonight.nvim'
     Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'ellisonleao/gruvbox.nvim'
     Plug 'navarasu/onedark.nvim'
 
@@ -94,7 +92,6 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {"c", "lua","html", "css", "javascript", "python", "java", "rust"},
 
   sync_install = false,
-
 
   auto_install = true,
 
@@ -157,7 +154,7 @@ alpha.setup(dashboard.opts)
 -- Lsps
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "jdtls" },
+    ensure_installed = { "lua_ls", "clangd", "jdtls" },
 }
 local lspconfig = require('lspconfig')
 
