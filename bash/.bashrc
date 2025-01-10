@@ -29,7 +29,7 @@ my_prompt() {
 # Define o prompt customizado no Bash
 PROMPT_COMMAND='my_prompt'
 
-#Comandos Básicos
+# Comandos Básicos
 alias la='ls -a'
 alias ll='ls -l'
 alias ls='ls --color=auto'
@@ -45,8 +45,7 @@ alias xo='sudo xbps-remove -o'
 alias xq='xbps-query -Rs'
 
 
-#Alias
-alias fetch='clear && neofetch'
+# Volume
 alias mute='pactl set-sink-volume @DEFAULT_SINK@ 0%'
 alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
 
