@@ -13,6 +13,7 @@ Shell=$($SHELL --version | grep $Shell_name | awk '{gsub(/,/, "", $2); print $2,
 Mem_total=$(free -h | grep Mem | awk '{print $2}')
 Mem_used=$(free -h | grep Mem | awk '{print $3}')
 Init=$(ps -p 1 -o comm=)
+Battery=$(acpi | awk '{gsub(/,/, "", $4); print $3, $4}')
 
 
 cat <<'EOF'
@@ -41,12 +42,13 @@ EOF
 # Commands
 # \e[1m$User\e[0m@\e[1m$Hostname\e[0m
 echo -e "
-|--------------- Information ---------------|
-           \e[1mdistro\e[0m-> $OS
-           \e[1mhost\e[0m->   $Product_name ($Product_family)
-           \e[1mkernel\e[0m-> $Kernel
-           \e[1minit\e[0m->   $Init
-           \e[1mshell\e[0m->  $Shell
-           \e[1mxpkgs\e[0m->  $Packages
-           \e[1mmemory\e[0m-> $Mem_used / $Mem_total
+|--------------- \e[1;33mInformation\e[0m ---------------|
+          \e[1mdistro\e[0m->  $OS
+          \e[1mhost\e[0m->    $Product_name ($Product_family)
+          \e[1mkernel\e[0m->  $Kernel
+          \e[1minit\e[0m->    $Init
+          \e[1mshell\e[0m->   $Shell
+          \e[1mpkgs\e[0m->    $Packages
+          \e[1mmemory\e[0m->  $Mem_used / $Mem_total
+          \e[1mbattery\e[0m-> $Battery
 |-------------------------------------------|"
