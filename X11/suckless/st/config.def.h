@@ -1,10 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
 /*
- * appearance
- *
- * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
- */
+ * appearance */
+
+#include "/home/rogerio/.config/st/themes/pop-dark.h"
+
 static char *font = "AgaveNerdFont:pixelsize=20:antialias=true:autohint=true";
 static int borderpx = 10;
 
@@ -99,32 +99,32 @@ float alpha = 0.8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#1B1B1B",
-	"#F16161",
-	"#7CB987",
-	"#DDC74C",
-	"#6296BE",
-	"#BE6DEE",
-	"#49BAC8",
-	"#BEBEBE",
+	black,
+	red,
+    green,	
+	yellow,
+	blue,
+	magenta,
+	cyan,
+	white,
 
 	/* 8 bright colors */
-	"#808080",
-	"#FF8985",
-	"#97D5A0",
-	"#FAE365",
-	"#7DB1DA",
-	"#D68EFF",
-	"#49BAC8",
-	"#C4C4C4",
+	bright_black,
+	bright_red,
+	bright_green,
+	bright_yellow,
+	bright_blue,
+	bright_magenta,
+	bright_cyan,
+	bright_white,
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"#C4C4C4", /* default foreground colour */
-	"#1B1B1B", /* default background colour */
+	foreground, /* default foreground colour */
+	background, /* default background colour */
 };
 
 
