@@ -1,9 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
+
+#include "/home/rogerio/.config/dwm/themes/dark-blue.h"
+
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 5;
@@ -12,11 +15,6 @@ static const int splitstatus        = 1;
 static const char *splitdelim       = ";";
 static const char *fonts[]          = { "JetBrainsMonoNerdFont:size=11" };
 static const char dmenufont[]       = "HackNerdFont:size=11";
-static const char col_gray1[]       = "#1B1B1B";
-static const char col_gray2[]       = "#FFFFFF";
-static const char col_gray3[]       = "#FFAD00";
-static const char col_gray4[]       = "#0F0F0F";
-static const char col_cyan[]        = "#283747";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray2, col_gray1, col_gray1 },
