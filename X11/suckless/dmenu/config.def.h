@@ -1,6 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 /* Default settings; can be overriden by command line. */
 
+#include "/home/rogerio/.config/dmenu/themes/dark-blue.h"
+
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
@@ -8,9 +10,9 @@ static const char *fonts[] = {
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
-	/*     fg         bg       */
-	[SchemeNorm] = { "#FFFFFF", "#1B1B1B" },
-	[SchemeSel] = { "#1B1B1B", "#FFAD00" },
+          	      /*      fg                bg       */
+	[SchemeNorm] = { foreground_norm, background_norm },
+	[SchemeSel] = {  foreground_sel, background_sel },
 	[SchemeOut] = { "#000000", "#00ffff" },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
