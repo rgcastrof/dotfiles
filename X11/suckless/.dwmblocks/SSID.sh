@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ssid=$(nmcli -t -f active,ssid dev wifi | grep '^sim' | cut -d':' -f2)
+bssid=$(nmcli -t -f IN-USE,BSSID device wifi | grep '*' | tr -d '\\' | cut -d ':' -f2,3,4,5,6,7)
 
-if [ -z "$ssid" ]; then
+if [ -z "$bssid" ]; then
     echo "󰤭"
 else
-    signalStrength=$(nmcli -t -f SSID,SIGNAL device wifi | grep "$ssid" | cut -d ':' -f2)
+    signalStrength=$(nmcli -t -f BSSID,SIGNAL device wifi | tr -d '\\' | grep "$bssid" | cut -d ':' -f7)
     if [[ $signalStrength -le 100 && $signalStrength -gt 70 ]]; then
         echo "󰤨"
     elif [[ $signalStrength -le 70 && $signalStrength -gt 50 ]]; then
