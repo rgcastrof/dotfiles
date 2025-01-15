@@ -266,9 +266,11 @@ require('gitsigns').setup()
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+-- telescope and neotree
 vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
 vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
+-- buffers management
 map("n", "<C-l>", ":bnext<CR>", opts)
 map("n", "<C-h>", ":bprevious<CR>", opts)
 map("n", "<C-q>", ":bd<CR>", opts)
@@ -276,6 +278,13 @@ map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
+
+-- git maps
+map ("n", "<C-g>", ":G<CR>", opts)
+map ("n", "<C-g>a", ":G add .<CR>", opts)
+map ("n", "<C-g>c", ":G commit -a -m ", opts)
+
+-- remaps
 vim.cmd("map <C-s>h <C-w>h")
 vim.cmd("map <C-s>l <C-w>l")
 vim.cmd("map <C-s>k <C-w>k")
