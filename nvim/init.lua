@@ -37,6 +37,10 @@ vim.cmd([[
     Plug 'ellisonleao/gruvbox.nvim'
     Plug 'navarasu/onedark.nvim'
 
+    " Git
+    Plug 'lewis6991/gitsigns.nvim'
+    Plug 'tpope/vim-fugitive'
+
     call plug#end()
 ]])
 
@@ -252,6 +256,10 @@ for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+
+-- Gitsigns
+require('gitsigns').setup()
 
 
 -- macros
