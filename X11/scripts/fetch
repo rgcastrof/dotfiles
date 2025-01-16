@@ -33,24 +33,10 @@ Uptime=$(uptime -p | awk '{gsub(/up /, ""); print}')
 
 # Void ascii art
 cat <<'EOF'
-[1;34m                __.;=====;.__[0m
-[1;34m            _.=+==++=++=+=+===;.[0m
-[1;34m             -=+++=+===+=+=+++++=_[0m
-[1;34m        .     -=:``     `--==+=++==.[0m
-[1;34m       _vi,    `            --+=++++:[0m
-[1;34m      .uvnvi.       _._       -==+==+.[0m
-[1;34m     .vvnvnI`    .;==|==;.     :|=||=|.[0m
-[1;30m+QmQQm[1;34mpvvnv;[1;30m _yYsyQQWUUQQQm #QmQ#[1;34m:[1;30mQQQWUV$QQm.[0m
-[1;30m -QQWQW[1;34mpvvo[1;30mwZ?.wQQQE[1;34m==<[1;30mQWWQ/QWQW.QQWW[1;34m(:[1;30m jQWQE[0m
-[1;30m  -$QQQQmmU'  jQQQ[1;34m@+=<[1;30mQWQQ)mQQQ.mQQQC[1;34m+;[1;30mjWQQ@'[0m
-[1;30m   -$WQ8Y[1;34mnI:[1;30m   QWQQwgQQWV[1;34m`[1;30mmWQQ.jQWQQgyyWW@![0m
-[1;34m     -1vvnvv.     `~+++`        ++|+++[0m
-[1;34m      +vnvnnv,                 `-|===[0m
-[1;34m       +vnvnvns.           .      :=-[0m
-[1;34m        -Invnvvnsi..___..=sv=.     `[0m
-[1;34m          +Invnvnvnnnnnnnnvvnn;.[0m
-[1;34m            ~|Invnvnvvnvvvnnv}+`[0m
-[1;34m               -~|{*l}*|~[0m
+[1;30m+QmQQm      [1;30m _yYsyQQWUUQQQm #QmQ# [1;30mQQQWUV$QQm.[0m
+[1;30m -QQWQW    [1;30mwZ?.wQQQE   [1;30mQWWQ/QWQW.QQWW  [1;30m jQWQE[0m
+[1;30m  -$QQQQmmU'  jQQQ    [1;30mQWQQ)mQQQ.mQQQC  [1;30mjWQQ@'[0m
+[1;30m   -$WQ8Y   [1;30m   QWQQwgQQWV [1;30mmWQQ.jQWQQgyyWW@![0m
 EOF
 
 
