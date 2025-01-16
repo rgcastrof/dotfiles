@@ -13,7 +13,7 @@ static const int vertpad            = 5;
 static const int sidepad            = 5;
 static const int splitstatus        = 1;
 static const char *splitdelim       = ";";
-static const char *fonts[]          = { "JetBrainsMonoNerdFont:size=11" };
+static const char *fonts[]          = { "AgaveNerdFont:size=12" };
 static const char dmenufont[]       = "HackNerdFont:size=11";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -62,7 +62,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-l", "7", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[] = {"chromium", NULL};
+static const char *browsercmd[] = {"brave", NULL};
 static const char *rangercmd[] = {"st", "-e", "ranger", NULL};
 
 static const Key keys[] = {
@@ -125,7 +125,7 @@ static const Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY|ShiftMask,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
