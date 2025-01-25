@@ -88,8 +88,20 @@ require("bufferline").setup {
 
 -- Lualine
 require('lualine').setup {
-  options = { theme = 'onedark' }
+    options = { theme = 'onedark' }
 }
+
+
+require("neo-tree").setup({
+    window = {
+        width = 30,
+    },
+    filesystem = {
+        follow_current_file = {
+            enabled = true,
+        },
+    }
+})
 
 
 -- Treesiter
@@ -124,7 +136,7 @@ local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
 local function footer()
-  local datetime = os.date(" %A, %B %d at %H:%M %p")
+  local datetime = os.date(" %A, %d de %B às %H:%M %p")
 
   return datetime
 end
@@ -281,7 +293,7 @@ local opts = { noremap = true, silent = true }
 
 -- telescope and neotree
 vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
-vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
+vim.cmd("nnoremap <C-b> <cmd>Neotree /home/rogerio/workspace<cr>")
 
 -- buffers management
 map("n", "<C-l>", ":bnext<CR>", opts)
