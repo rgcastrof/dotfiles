@@ -1,0 +1,21 @@
+xterm*faceName: Fira Code NerdFont
+xterm*faceSize: 13
+
+xterm*foreground: rgb:C4/C4/C4
+xterm*background: rgb:1B/1B/1B
+xterm*color0: rgb:1B/1B/1B
+xterm*color1: rgb:F1/61/61
+xterm*color2: rgb:7C/B9/87
+xterm*color3: rgb:DD/C7/4C
+xterm*color4: rgb:62/96/BE
+xterm*color5: rgb:BE/6D/EE
+xterm*color6: rgb:49/BA/C8
+xterm*color7: rgb:BE/BE/BE
+xterm*color8: rgb:80/80/80
+xterm*color9: rgb:FF/89/85
+xterm*color10: rgb:97/D5/A0
+xterm*color11: rgb:FA/E3/65
+xterm*color12: rgb:7D/B1/DA
+xterm*color13: rgb:D6/8E/FF
+xterm*color14: rgb:49/BA/C8
+xterm*color15: rgb:C4/C4/C4
