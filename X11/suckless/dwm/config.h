@@ -30,7 +30,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
+    { "Pcmanfm",  NULL,       NULL,       1 << 3,       True,        -1 },
+    { "st-256color", "st-256color", "nvim", 1 << 2,     False,       -1 },
 };
 
 /* layout(s) */
@@ -62,14 +64,16 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-l", "7", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
-static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
+static const char *explorercmd[]  = { "pcmanfm", NULL };
+static const char *nvimcmd[] = { "st", "-e", "nvim", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
-    { MODKEY,                       XK_r,      spawn,          {.v = rangercmd }},
+    { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
+    { MODKEY,                       XK_w,      spawn,          {.v = nvimcmd} },
     { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh") },
     { MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh") },
     { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
