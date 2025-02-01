@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Modules
+
+User=$(whoami)
+
+Hostname=$(hostname)
+
+OS=$(awk -F= '/^PRETTY_NAME/ {gsub(/"/, "", $2); print $2}' /etc/os-release)
+
+Kernel=$(uname -r)
+
+Xbps=$(xbps-query | grep Usage | awk '{print $2}')
+Xbps_pkgs=$(xbps-query -l | wc -l)
+Flatpak=$(flatpak --help | grep Configure | awk '{print $3}')
+Flatpak_pkgs=$(flatpak list | wc -l)
+
+Product_family=$(cat /sys/devices/virtual/dmi/id/product_family)
+Product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
+
+Shell_name=$(ps -p $(ps -p $$ -o ppid=) -o comm=)
+Shell=$($SHELL --version | grep $Shell_name | awk '{gsub(/,/, "", $2); print $2, $4}')
+
+Mem_total=$(free -h | grep Mem | awk '{print $2}')
+Mem_used=$(free -h | grep Mem | awk '{print $3}')
+
+Init=$(ps -p 1 -o comm=)
+
+# Battery=$(acpi | awk '{gsub(/,/, "", $4); print $3, $4}')
+
+Uptime=$(uptime -p | awk '{gsub(/up /, ""); print}')
+
+
+# Void ascii art
+cat <<'EOF'
+[1;30m+QmQQm      [1;30m _yYsyQQWUUQQQm #QmQ# [1;30mQQQWUV$QQm.[0m
+[1;30m -QQWQW    [1;30mwZ?.wQQQE   [1;30mQWWQ/QWQW.QQWW  [1;30m jQWQE[0m
+[1;30m  -$QQQQmmU'  jQQQ    [1;30mQWQQ)mQQQ.mQQQC  [1;30mjWQQ@'[0m
+[1;30m   -$WQ8Y   [1;30m   QWQQwgQQWV [1;30mmWQQ.jQWQQgyyWW@![0m
+EOF
+
+
+
+# \e[1m$User\e[0m@\e[1m$Hostname\e[0m
+
+# Information
+echo -e "
+|--------------- \e[1;35mInformation\e[0m ---------------|
+          \e[1mdistro\e[0m->  $OS
+          \e[1mhost\e[0m->    $Product_name ($Product_family)
+          \e[1mkernel\e[0m->  $Kernel
+          \e[1minit\e[0m->    $Init
+	  \e[1muptime\e[0m->  $Uptime
+          \e[1mshell\e[0m->   $Shell
+	  \e[1mpkgs\e[0m->    $Xbps_pkgs ($Xbps), $Flatpak_pkgs ($Flatpak)
+          \e[1mmemory\e[0m->  $Mem_used / $Mem_total
+|-------------------------------------------|"
