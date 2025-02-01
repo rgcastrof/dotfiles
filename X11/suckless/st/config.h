@@ -4,8 +4,8 @@
  * appearance */
 
 #include "/home/rogerio/.config/st/themes/pop-dark.h"
-
-static char *font = "AgaveNerdFont:pixelsize=20:antialias=true:autohint=true";
+ 
+static char *font = "FiraCodeNerdFont:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 10;
 
 /*
@@ -93,20 +93,17 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* bg opacity */
-float alpha = 0.8;
-
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	black,
-	red,
-    green,	
-	yellow,
-	blue,
-	magenta,
-	cyan,
-	white,
+	 black,
+	 red,
+	 green,
+	 yellow,
+	 blue,
+	 magenta,
+	 cyan,
+	 white,
 
 	/* 8 bright colors */
 	bright_black,
@@ -205,7 +202,7 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ControlMask,          XK_Up,          kscrollup,      {.i =  3} },
-	{ ControlMask,          XK_Down,        kscrolldown,    {.i =  3} },
+    { ControlMask,          XK_Down,        kscrolldown,    {.i =  3} },
 };
 
 /*

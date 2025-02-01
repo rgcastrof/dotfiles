@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 /* Default settings; can be overriden by command line. */
 
-#include "/home/rogerio/.config/dmenu/themes/dark-blue.h"
+#include "/home/rogerio/.config/dmenu/themes/pop-dark.h"
 
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
