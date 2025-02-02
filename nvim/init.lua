@@ -136,7 +136,7 @@ local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
 local function footer()
-  local datetime = os.date(" %A, %d de %B às %H:%M %p")
+  local datetime = os.date(" %A, %B %d at %I:%M%p")
 
   return datetime
 end
