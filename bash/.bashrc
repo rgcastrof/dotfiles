@@ -1,6 +1,4 @@
-#
-# ~/.bashrc
-#
+# .bashrc
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -23,11 +21,12 @@ my_prompt() {
   fi
 
   # Retorna o prompt personalizado
-  PS1="\[\033[34m\]\w\[\033[0m\]$git_branch$git_status\n\[\033[32m\]❯\[\033[0m\] "
+  PS1="\033[31m[\[\033[34m\]\u\033[35m@\033[33m\h \033[36m\W\033[32m]\033[0m$git_branch$git_status\n\[\033[32m\]❯\[\033[0m\] "
 }
 
 # Define o prompt customizado no Bash
 PROMPT_COMMAND='my_prompt'
+
 
 # Comandos Básicos
 alias la='ls -a'
@@ -48,6 +47,5 @@ alias xq='xbps-query -Rs'
 # Volume
 alias mute='pactl set-sink-volume @DEFAULT_SINK@ 0%'
 alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
-
 
 eval "$(zoxide init bash)"
