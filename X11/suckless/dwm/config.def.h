@@ -4,7 +4,7 @@
 
 #include "/home/rogerio/.config/dwm/themes/dark-blue.h"
 
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 7;
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -32,7 +32,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
     { "Pcmanfm",  NULL,       NULL,       1 << 3,       True,        -1 },
-    { "st-256color", "st-256color", "nvim", 1 << 2,     False,       -1 },
+    { "VSCodium", NULL,       NULL,       1 << 2,       False,       -1 },
 };
 
 /* layout(s) */
@@ -43,9 +43,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ " ",      tile },    /* first entry is default */
+	{ " ",      NULL },    /* no layout function means floating behavior */
+	{ " ",      monocle },
 };
 
 /* key definitions */
@@ -65,7 +65,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-l", "7", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *explorercmd[]  = { "pcmanfm", NULL };
-static const char *nvimcmd[] = { "st", "-e", "nvim", NULL };
+static const char *codiumcmd[] = { "/usr/local/bin/codium", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -73,7 +73,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { MODKEY,                       XK_w,      spawn,          {.v = nvimcmd} },
+    { MODKEY,                       XK_w,      spawn,          {.v = codiumcmd} },
     { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh") },
     { MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh") },
     { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
