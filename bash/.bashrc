@@ -3,6 +3,14 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 my_prompt() {
   local git_branch=""
   local git_status=""
@@ -21,7 +29,7 @@ my_prompt() {
   fi
 
   # Retorna o prompt personalizado
-  PS1="\033[31m[\[\033[34m\]\u\033[35m@\033[33m\h \033[36m\W\033[32m]\033[0m$git_branch$git_status\n\[\033[32m\]❯\[\033[0m\] "
+  PS1="\033[1;31m[\[\033[1;34m\]\u\033[1;35m@\033[1;33m\h \033[1;36m\W\033[1;32m]\033[0m$git_branch$git_status\n\[\033[1;32m\]❯\[\033[0m\] "
 }
 
 # Define o prompt customizado no Bash
@@ -34,6 +42,7 @@ alias ll='ls -l'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ..='cd ..'
+alias g='gnome-text-editor'
 
 
 # Xbps
