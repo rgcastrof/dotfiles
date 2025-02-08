@@ -31,8 +31,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
-    { "Pcmanfm",  NULL,       NULL,       1 << 3,       True,        -1 },
-    { "VSCodium", NULL,       NULL,       1 << 2,       False,       -1 },
+	{ "Pcmanfm",  NULL,       NULL,       1 << 3,       True,        -1 },
 };
 
 /* layout(s) */
@@ -43,7 +42,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ " ",      tile },    /* first entry is default */
+	{ " ",      tile },    /* first entry is default */
 	{ " ",      NULL },    /* no layout function means floating behavior */
 	{ " ",      monocle },
 };
@@ -65,21 +64,19 @@ static const char *dmenucmd[] = { "dmenu_run", "-l", "7", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *explorercmd[]  = { "pcmanfm", NULL };
-static const char *codiumcmd[] = { "/usr/local/bin/codium", NULL };
 
 static const Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
-    { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { MODKEY,                       XK_w,      spawn,          {.v = codiumcmd} },
-    { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh") },
-    { MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh") },
-    { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
-    { MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
-    { MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
-    { MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
+    	/* modifier                     key        function        argument */
+    	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
+    	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
+    	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
+    	{ MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
+    	{ MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh") },
+    	{ MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh") },
+    	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
+    	{ MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
+    	{ MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
+    	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
