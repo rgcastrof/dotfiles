@@ -73,3 +73,7 @@
     frame_color = "#ff0000"
     timeout = 0
     override_pause_level = 60
+
+[play_sound]
+    summary = "*"
+    script = /home/rogerio/.config/dunst/alert.sh
