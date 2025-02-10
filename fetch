@@ -12,14 +12,14 @@ Kernel=$(uname -r)
 
 Xbps=$(xbps-query | grep Usage | awk '{print $2}')
 Xbps_pkgs=$(xbps-query -l | wc -l)
-Flatpak=$(flatpak --help | grep Configure | awk '{print $3}')
+Flatpak=$(flatpak --help | grep flatpaks | tr -d 's' | awk '{print $9}')
 Flatpak_pkgs=$(flatpak list | wc -l)
 
 Product_family=$(cat /sys/devices/virtual/dmi/id/product_family)
 Product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 
-Shell_name=$(ps -p $(ps -p $$ -o ppid=) -o comm=)
-Shell=$($SHELL --version | grep $Shell_name | awk '{gsub(/,/, "", $2); print $2, $4}')
+Shell_name=$(echo $SHELL | sed 's/\/bin\///')
+Shell=$($SHELL --version | grep $Shell_name | awk '{print $2}' | tr -d ',')
 
 Mem_total=$(free -h | grep Mem | awk '{print $2}')
 Mem_used=$(free -h | grep Mem | awk '{print $3}')
