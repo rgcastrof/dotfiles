@@ -2,7 +2,7 @@
 
 /* appearance */
 
-#include "/home/rogerio/.config/dwm/themes/dark-blue.h"
+#include "/home/rogerio/.config/dwm/themes/grass-scent.h"
 
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 7;
@@ -17,7 +17,7 @@ static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray2, col_gray1, col_cyan },
-	[SchemeSel]  = { col_gray3, col_gray4,  col_gray3  },
+	[SchemeSel]  = { col_gray3, col_gray4,  col_gray5  },
 };
 
 /* tagging */
