@@ -2,7 +2,7 @@
 
 /* appearance */
 
-#include "/home/rogerio/.config/dwm/themes/mist-forest.h"
+#include "/home/rogerio/.config/dwm/themes/dark-blue.h"
 
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 7;
