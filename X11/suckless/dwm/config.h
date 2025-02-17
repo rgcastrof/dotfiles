@@ -2,7 +2,7 @@
 
 /* appearance */
 
-#include "/home/rogerio/.config/dwm/themes/navigare-necesse.h"
+#include "/home/rogerio/.config/dwm/themes/mist-forest.h"
 
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 7;
@@ -32,7 +32,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            False,       -1 },
 	{ "Pcmanfm",  NULL,       NULL,       0,            True,        -1 },
-	{ "Xfce4-appfinder",  NULL,       NULL,    0,       True,        -1 },
+    { "feh",      "feh",      NULL,       0,            True,        -1 },
 };
 
 /* layout(s) */
