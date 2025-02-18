@@ -78,6 +78,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
     { MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
     { MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
+    { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
