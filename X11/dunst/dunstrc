@@ -23,7 +23,7 @@
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 3
-    frame_color = "#4C8CCF"
+    frame_color = "#90909C"
     gap_size = 0
     separator_color = frame
     sort = yes
@@ -50,7 +50,7 @@
     title = Dunst
     class = Dunst
 
-    corner_radius = 10
+    corner_radius = 7
 
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
