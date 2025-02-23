@@ -3,7 +3,7 @@
 telegramId=$(flatpak ps | grep -m1 telegram | awk '{print $3}')
 
 if [ "$telegramId" = "org.telegram.desktop" ]; then
-    echo ""
+    echo "   "
 else
-    echo ""
+    echo " "
 fi
