@@ -65,7 +65,8 @@ require('onedark').setup {}
 require('onedark').load()
 
 -- Transparency background and signcolumn
--- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+vim.cmd("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 
 
