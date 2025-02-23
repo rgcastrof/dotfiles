@@ -3,7 +3,7 @@
 /*
  * appearance */
 
-#include "/home/rogerio/.config/st/themes/pop-dark.h"
+#include "/home/rogerio/.config/st/themes/one-dark.h"
  
 static char *font = "FiraCodeNerdFont:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 10;
