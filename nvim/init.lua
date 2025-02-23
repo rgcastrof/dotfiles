@@ -61,14 +61,11 @@ vim.cmd("set termguicolors")
 
 
 -- colorscheme
-require('onedark').setup {
-    style = 'warmer'
-}
+require('onedark').setup {}
 require('onedark').load()
 
 -- Transparency background and signcolumn
-vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
-vim.cmd("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
+-- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
 vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 
 
@@ -135,12 +132,6 @@ require("ibl").setup {
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
-local function footer()
-  local datetime = os.date(" %A, %B %d at %I:%M%p")
-
-  return datetime
-end
-
 dashboard.section.header.val = {
 "                                                                             ",
 "                                                                             ",
@@ -163,7 +154,12 @@ dashboard.section.buttons.val = {
   dashboard.button("q", "  > Quit", ":qa<CR>"),
 }
 
-dashboard.section.footer.val = footer()
+dashboard.section.footer.val = {
+    "",
+    "Não peço um fardo mais leve,",
+    "mas ombros mais fortes.",
+}
+dashboard.section.footer.opts.hl = "Comment"
 
 alpha.setup(dashboard.opts)
 
