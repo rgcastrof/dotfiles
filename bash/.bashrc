@@ -17,19 +17,19 @@ my_prompt() {
 
   # Verifica se estamos em um repositório Git e obtém o nome do branch
   if git rev-parse --is-inside-work-tree &>/dev/null; then
-    git_branch=" on \033[35m $(git symbolic-ref --short HEAD)\033[0m"
+    git_branch=" on \e[35m $(git symbolic-ref --short HEAD)\e[0m"
 
     # Status
     git_status=$(git status --porcelain)
     if [ -z "$git_status" ]; then
-      git_status="\033[36m ✔\033[0m"
+      git_status="\e[36m ✔\e[0m"
     else
-      git_status="\033[31m ✗\033[0m"
+      git_status="\e[31m ✗\e[0m"
     fi
   fi
 
   # Retorna o prompt personalizado
-  PS1="\033[1;35m╭─\033[1;31m[\[\033[1;34m\]\u\033[1;35m@\033[1;33m\h \033[1;36m\W\033[1;32m]\033[0m$git_branch$git_status\n\033[1;35m╰─\[\033[1;32m\]❯\[\033[0m\] "
+  PS1="\e[1;35m╭─\e[1;31m(\e[1;34m\u\e[1;35m@\e[1;33m\h\e[1;31m)\e[1;35m─\e[1;32m(\e[1;35m\w\e[0m$git_branch$git_status\e[1;32m)\n\e[1;35m╰─\[\e[1;32m\]❯\[\e[0m\] "
 }
 
 # Define o prompt customizado no Bash
@@ -46,10 +46,10 @@ alias g='gnome-text-editor'
 
 
 # Xbps
-alias xu='sudo xbps-install -Su'
-alias xi='sudo xbps-install -S'
-alias xr='sudo xbps-remove -R'
-alias xo='sudo xbps-remove -o'
+alias xu='doas xbps-install -Su'
+alias xi='doas xbps-install -S'
+alias xr='doas xbps-remove -R'
+alias xo='doas xbps-remove -o'
 alias xq='xbps-query -Rs'
 
 
