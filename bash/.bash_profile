@@ -10,4 +10,3 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 	export XDG_RUNTIME_DIR
 fi
 
-/usr/bin/brightnessctl set 5% > /dev/null 2>&1
