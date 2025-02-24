@@ -46,7 +46,7 @@ vim.cmd([[
 
 
 -- General settings
-vim.cmd("syntax on")
+-- vim.cmd("syntax on")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.cmd("set expandtab")
@@ -71,17 +71,7 @@ vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 
 
 -- Bufferline
-require("bufferline").setup {
-
-    options = {
-        always_show_bufferline = false,
-    },
-    highlights = {
-        fill = {
-            bg = "#1e2127",
-        },
-    },
-}
+require("bufferline").setup {}
 
 
 -- Lualine
