@@ -246,11 +246,13 @@ cmp.setup({
 
 
 -- Add signs icons
-local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+local x = vim.diagnostic.severity
+
+vim.diagnostic.config {
+    virtual_text = { prefix = "a" },
+    signs = { text = { [x.ERROR] = " ", [x.WARN] = " ", [x.INFO] = " ", [x.HINT] = "󰠠 " } },
+    underline = true,
+}
 
 
 -- Gitsigns
