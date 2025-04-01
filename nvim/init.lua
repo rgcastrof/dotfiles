@@ -158,7 +158,7 @@ alpha.setup(dashboard.opts)
 -- Lsps
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "clangd", "jdtls" },
+    ensure_installed = { "lua_ls", "clangd", "jdtls", "gopls" },
 }
 local lspconfig = require('lspconfig')
 
@@ -198,6 +198,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Lsp's setup
 lspconfig.lua_ls.setup {}
 lspconfig.clangd.setup {}
+
+-- LSP Configuration (GO)
+lspconfig.gopls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {"gopls"},
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+            },
+        },
+    },
+}
 
 -- LSP Configuration (JDTLS)
 require('lspconfig').jdtls.setup({
