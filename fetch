@@ -4,21 +4,21 @@
 
 User=$(whoami)
 
-Hostname=$(hostname)
+Hostname=$(hostnamectl | head -n 1 | awk '{print $3}')
 
 OS=$(awk -F= '/^PRETTY_NAME/ {gsub(/"/, "", $2); print $2}' /etc/os-release)
 
 Kernel=$(uname -r)
 
-Xbps=$(xbps-query | grep Usage | awk '{print $2}')
-Xbps_pkgs=$(xbps-query -l | wc -l)
+Pacman=$(pacman -h | grep pacman | head -n 1 | awk '{print $2}')
+Pacman_pkgs=$(pacman -Q | wc -l)
 Flatpak=$(flatpak --help | grep flatpaks | tr -d 's' | awk '{print $9}')
 Flatpak_pkgs=$(flatpak list | wc -l)
 
 Product_family=$(cat /sys/devices/virtual/dmi/id/product_family)
 Product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 
-Shell_name=$(echo $SHELL | sed 's/\/bin\///')
+Shell_name=$(echo $SHELL | sed 's/\/usr\/bin\///')
 Shell=$($SHELL --version | grep $Shell_name | awk '{print $2}' | tr -d ',')
 
 Mem_total=$(free -h | grep Mem | awk '{print $2}')
@@ -33,10 +33,14 @@ Uptime=$(uptime -p | awk '{gsub(/up /, ""); print}')
 
 # Void ascii art
 cat <<'EOF'
-[1;30m+QmQQm      [1;30m _yYsyQQWUUQQQm #QmQ# [1;30mQQQWUV$QQm.[0m
-[1;30m -QQWQW    [1;30mwZ?.wQQQE   [1;30mQWWQ/QWQW.QQWW  [1;30m jQWQE[0m
-[1;30m  -$QQQQmmU'  jQQQ    [1;30mQWQQ)mQQQ.mQQQC  [1;30mjWQQ@'[0m
-[1;30m   -$WQ8Y   [1;30m   QWQQwgQQWV [1;30mmWQQ.jQWQQgyyWW@![0m
+
+[1;34m          :::     :::::::::   ::::::::  :::    ::: 
+       :+: :+:   :+:    :+: :+:    :+: :+:    :+:  
+     +:+   +:+  +:+    +:+ +:+        +:+    +:+   
+   +#++:++#++: +#++:++#:  +#+        +#++:++#++    
+  +#+     +#+ +#+    +#+ +#+        +#+    +#+     
+ #+#     #+# #+#    #+# #+#    #+# #+#    #+#      
+###     ### ###    ###  ########  ###    ###       [0m
 EOF
 
 
@@ -52,6 +56,6 @@ echo -e "
           \e[1minit\e[0m->    $Init
 	  \e[1muptime\e[0m->  $Uptime
           \e[1mshell\e[0m->   $Shell
-	  \e[1mpkgs\e[0m->    $Xbps_pkgs ($Xbps), $Flatpak_pkgs ($Flatpak)
+	  \e[1mpkgs\e[0m->    $Pacman_pkgs ($Pacman), $Flatpak_pkgs ($Flatpak)
           \e[1mmemory\e[0m->  $Mem_used / $Mem_total
 |-------------------------------------------|"
