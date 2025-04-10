@@ -46,7 +46,7 @@ vim.cmd([[
 
 
 -- General settings
--- vim.cmd("syntax on")
+vim.cmd("syntax on")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.cmd("set expandtab")
@@ -61,7 +61,9 @@ vim.cmd("set termguicolors")
 
 
 -- colorscheme
-require('onedark').setup {}
+require('onedark').setup {
+    style = 'warmer'
+}
 require('onedark').load()
 
 -- Transparency background and signcolumn
@@ -71,7 +73,11 @@ vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 
 
 -- Bufferline
-require("bufferline").setup {}
+require("bufferline").setup {
+    options = {
+        always_show_bufferline = false,
+    }
+}
 
 
 -- Lualine
@@ -94,7 +100,7 @@ require("neo-tree").setup({
 
 -- Treesiter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "lua","html", "css", "javascript", "python", "java", "rust"},
+  ensure_installed = {"c", "lua", "java", "go"},
 
   sync_install = false,
 
@@ -124,7 +130,6 @@ local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
 dashboard.section.header.val = {
-"                                                                             ",
 "                                                                             ",
 "██╗   ██╗██╗    ███╗   ███╗██████╗ ██████╗  ██████╗ ██╗   ██╗███████╗██████╗ ",
 "██║   ██║██║    ████╗ ████║██╔══██╗██╔══██╗██╔═══██╗██║   ██║██╔════╝██╔══██╗",
@@ -282,7 +287,7 @@ local opts = { noremap = true, silent = true }
 
 -- telescope and neotree
 vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
-vim.cmd("nnoremap <C-b> <cmd>Neotree /home/rogerio/workspace<cr>")
+vim.cmd("nnoremap <C-b> <cmd>Neotree /home/rogerio/Workspace<cr>")
 
 -- buffers management
 map("n", "<C-l>", ":bnext<CR>", opts)
