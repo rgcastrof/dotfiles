@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#day=$(date +"%b %d %a")
-time=$(date +"%I:%M%p" | tr '[:upper:]' '[:lower:]')
+day=$(date +"%A, %d %b")
+time=$(date +"%H:%M")
 
-echo "| $time"
+echo "| $day $time"
