@@ -108,6 +108,15 @@ configurar_interface() {
     nitrogen --set-auto $HOME/Imagens/Wallpapers/1145436.jpg
 }
 
+configurar_dunst() {
+    cp -r $HOME/dotfiles/X11/dunst/ $HOME/.config/
+}
+
+configurar_picom() {
+    mkdir -p $HOME/.config/picom/
+    cp $HOME/dotfiles/X11/picom.conf $HOME/.config/picom/
+}
+
 configurar_permissoes() {
 
     echo "Atualizando permissões do diretório ~/.cache..."
@@ -146,6 +155,8 @@ configurar_tlp
 configurar_intel_microcode
 configurar_apparmor
 configurar_interface
+configurar_dunst
+configurar_picom
 configurar_permissoes
 configurar_fontes
 configurar_flatpak
