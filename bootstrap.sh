@@ -1,20 +1,12 @@
 #!/bin/bash
 set -e
 
-echo "Verificando conexão com a internet"
-
-while ! ping -q -c 1 -W 2 8.8.8.8 > /dev/null; do
-    echo "Sem conexão com internet. Aguarde até a conexão"
-    rfkill unblock all
-    sleep 10
-done
-
-echo "Conectado à internet. Iniciando instalação dos pacotes"
 echo "Ativando repositorio nonfree"
-xbps-install -S void-repo-nonfree
+sudo xbps-install -Sy void-repo-nonfree
 
+echo "Iniciando instalação dos pacotes"
 if [[ -f pkgs.txt ]]; then
-    xbps-install -Sy $(< pkgs.txt)
+    sudo xbps-install -Sy $(< pkgs.txt)
 else
     echo "Arquivo com nome dos pacotes não encontrado! Abortando"
     exit 1
@@ -23,17 +15,36 @@ fi
 configurar_networkmanager() {
 
     echo "Configurando NetworkManager..."
-    rm -f /var/service/dhcpd /var/service/wpa_supplicant
-    ln -s /etc/sv/dbus/ /var/service/
-    ln -s /etc/sv/NetworkManager/ /var/service/
+    sudo rm -f /var/service/dhcpd /var/service/wpa_supplicant
+    sudo ln -s /etc/sv/dbus/ /var/service/
+    sudo ln -s /etc/sv/NetworkManager/ /var/service/
+    sleep 10
+
+    if [[ sudo sv status NetworkManager | awk '{print $6}' == "run:" && sudo sv status dbus | awk '{print $6}' == "run:" ]]; then
+        echo "NetworkManager configurado."
+    else
+        echo "Erro ao configurar NetworkManager"
+    fi
+
+    echo "Redes disponíveis:"
+    nmcli device wifi list
+    echo "Conecte-se à uma rede:"
+    read -rp "SSID: " ssid
+    read -rsp "Senha da rede: " senha
+
+    if sudo nmcli dev wifi connect "$ssid" password "$senha"; then
+    echo "Conectado com sucesso à rede '$ssid'!"
+    else
+        echo "Erro ao conectar à rede '$ssid'."
+    fi
 }
 
 configurar_tlp() {
-    ln -s /etc/sv/tlp/ /var/service/
+    sudo ln -s /etc/sv/tlp/ /var/service/
 }
 
 configurar_intel_microcode() {
-    xbps-reconfigure --force $(xbps-query -l | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | grep "linux6")
+    sudo xbps-reconfigure --force $(xbps-query -l | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | grep "linux6")
 }
 
 configurar_apparmor() {
@@ -55,18 +66,18 @@ configurar_interface() {
     cp -r $HOME/dotfiles/X11/suckless/dmenu/ $HOME/.config/
     cp -r $HOME/dotfiles/X11/suckless/st/ $HOME/.config/
 
-    mkdir -p /etc/X11/xorg.conf.d/
-    cp $HOME/dotfiles/X11/30-touchpad.conf /etc/X11/xorg.conf.d/
-    cp $HOME/dotfiles/X11/10-keyboard.conf /etc/X11/xorg.conf.d/
+    sudo mkdir -p /etc/X11/xorg.conf.d/
+    sudo cp $HOME/dotfiles/X11/30-touchpad.conf /etc/X11/xorg.conf.d/
+    sudo cp $HOME/dotfiles/X11/10-keyboard.conf /etc/X11/xorg.conf.d/
 
     cd $HOME/.config/dwm/
-    make && make install
+    make && sudo make install
     cd $HOME/.config/st/
-    make && make install
+    make && sudo make install
     cd $HOME/.config/dmenu/
-    make && make install
+    make && sudo make install
     cd $HOME/.config/dwm/dwmblocks/
-    make && make install
+    make && sudo make install
     cd
 }
 
@@ -74,15 +85,15 @@ configurar_permissoes() {
     mkdir -p $HOME/.cache/
     chown -R $USER:$USER ~/.cache/
     chmod -R u+rw ~/.cache/
-    mkdir -p /etc/udev/rules.d/
-    echo SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660" > /etc/udev/rules.d/90-backlight.rules
+    sudo mkdir -p /etc/udev/rules.d/
+    sudo echo SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660" > /etc/udev/rules.d/90-backlight.rules
 }
 
 configurar_slim() {
-    rm -f /etc/slim.conf
-    cp $HOME/dotfiles/X11/slim/slim.conf /etc/slim/
-    cp -rf $HOME/dotfiles/X11/slim/bluer/ /user/share/slim/themes/
-    ln -s /etc/sv/slim /var/service/
+    sudo rm -f /etc/slim.conf
+    sudo cp $HOME/dotfiles/X11/slim/slim.conf /etc/slim/
+    sudo cp -rf $HOME/dotfiles/X11/slim/bluer/ /usr/share/slim/themes/
+    sudo ln -s /etc/sv/slim /var/service/
 }
 
 configurar_fontes() {
@@ -102,7 +113,7 @@ configurar_fontes() {
 }
 
 configurar_flatpak() {
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
 configurar_networkmanager
@@ -116,5 +127,5 @@ configurar_flatpak
 
 read -rp "Reiniciar agora? [s/N] " resposta
 if [[ "$resposta" =~ ^[sS]$ ]]; then
-  reboot
+  sudo reboot
 fi
