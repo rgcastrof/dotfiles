@@ -34,8 +34,12 @@ configurar_networkmanager() {
     read -rp "SSID: " ssid
     read -rsp "Senha da rede: " senha
 
-    if sudo nmcli dev wifi connect "$ssid" password "$senha"; then
-    echo "Conectado com sucesso à rede '$ssid'!"
+    sudo nmcli device wifi connect "$ssid" password "$senha"
+    sleep 10
+
+    conectado=$(nmcli device wifi list | grep '*' | awk '{print $1}')
+    if [[ "$conectado" == "*" ]]; then
+        echo "Conectado com sucesso à rede '$ssid'!"
     else
         echo "Erro ao conectar à rede '$ssid'."
     fi
@@ -65,8 +69,8 @@ configurar_interface() {
 
     echo "Atualizando arquivos .bashrc e .bash_profile..."
     rm -f $HOME/.bashrc $HOME/.bash_profile
-    cp $HOME/dotfiles/.bashrc $HOME/
-    cp $HOME/dotfiles/.bash_profile $HOME/
+    cp $HOME/dotfiles/bash/.bashrc $HOME/
+    cp $HOME/dotfiles/bash/.bash_profile $HOME/
 
     echo "Copiando arquivos de configuração do teclado e touchpad para o xorg..."
     sudo mkdir -p /etc/X11/xorg.conf.d/
