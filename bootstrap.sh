@@ -104,8 +104,6 @@ configurar_interface() {
     cd $HOME/Imagens/
     git clone https://github.com/rgcastrof/Wallpapers.git
     cd
-
-    nitrogen --set-auto $HOME/Imagens/Wallpapers/1145436.jpg
 }
 
 configurar_dunst() {
