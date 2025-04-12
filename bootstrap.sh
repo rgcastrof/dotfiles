@@ -64,7 +64,7 @@ configurar_apparmor() {
 configurar_interface() {
 
     echo "Atualizando arquivos .bashrc e .bash_profile..."
-    rm $HOME/.bashrc $HOME/.bash_profile
+    rm -f $HOME/.bashrc $HOME/.bash_profile
     cp $HOME/dotfiles/.bashrc $HOME/
     cp $HOME/dotfiles/.bash_profile $HOME/
 
@@ -91,7 +91,6 @@ configurar_interface() {
     make && sudo make install
     cd $HOME/.config/dwm/dwmblocks/
     make && sudo make install
-    cd
 }
 
 configurar_permissoes() {
