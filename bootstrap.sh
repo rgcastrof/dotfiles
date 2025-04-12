@@ -33,8 +33,10 @@ configurar_networkmanager() {
     echo "Conecte-se à uma rede:"
     read -rp "SSID: " ssid
     read -rsp "Senha da rede: " senha
+    echo
 
     sudo nmcli device wifi connect "$ssid" password "$senha"
+    echo "Aguarde..."
     sleep 10
 
     conectado=$(nmcli device wifi list | grep '*' | awk '{print $1}')
@@ -95,6 +97,15 @@ configurar_interface() {
     make && sudo make install
     cd $HOME/.config/dwm/dwmblocks/
     make && sudo make install
+
+    echo "exec dbus-run-session dwm" > $HOME/.xinitrc
+
+    mkdir -p $HOME/Imagens/
+    cd $HOME/Imagens/
+    git clone https://github.com/rgcastrof/Wallpapers.git
+    cd
+
+    nitrogen --set-auto $HOME/Imagens/Wallpapers/1145436.jpg
 }
 
 configurar_permissoes() {
@@ -106,14 +117,6 @@ configurar_permissoes() {
     echo "Atualizando permissões do brilho da tela..."
     sudo mkdir -p /etc/udev/rules.d/
     echo 'SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660"' | sudo tee /etc/udev/rules.d/90-backlight.rules > /dev/null
-}
-
-configurar_slim() {
-    echo "Configurando o display manager slim"
-    sudo rm -f /etc/slim.conf
-    sudo cp $HOME/dotfiles/X11/slim/slim.conf /etc/slim/
-    sudo cp -rf $HOME/dotfiles/X11/slim/bluer/ /usr/share/slim/themes/
-    sudo ln -s /etc/sv/slim /var/service/
 }
 
 configurar_fontes() {
