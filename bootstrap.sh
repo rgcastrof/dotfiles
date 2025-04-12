@@ -78,6 +78,13 @@ configurar_permissoes() {
     echo SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660" > /etc/udev/rules.d/90-backlight.rules
 }
 
+configurar_slim() {
+    rm -f /etc/slim.conf
+    cp $HOME/dotfiles/X11/slim/slim.conf /etc/slim/
+    cp -rf $HOME/dotfiles/X11/slim/bluer/ /user/share/slim/themes/
+    ln -s /etc/sv/slim /var/service/
+}
+
 configurar_fontes() {
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
