@@ -105,7 +105,7 @@ configurar_permissoes() {
     chmod -R u+rw ~/.cache/
     echo "Atualizando permissões do brilho da tela..."
     sudo mkdir -p /etc/udev/rules.d/
-    sudo echo SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660" > /etc/udev/rules.d/90-backlight.rules
+    echo 'SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660"' | sudo tee /etc/udev/rules.d/90-backlight.rules > /dev/null
 }
 
 configurar_slim() {
