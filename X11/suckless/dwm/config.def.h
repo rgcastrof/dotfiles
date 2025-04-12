@@ -9,7 +9,7 @@ static const unsigned int gappx     = 7;
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "HackNerdFont:size=10" };
+static const char *fonts[]          = { "HackNerdFont:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
 
 static const char *colors[][3]      = {
@@ -70,8 +70,8 @@ static const Key keys[] = {
     { MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh") },
-    { MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh") },
+    { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
+    { MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh && ~/.config/dwm/scripts/notify_volume_down.sh") },
     { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
     { MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
     { MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
