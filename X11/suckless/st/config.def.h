@@ -3,9 +3,9 @@
 /*
  * appearance */
 
-#include "/home/rogerio/.config/st/themes/one-dark.h"
+#include "/home/rogerio/.config/st/themes/pop-dark.h"
  
-static char *font = "FiraCodeNerdFont:pixelsize=17:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNerdFont:pixelsize=15:antialias=true:autohint=true";
 static int borderpx = 10;
 
 /*
@@ -94,7 +94,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.85;
+float alpha = 0.90;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {

@@ -9,7 +9,7 @@ static const unsigned int gappx     = 7;
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMonoNerdFont:size=10" };
+static const char *fonts[]          = { "HackNerdFont:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
 static const char *colors[][3]      = {
