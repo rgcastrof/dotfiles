@@ -58,8 +58,8 @@
 
 [urgency_low]
     background = "#222222"
-    foreground = "#888888"
-    timeout = 10
+    foreground = "#ffffff"
+    timeout = 1
 
 [urgency_normal]
     background = "#1B1B1B"
@@ -74,6 +74,6 @@
     timeout = 0
     override_pause_level = 60
 
-[play_sound]
-    summary = "*"
-    script = /home/rogerio/.config/dunst/alert.sh
+# [play_sound]
+#    summary = "*"
+#    script = /home/rogerio/.config/dunst/alert.sh
