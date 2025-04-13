@@ -11,8 +11,27 @@ if ! shopt -oq posix; then
   fi
 fi
 
+my_prompt() {
 
-PS1='[\u@\h \W]\$ '
+    local git_branch=""
+    local git_status=""
+
+    # Verifica se estamos em um repositório Git e obtém o nome do branch
+    if git rev-parse --is-inside-work-tree &>/dev/null; then
+    git_branch=" on \[\e[35m\] $(git symbolic-ref --short HEAD)\[\e[0m\]"
+
+    # Status
+    git_status=$(git status --porcelain)
+    if [ -z "$git_status" ]; then
+        git_status="\[\e[36m\] ✔\[\e[0m\]"
+        else
+            git_status="\[\e[31m\] ✗\[\e[0m\]"
+        fi
+    fi
+    PS1="\[\e[32m\][\u@\h \w]\$\[\e[0m\]$git_branch$git_status\n\[\e[33m\]❯\[\e[0m\] "
+}
+
+PROMPT_COMMAND='my_prompt'
 
 # Comandos Básicos
 alias la='ls -a'
@@ -39,3 +58,4 @@ eval "$(zoxide init bash)"
 
 # Created by `pipx` on 2025-04-11 22:16:42
 export PATH="$PATH:/home/rogerio/.local/bin"
+
