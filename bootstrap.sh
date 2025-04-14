@@ -48,6 +48,7 @@ configurar_interface() {
     rm -f $HOME/.bashrc $HOME/.bash_profile
     cp $HOME/dotfiles/bash/.bashrc $HOME/
     cp $HOME/dotfiles/bash/.bash_profile $HOME/
+    sudo cp $HOME/dotfiles/fetch /usr/local/bin/
 
     echo "Copiando arquivos de configuração do teclado e touchpad para o xorg..."
     sudo mkdir -p /etc/X11/xorg.conf.d/
@@ -100,6 +101,22 @@ configurar_permissoes() {
     echo "Atualizando permissões do brilho da tela..."
     sudo mkdir -p /etc/udev/rules.d/
     echo 'SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660"' | sudo tee /etc/udev/rules.d/90-backlight.rules > /dev/null
+    echo "brightnessctl set 10%" | sudo tee /etc/rc.local  >> /dev/null
+}
+
+configurar_hosts() {
+    cat <<-EOF | sudo tee /etc/hosts > /dev/null
+    #
+    # /etc/hosts: static lookup table for host names
+    #
+
+    #<ip-address>           <hostname.domain.org>   <hostname>
+    127.0.0.1               localhost.localdomain   localhost
+    ::1                     localhost.localdomain   localhost
+    127.0.0.1               void.localdomain        void
+
+    # End of file
+    EOF
 }
 
 configurar_fontes() {
@@ -123,11 +140,13 @@ configurar_fontes() {
 }
 
 configurar_git() {
+    echo "configurando usuário git"
     git config --global user.email "rogeriogirao1@proton.me"
     git config --global user.name "rgcastrof"
 }
 
 configurar_neovim() {
+    echo "configurando neovim"
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -147,6 +166,7 @@ configurar_interface
 configurar_dunst
 configurar_picom
 configurar_permissoes
+configurar_hosts
 configurar_fontes
 configurar_git
 configurar_neovim
