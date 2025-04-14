@@ -4,11 +4,7 @@
 VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | tr -d '%')
 # Ícone e texto condicional
 
-if [[ $VOLUME -gt 105 ]]; then
-    status="----------------------"
-elif [[ $VOLUME -le 105 && $VOLUME -gt 100 ]]; then
-    status="---------------------"
-elif [[ $VOLUME -le 100 && $VOLUME -gt 95 ]]; then
+if [[ $VOLUME -gt 95 ]]; then
     status="--------------------"
 elif [[ $VOLUME -le 95 && $VOLUME -gt 90 ]]; then
     status="-------------------"
@@ -50,5 +46,5 @@ elif [[ $VOLUME -le 5 && $VOLUME -gt 0 ]]; then
     status="-"
 fi
 # Envia a notificação com substituição (usando uma ID constante)
-dunstify -a "Volume" -r 9993 -u low " 󰝝 $status"
+dunstify -a "Volume" -r 9993 -u low " 󰝝    $status  $VOLUME%"
 
