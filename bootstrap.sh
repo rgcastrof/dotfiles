@@ -12,45 +12,20 @@ else
     exit 1
 fi
 
-configurar_networkmanager() {
-
-    echo "Configurando NetworkManager..."
-    sudo rm -f /var/service/dhcpd /var/service/wpa_supplicant
-    sudo ln -s /etc/sv/dbus/ /var/service/
-    sudo ln -s /etc/sv/NetworkManager/ /var/service/
-    sleep 10
-
-    nm_status=$(sudo sv status NetworkManager | awk '{print $6}')
-    dbus_status=$(sudo sv status dbus | awk '{print $6}')
-    if [[ "$nm_status" == "run:" && "$dbus_status" == "run:" ]]; then
-        echo "NetworkManager configurado."
-    else
-        echo "Erro ao configurar NetworkManager"
-    fi
-
-    echo "Redes disponíveis:"
-    nmcli device wifi list
-    echo "Conecte-se à uma rede:"
-    read -rp "SSID: " ssid
-    read -rsp "Senha da rede: " senha
-    echo
-
-    sudo nmcli device wifi connect "$ssid" password "$senha"
-    echo "Aguarde..."
-    sleep 10
-
-    conectado=$(nmcli device wifi list | grep '*' | awk '{print $1}')
-    if [[ "$conectado" == "*" ]]; then
-        echo "Conectado com sucesso à rede '$ssid'!"
-    else
-        echo "Erro ao conectar à rede '$ssid'."
-    fi
-}
 
 configurar_tlp() {
     echo "Ativando tlp..."
     sudo ln -s /etc/sv/tlp/ /var/service/
-    echo "tlp ativo"
+    sleep 3
+
+    status=$(sudo sv status tlp | awk '{print $1}' | tr -d ':')
+
+    if [[ "$status" == "run" ]]; then
+        echo "tlp ativo"
+    else
+        echo "erro ao ativar tlp"
+    fi
+
 }
 
 configurar_intel_microcode() {
@@ -104,6 +79,7 @@ configurar_interface() {
     cd $HOME/Imagens/
     git clone https://github.com/rgcastrof/Wallpapers.git
     cd
+    xdg-user-dirs-update
 }
 
 configurar_dunst() {
@@ -130,17 +106,33 @@ configurar_fontes() {
     echo "Instalando fontes..."
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
 
     unzip -d JetBrains JetBrainsMono.zip
     unzip -d Hack Hack.zip
+    unzip -d FiraCode FiraCode.zip
 
     mkdir -p $HOME/.local/share/fonts/
     mv JetBrains/*.ttf $HOME/.local/share/fonts/
     mv Hack/*.ttf $HOME/.local/share/fonts/
-    rm Hack.zip JetBrainsMono.zip
-    rm -rf Hack JetBrains
+    mv FiraCode/*.ttf $HOME/.local/share/fonts/
+    rm Hack.zip JetBrainsMono.zip FiraCode.zip
+    rm -rf Hack JetBrains FiraCode
 
     fc-cache -f -v
+}
+
+configurar_git() {
+    git config --global user.email "rogeriogirao1@proton.me"
+    git config --global user.name "rgcastrof"
+}
+
+configurar_neovim() {
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+    mkdir -p $HOME/.config/nvim/
+    cp $HOME/dotfiles/nvim/init.lua $HOME/.config/nvim/
 }
 
 configurar_flatpak() {
@@ -148,7 +140,6 @@ configurar_flatpak() {
     sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
-configurar_networkmanager
 configurar_tlp
 configurar_intel_microcode
 configurar_apparmor
@@ -157,6 +148,8 @@ configurar_dunst
 configurar_picom
 configurar_permissoes
 configurar_fontes
+configurar_git
+configurar_neovim
 configurar_flatpak
 
 echo "Pós-instalação concluída"
