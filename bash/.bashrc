@@ -18,17 +18,17 @@ my_prompt() {
 
     # Verifica se estamos em um repositório Git e obtém o nome do branch
     if git rev-parse --is-inside-work-tree &>/dev/null; then
-    git_branch=" on \[\e[35m\] $(git symbolic-ref --short HEAD)\[\e[0m\]"
+    git_branch="\[\e[32m\] \[\e[35m\]$(git symbolic-ref --short HEAD)\[\e[0m\]"
 
     # Status
     git_status=$(git status --porcelain)
     if [ -z "$git_status" ]; then
-        git_status="\[\e[36m\] ✔\[\e[0m\]"
+        git_status="\[\e[32m\] [\[\e[36m\]✔\[\e[32m\]]\n"
         else
-            git_status="\[\e[31m\] ✗\[\e[0m\]"
+            git_status="\[\e[32m\] [\[\e[31m\]✗\[\e[32m\]]\n"
         fi
     fi
-    PS1="\[\e[32m\][\u@\h \w]\$\[\e[0m\]$git_branch$git_status\n\[\e[33m\]❯\[\e[0m\] "
+    PS1="$git_branch$git_status\[\e[34m\] \[\e[37m\] \w\[\e[0m\]\[\e[33m\] ❯\[\e[0m\] "
 }
 
 PROMPT_COMMAND='my_prompt'
