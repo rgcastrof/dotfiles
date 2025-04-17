@@ -77,6 +77,7 @@ configurar_interface() {
     echo "exec dbus-run-session dwm" > $HOME/.xinitrc
 
     mkdir -p $HOME/Imagens/
+    mkdir -p $HOME/Imagens/Screenshots/
     cd $HOME/Imagens/
     git clone https://github.com/rgcastrof/Wallpapers.git
     cd

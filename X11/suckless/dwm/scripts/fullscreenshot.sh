@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/usr/bin/scrot /home/rogerio/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png
+/usr/bin/scrot /home/rogerio/Imagens/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png

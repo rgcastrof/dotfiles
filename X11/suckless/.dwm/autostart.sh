@@ -3,4 +3,3 @@
 dwmblocks &
 dunst &
 nitrogen --restore
-picom -b

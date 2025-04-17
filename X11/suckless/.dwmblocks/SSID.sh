@@ -1,12 +1,13 @@
 #!/bin/bash
 
 bssid=$(nmcli -t -f IN-USE,BSSID device wifi | grep '*' | tr -d '\\' | cut -d ':' -f2,3,4,5,6,7)
-signal=$(nmcli -t -f IN-USE,SIGNAL dev wifi | grep "*" | tr -d "*:")
+# signal=$(nmcli -t -f IN-USE,SIGNAL dev wifi | grep "*" | tr -d "*:")
+ssid=$(nmcli -t -f IN-USE,SSID device wifi | grep "*" | tr -d "*:")
 
 if [ -z "$bssid" ]; then
-    echo "no connection "
+    echo "󰘊 desconectado "
 else
-    echo "󰘊 $signal "
+    echo "󰘊 $ssid "
 fi
 
 #if [ -z "$bssid" ]; then
