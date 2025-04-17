@@ -80,7 +80,6 @@ ffmpeg6
 ffplay6
 file
 findutils
-firefox
 flatpak
 flex
 flite
@@ -133,6 +132,7 @@ gzip
 hdparm
 hicolor-icon-theme
 highway
+htop
 hwids
 iana-etc
 icu-libs
@@ -504,7 +504,6 @@ shaderc
 shadow
 shared-mime-info
 slang
-slim
 soundtouch
 spandsp
 speexdsp
