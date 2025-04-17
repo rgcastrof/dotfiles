@@ -4,8 +4,8 @@
 
 #include "/home/rogerio/.config/dwm/themes/dark-blue.h"
 
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 7;
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 18;
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -61,7 +61,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-l", "7", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "firefox", NULL };
+static const char *browsercmd[]  = { "/opt/zen/zen", NULL };
 static const char *explorercmd[]  = { "pcmanfm", NULL };
 
 static const Key keys[] = {
