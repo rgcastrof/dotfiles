@@ -437,6 +437,7 @@ nvi
 ocl-icd
 oneVPL
 oniguruma
+opendoas
 openjdk-common
 openjdk17
 openjdk17-jre
@@ -509,7 +510,6 @@ spandsp
 speexdsp
 sqlite
 sratom
-sudo
 tar
 texinfo
 tiff

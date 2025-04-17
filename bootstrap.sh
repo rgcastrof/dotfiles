@@ -159,6 +159,12 @@ configurar_flatpak() {
     sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
+configurar_doas() {
+    echo "permit :wheel" | sudo tee /etc/doas.conf  > /dev/null
+    echo "ignorepkg=sudo" | sudo tee /etc/xbps.d/90-ignore.conf > /dev/null
+    doas xbps-remove -R sudo
+}
+
 configurar_tlp
 configurar_intel_microcode
 configurar_apparmor
@@ -171,10 +177,11 @@ configurar_fontes
 configurar_git
 configurar_neovim
 configurar_flatpak
+configurar_doas
 
 echo "Pós-instalação concluída"
 
 read -rp "Reiniciar agora? [s/N] " resposta
 if [[ "$resposta" =~ ^[sS]$ ]]; then
-  sudo reboot
+    doas reboot
 fi
