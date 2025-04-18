@@ -97,8 +97,8 @@ configurar_permissoes() {
 
     echo "Atualizando permissões do diretório ~/.cache..."
     mkdir -p $HOME/.cache/
-    chown -R $USER:$USER ~/.cache/
-    chmod -R u+rw ~/.cache/
+    chown -R $USER:$USER $HOME/.cache/
+    chmod -R u+rw $HOME/.cache/
     echo "Atualizando permissões do brilho da tela..."
     sudo mkdir -p /etc/udev/rules.d/
     echo 'SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660"' | sudo tee /etc/udev/rules.d/90-backlight.rules > /dev/null
@@ -117,7 +117,7 @@ configurar_hosts() {
     127.0.0.1               void.localdomain        void
 
     # End of file
-    EOF
+EOF
 }
 
 configurar_fontes() {
@@ -155,20 +155,15 @@ configurar_neovim() {
     cp $HOME/dotfiles/nvim/init.lua $HOME/.config/nvim/
 }
 
-configurar_flatpak() {
-    echo "Adicionando o repositório flathub..."
-    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-}
-
 configurar_doas() {
     cat <<-EOF | sudo tee /etc/doas.conf  > /dev/null
     permit :wheel
     permit nopass rogerio as root cmd /sbin/poweroff
     permit nopass rogerio as root cmd /sbin/reboot
     permit nopass rogerio as root cmd /bin/zzz
-    EOF
+EOF
     echo "ignorepkg=sudo" | sudo tee /etc/xbps.d/90-ignore.conf > /dev/null
-    doas xbps-remove -R sudo
+    doas xbps-remove -Ry sudo
 }
 
 configurar_tlp
@@ -182,7 +177,6 @@ configurar_hosts
 configurar_fontes
 configurar_git
 configurar_neovim
-configurar_flatpak
 configurar_doas
 
 echo "Pós-instalação concluída"
