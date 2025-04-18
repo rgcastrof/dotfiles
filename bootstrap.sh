@@ -107,16 +107,16 @@ configurar_permissoes() {
 
 configurar_hosts() {
     cat <<-EOF | sudo tee /etc/hosts > /dev/null
-    #
-    # /etc/hosts: static lookup table for host names
-    #
+#
+# /etc/hosts: static lookup table for host names
+#
 
-    #<ip-address>           <hostname.domain.org>   <hostname>
-    127.0.0.1               localhost.localdomain   localhost
-    ::1                     localhost.localdomain   localhost
-    127.0.0.1               void.localdomain        void
+#<ip-address>           <hostname.domain.org>   <hostname>
+127.0.0.1               localhost.localdomain   localhost
+::1                     localhost.localdomain   localhost
+127.0.0.1               void.localdomain        void
 
-    # End of file
+# End of file
 EOF
 }
 
@@ -156,11 +156,11 @@ configurar_neovim() {
 }
 
 configurar_doas() {
-    cat <<-EOF | sudo tee /etc/doas.conf  > /dev/null
-    permit :wheel
-    permit nopass rogerio as root cmd /sbin/poweroff
-    permit nopass rogerio as root cmd /sbin/reboot
-    permit nopass rogerio as root cmd /bin/zzz
+    cat <<-EOF | sudo tee /etc/doas.conf > /dev/null
+permit :wheel
+permit nopass rogerio as root cmd /sbin/poweroff
+permit nopass rogerio as root cmd /sbin/reboot
+permit nopass rogerio as root cmd /bin/zzz
 EOF
     echo "ignorepkg=sudo" | sudo tee /etc/xbps.d/90-ignore.conf > /dev/null
     doas xbps-remove -Ry sudo
