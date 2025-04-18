@@ -161,7 +161,12 @@ configurar_flatpak() {
 }
 
 configurar_doas() {
-    echo "permit :wheel" | sudo tee /etc/doas.conf  > /dev/null
+    cat <<-EOF | sudo tee /etc/doas.conf  > /dev/null
+    permit :wheel
+    permit nopass rogerio as root cmd /sbin/poweroff
+    permit nopass rogerio as root cmd /sbin/reboot
+    permit nopass rogerio as root cmd /bin/zzz
+    EOF
     echo "ignorepkg=sudo" | sudo tee /etc/xbps.d/90-ignore.conf > /dev/null
     doas xbps-remove -R sudo
 }
