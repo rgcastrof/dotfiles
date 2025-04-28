@@ -46,5 +46,5 @@ elif [[ $VOLUME -le 5 && $VOLUME -gt 0 ]]; then
     status="-"
 fi
 # Envia a notificação com substituição (usando uma ID constante)
-dunstify -a "Volume" -r 9993 -u low " 󰝞    $status  $VOLUME%"
+dunstify -a "Volume" -r 9993 -u low " 󰝞 $status $VOLUME%"
 

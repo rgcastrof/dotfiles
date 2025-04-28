@@ -124,18 +124,18 @@ configurar_fontes() {
     echo "Instalando fontes..."
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Agave.zip
 
     unzip -d JetBrains JetBrainsMono.zip
     unzip -d Hack Hack.zip
-    unzip -d FiraCode FiraCode.zip
+    unzip -d Agave Agave.zip
 
     mkdir -p $HOME/.local/share/fonts/
     mv JetBrains/*.ttf $HOME/.local/share/fonts/
     mv Hack/*.ttf $HOME/.local/share/fonts/
-    mv FiraCode/*.ttf $HOME/.local/share/fonts/
-    rm Hack.zip JetBrainsMono.zip FiraCode.zip
-    rm -rf Hack JetBrains FiraCode
+    mv Agave/*.ttf $HOME/.local/share/fonts/
+    rm Hack.zip JetBrainsMono.zip Agave.zip
+    rm -rf Hack JetBrains Agave
 
     fc-cache -f -v
 }
@@ -158,9 +158,9 @@ configurar_neovim() {
 configurar_doas() {
     cat <<-EOF | sudo tee /etc/doas.conf > /dev/null
 permit :wheel
-permit nopass rogerio as root cmd /sbin/poweroff
-permit nopass rogerio as root cmd /sbin/reboot
-permit nopass rogerio as root cmd /bin/zzz
+permit nopass owl as root cmd /sbin/poweroff
+permit nopass owl as root cmd /sbin/reboot
+permit nopass owl as root cmd /bin/zzz
 EOF
     echo "ignorepkg=sudo" | sudo tee /etc/xbps.d/90-ignore.conf > /dev/null
     doas xbps-remove -Ry sudo
