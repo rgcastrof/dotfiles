@@ -102,7 +102,7 @@ configurar_permissoes() {
     echo "Atualizando permissões do brilho da tela..."
     sudo mkdir -p /etc/udev/rules.d/
     echo 'SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="intel_backlight", GROUP="video", MODE="0660"' | sudo tee /etc/udev/rules.d/90-backlight.rules > /dev/null
-    echo "brightnessctl set 10%" | sudo tee /etc/rc.local  >> /dev/null
+    echo "brightnessctl set 10% > /dev/null" | sudo tee -a /etc/rc.local > /dev/null
 }
 
 configurar_hosts() {
