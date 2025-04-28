@@ -129,6 +129,7 @@ gtk-update-icon-cache
 gtk4
 gtkmm2
 gtkmm4
+gumbo-parser
 gzip
 hdparm
 hicolor-icon-theme
@@ -252,6 +253,7 @@ libfm
 libfm-extra
 libfm-gtk+3
 libfontenc
+libfreeglut
 libgbm
 libgcc
 libgcc-devel
@@ -423,6 +425,8 @@ mobile-broadband-provider-info
 mpv
 mtdev
 mujs
+mupdf
+ncdu
 ncurses
 ncurses-base
 ncurses-libs
@@ -556,6 +560,7 @@ xorg-minimal
 xorg-server
 xorg-server-common
 xorgproto
+xprop
 xtrans
 xvidcore
 xz
