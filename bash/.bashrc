@@ -18,17 +18,17 @@ my_prompt() {
 
     # Verifica se estamos em um repositório Git e obtém o nome do branch
     if git rev-parse --is-inside-work-tree &>/dev/null; then
-    git_branch="\[\e[32m\] \[\e[35m\]$(git symbolic-ref --short HEAD)\[\e[0m\]"
+        git_branch="\[\e[1;35m\]git:(\[\e[1;31m\]$(git symbolic-ref --short HEAD)\[\e[1;35m\])\[\e[0m\]"
 
     # Status
     git_status=$(git status --porcelain)
     if [ -z "$git_status" ]; then
-        git_status="\[\e[32m\] [\[\e[36m\]✔\[\e[32m\]]\[\e[0m\]\n"
+        git_status="\[\e[32m\]✔ "
         else
-            git_status="\[\e[32m\] [\[\e[31m\]✗\[\e[32m\]]\[\e[0m\]\n"
+            git_status="\[\e[31m\]✗ "
         fi
     fi
-    PS1="$git_branch$git_status[\[\e[34m\]\u\[\e[37m\]@\[\e[33m\]\h \[\e[35m\]\W\[\e[0m\]]\$ "
+    PS1="\[\e[33m\]➜  \[\e[1;37m\]\W $git_branch$git_status\[\e[0m\]"
 }
 
 PROMPT_COMMAND='my_prompt'
@@ -63,6 +63,6 @@ alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
 eval "$(zoxide init bash)"
 
 # Created by `pipx` on 2025-04-11 22:16:42
-export PATH="$PATH:/home/owl/.local/bin"
+export PATH="$PATH:/home/falcon/.local/bin"
 
 fetch

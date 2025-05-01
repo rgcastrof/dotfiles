@@ -16,6 +16,8 @@ vim.cmd([[
     Plug 'szw/vim-maximizer'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+    Plug 'numToStr/Comment.nvim'
+
 
     " Lsp's
     Plug 'williamboman/mason.nvim'
@@ -143,7 +145,7 @@ dashboard.section.header.val = {
 
 dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("f", "  > Find file", ":cd $HOME/workspace | Telescope find_files<CR>"),
+  dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("u", "  > Update", ":PlugUpdate<CR>"),
   dashboard.button("s", "  > Settings", ":edit $HOME/.config/nvim/init.lua<CR>"),
@@ -280,6 +282,9 @@ vim.diagnostic.config {
 -- Gitsigns
 require('gitsigns').setup()
 
+-- Comment
+require('Comment').setup()
+
 
 -- macros
 local map = vim.api.nvim_set_keymap
@@ -287,7 +292,7 @@ local opts = { noremap = true, silent = true }
 
 -- telescope and neotree
 vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
-vim.cmd("nnoremap <C-b> <cmd>Neotree /home/rogerio/Workspace<cr>")
+vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
 -- buffers management
 map("n", "<C-l>", ":bnext<CR>", opts)
@@ -297,6 +302,7 @@ map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
+
 
 -- git maps
 map ("n", "<C-g>", ":G<CR>", opts)
