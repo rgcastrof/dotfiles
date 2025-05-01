@@ -63,6 +63,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-l", "7", "-bw", "3", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *lockcmd[] = { "slock", NULL };
 static const char *browsercmd[]  = { "/opt/zen/zen", NULL };
 static const char *explorercmd[]  = { "pcmanfm", NULL };
 
@@ -70,6 +71,7 @@ static const Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
     { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
@@ -79,7 +81,6 @@ static const Key keys[] = {
     { MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
     { MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
     { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },
-    { MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("~/.config/dwm/scripts/lockscreen.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
