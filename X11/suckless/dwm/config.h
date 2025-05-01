@@ -2,7 +2,7 @@
 
 /* appearance */
 
-#include "/home/owl/.config/dwm/themes/dark-blue.h"
+#include "/home/owl/.config/dwm/themes/breeze-dark.h"
 
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 18;
@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", "󰨞 ", " ", " " };
+static const char *tags[] = { " ", " ", " ", " ", "󰨞 ",  };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -79,6 +79,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
     { MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
     { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("~/.config/dwm/scripts/lockscreen.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
