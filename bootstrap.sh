@@ -160,10 +160,10 @@ configurar_neovim() {
 
 configurar_doas() {
     cat <<-EOF | sudo tee /etc/doas.conf > /dev/null
-permit :wheel
-permit nopass owl as root cmd /sbin/poweroff
-permit nopass owl as root cmd /sbin/reboot
-permit nopass owl as root cmd /bin/zzz
+permit persist :wheel
+permit nopass falcon as root cmd /sbin/poweroff
+permit nopass falcon as root cmd /sbin/reboot
+permit nopass falcon as root cmd /bin/zzz
 EOF
     echo "ignorepkg=sudo" | sudo tee /etc/xbps.d/90-ignore.conf > /dev/null
     doas xbps-remove -Ry sudo
