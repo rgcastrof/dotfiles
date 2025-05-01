@@ -28,6 +28,7 @@ binutils
 binutils-doc
 binutils-libs
 bison
+breeze-gtk
 brightnessctl
 brotli
 brotli-devel
@@ -99,6 +100,7 @@ gdbm
 gdk-pixbuf
 gettext
 giflib
+girara
 git
 glib
 glibc
@@ -186,6 +188,7 @@ libXinerama-devel
 libXmu
 libXpresent
 libXrandr
+libXrandr-devel
 libXrender
 libXrender-devel
 libXt
@@ -253,7 +256,6 @@ libfm
 libfm-extra
 libfm-gtk+3
 libfontenc
-libfreeglut
 libgbm
 libgcc
 libgcc-devel
@@ -353,6 +355,7 @@ libstdc++-devel
 libsvt-av1
 libswresample6
 libswscale6
+libsynctex
 libtasn1
 libtdb
 libthai
@@ -425,7 +428,6 @@ mobile-broadband-provider-info
 mpv
 mtdev
 mujs
-mupdf
 ncdu
 ncurses
 ncurses-base
@@ -542,6 +544,7 @@ wpa_supplicant
 x264
 x265
 xauth
+xautolock
 xbps
 xbps-triggers
 xcb-util
@@ -564,6 +567,8 @@ xprop
 xtrans
 xvidcore
 xz
+zathura
+zathura-pdf-mupdf
 zd1211-firmware
 zix
 zlib
