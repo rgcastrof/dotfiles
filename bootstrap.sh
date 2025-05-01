@@ -62,14 +62,17 @@ configurar_interface() {
     cp -r $HOME/dotfiles/X11/suckless/dwm/ $HOME/.config/
     cp -r $HOME/dotfiles/X11/suckless/dmenu/ $HOME/.config/
     cp -r $HOME/dotfiles/X11/suckless/st/ $HOME/.config/
+    cp -r $HOME/dotfiles/X11/suckless/slock/ $HOME/.config/
 
 
-    echo "Compilando dwm..."
+    echo "Compilando software da suckless..."
     cd $HOME/.config/dwm/
     make && sudo make install
     cd $HOME/.config/st/
     make && sudo make install
     cd $HOME/.config/dmenu/
+    make && sudo make install
+    cd $HOME/.config/slock/
     make && sudo make install
     cd $HOME/.config/dwm/dwmblocks/
     make && sudo make install
