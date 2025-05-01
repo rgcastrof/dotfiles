@@ -1,3 +1,7 @@
 #!/bin/bash
 
-/usr/bin/scrot /home/owl/Imagens/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png
+current=$(date +%Y-%m-%d_%H-%M-%S).png
+
+/usr/bin/scrot /home/owl/Imagens/Screenshots/full-screenshot_$current
+
+notify-send "Full screenshot ${current} taken successfully!"
