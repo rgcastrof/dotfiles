@@ -3,7 +3,7 @@
 /*
  * appearance */
 
-#include "/home/owl/.config/st/themes/pop-dark.h"
+#include "/home/falcon/.config/st/themes/tty.h"
  
 static char *font = "AgaveNerdFont:pixelsize=20:antialias=true:autohint=true";
 static int borderpx = 10;
