@@ -302,7 +302,8 @@ map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
-map("n", "<C-b>",   ":Vexplore 30<CR>", opts)
+map("n", "<C-b>",   ":Vexplore 23<CR>", opts)
+vim.g.netrw_browse_split = 4
 
 
 -- git maps
