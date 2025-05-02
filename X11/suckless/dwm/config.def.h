@@ -2,7 +2,7 @@
 
 /* appearance */
 
-#include "/home/owl/.config/dwm/themes/breeze-dark.h"
+#include "/home/falcon/.config/dwm/themes/breeze-dark.h"
 
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 18;
@@ -74,12 +74,13 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { MODKEY,                       XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
-    { MODKEY,                       XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh && ~/.config/dwm/scripts/notify_volume_down.sh") },
-    { MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
-    { MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
-    { MODKEY,                       XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
-    { MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
+    { 0,                            XK_F3,     spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
+    { 0,                            XK_F2,     spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh && ~/.config/dwm/scripts/notify_volume_down.sh") },
+    { 0,                            XK_F1,     spawn,          SHCMD("~/.config/dwm/scripts/toggle_volume.sh") },
+    { 0,                            XK_F6,     spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
+    { 0,                            XK_F5,     spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
+    { 0,                            XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
+    { ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
     { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
