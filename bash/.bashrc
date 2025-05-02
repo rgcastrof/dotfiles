@@ -55,14 +55,9 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 
-
-# Volume
-alias mute='pactl set-sink-volume @DEFAULT_SINK@ 0%'
-alias unmute='pactl set-sink-volume @DEFAULT_SINK@ 100%'
-
 eval "$(zoxide init bash)"
 
-# Created by `pipx` on 2025-04-11 22:16:42
+# Created by `pipx` on 2025-05-01 18:24:03
 export PATH="$PATH:/home/falcon/.local/bin"
 
 fetch
