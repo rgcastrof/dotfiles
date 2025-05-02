@@ -9,7 +9,6 @@ vim.cmd([[
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
-    Plug 'nvim-neo-tree/neo-tree.nvim'
     Plug 'MunifTanjim/nui.nvim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'goolord/alpha-nvim'
@@ -100,18 +99,6 @@ require('telescope').setup {
         sorting_strategy = "ascending",
     }
 }
-
--- Neotree
-require("neo-tree").setup({
-    window = {
-        width = 30,
-    },
-    filesystem = {
-        follow_current_file = {
-            enabled = true,
-        },
-    }
-})
 
 
 -- Treesiter
@@ -304,18 +291,18 @@ require('Comment').setup()
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- telescope and neotree
+-- telescope
 vim.cmd("nnoremap <C-p> <cmd>Telescope find_files<cr>")
-vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
 -- buffers management
 map("n", "<C-l>", ":bnext<CR>", opts)
 map("n", "<C-h>", ":bprevious<CR>", opts)
-map("n", "<C-q>", ":bd<CR>", opts)
+map("n", "<C-q>", ":q<CR>", opts)
 map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
+map("n", "<C-b>",   ":Vexplore 30<CR>", opts)
 
 
 -- git maps
