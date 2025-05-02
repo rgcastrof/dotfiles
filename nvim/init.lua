@@ -88,6 +88,20 @@ require('lualine').setup {
 }
 
 
+-- Telescope
+require('telescope').setup {
+    defaults = {
+        layout_strategy = 'center',
+        layout_config = {
+            prompt_position = 'bottom',
+            width = 0.5,
+            anchor = "N",
+        },
+        sorting_strategy = "ascending",
+    }
+}
+
+-- Neotree
 require("neo-tree").setup({
     window = {
         width = 30,
@@ -251,8 +265,8 @@ cmp.setup({
     {name = 'nvim_lsp'},
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-    ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+    ['<C-->'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+    ['<C-=>'] = cmp.mapping.select_next_item({behavior = 'select'}),
     -- `Enter` key to confirm completion
     ['<CR>'] = cmp.mapping.confirm({select = false}),
     -- Ctrl+Space to trigger completion menu
@@ -291,7 +305,7 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- telescope and neotree
-vim.cmd("nnoremap <C-s>f <cmd>Telescope find_files<cr>")
+vim.cmd("nnoremap <C-p> <cmd>Telescope find_files<cr>")
 vim.cmd("nnoremap <C-b> <cmd>Neotree toggle<cr>")
 
 -- buffers management

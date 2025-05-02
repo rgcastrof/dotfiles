@@ -3,9 +3,9 @@
 /*
  * appearance */
 
-#include "/home/falcon/.config/st/themes/tty.h"
+#include "/home/falcon/.config/st/themes/pop-dark.h"
  
-static char *font = "AgaveNerdFont:pixelsize=20:antialias=true:autohint=true";
+static char *font = "AgaveNerdFont:pixelsize=18:antialias=true:autohint=true";
 static int borderpx = 10;
 
 /*
@@ -94,7 +94,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.95;
+float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
