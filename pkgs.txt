@@ -2,6 +2,8 @@ AppStream
 LuaJIT
 NetworkManager
 SDL2
+SuiteSparse
+aalib
 acl
 acpi
 acpid
@@ -10,6 +12,7 @@ alsa-lib
 alsa-plugins-pulseaudio
 alsa-utils
 apparmor
+appstream-glib
 at-spi2-atk
 at-spi2-core
 atk
@@ -17,7 +20,9 @@ atkmm
 attr
 autoconf
 automake
+avahi
 avahi-libs
+babl
 base-devel
 base-files
 base-system
@@ -43,9 +48,13 @@ cairomm
 cairomm1.16
 cantarell-fonts
 celt
+cfitsio
 chromaprint
+containerd
 coreutils
 cpio
+cups
+cups-filters
 curl
 dash
 dbus
@@ -59,6 +68,8 @@ device-mapper
 dhcpcd
 diffutils
 dnssec-anchors
+docker
+docker-cli
 dosfstools
 dracut
 duktape
@@ -68,9 +79,11 @@ e2fsprogs-libs
 ed
 efibootmgr
 elogind
+epson-inkjet-printer-escpr
 ethtool
 eudev
 eudev-libudev
+exiv2
 expat
 expat-devel
 f2fs-tools
@@ -98,10 +111,15 @@ gawk
 gcc
 gdbm
 gdk-pixbuf
+gegl
 gettext
+ghostscript
 giflib
+gimp
+gir-freedesktop
 girara
 git
+gjs
 glib
 glibc
 glibc-devel
@@ -115,6 +133,7 @@ gnome-themes-extra
 gnupg
 gnutls
 go
+gpgmepp
 graphene
 graphite
 grep
@@ -122,6 +141,7 @@ groff
 grub
 grub-x86_64-efi
 gsettings-desktop-schemas
+gsfonts
 gst-plugins-bad1
 gst-plugins-base1
 gstreamer1
@@ -132,6 +152,7 @@ gtk4
 gtkmm2
 gtkmm4
 gumbo-parser
+gutenprint
 gzip
 hdparm
 hicolor-icon-theme
@@ -140,6 +161,7 @@ htop
 hwids
 iana-etc
 icu-libs
+imath
 imlib2
 inih
 intel-gmmlib
@@ -186,6 +208,7 @@ libXi
 libXinerama
 libXinerama-devel
 libXmu
+libXpm
 libXpresent
 libXrandr
 libXrandr-devel
@@ -226,13 +249,16 @@ libcolord
 libconfig
 libcrypto3
 libcups
+libcupsfilters
 libcurl
+libdaemon
 libdatrie
 libdav1d
 libdb
 libde265
 libdebuginfod
 libdecor
+libdeflate
 libdrm
 libdvdcss
 libdvdnav
@@ -260,6 +286,10 @@ libgbm
 libgcc
 libgcc-devel
 libgcrypt
+libgexiv2
+libgfortran
+libgimp
+libgirepository
 libglapi
 libglvnd
 libgme
@@ -274,9 +304,11 @@ libharfbuzz
 libheif
 libid3tag
 libidn2
+libijs
 libinput
 libinstpatch
 libjack
+libjasper
 libjbig2dec
 libjpeg-turbo
 libjpeg-turbo-tools
@@ -295,10 +327,12 @@ liblz4
 liblzma
 libmagic
 libmm-glib
+libmng
 libmnl
 libmodplug
 libmount
 libmpg123
+libmypaint
 libmysofa
 libndp
 libnetfilter_conntrack
@@ -310,6 +344,7 @@ libnm
 libnotify
 libogg
 libopenal
+libopenexr
 libopenjpeg2
 libopenmpt
 libpaper
@@ -321,10 +356,14 @@ libpipewire
 libplacebo
 libpng
 libpng-devel
+libpoppler
 libpostproc6
+libppd
 libpsl
 libpulseaudio
+libqpdf
 libraptor
+libraw
 libreadline8
 librist
 librsvg
@@ -365,6 +404,7 @@ libtirpc
 libtool
 libunbound
 libunistring
+libunwind
 liburcu
 libusb
 libutf8proc
@@ -380,6 +420,7 @@ libvorbis
 libvpx
 libwacom
 libwebp
+libwmf
 libxbps
 libxcb
 libxcb-devel
@@ -425,9 +466,13 @@ mesa-vulkan-intel
 mit-krb5-libs
 mkfontscale
 mobile-broadband-provider-info
+moby
+mozjs128
+mpfr
 mpv
 mtdev
 mujs
+mypaint-brushes
 ncdu
 ncurses
 ncurses-base
@@ -436,7 +481,6 @@ neovim
 nettle
 newt
 nghttp2
-nitrogen
 npth
 nspr
 nss
@@ -444,6 +488,7 @@ nvi
 ocl-icd
 oneVPL
 oniguruma
+openblas
 opendoas
 openjdk-common
 openjdk17
@@ -483,6 +528,10 @@ pinentry
 pixman
 pkg-config
 polkit
+poppler
+poppler-cpp
+poppler-data
+poppler-glib
 popt
 procps-ng
 public-suffix
@@ -490,8 +539,10 @@ pulseaudio
 pulseaudio-utils
 python3
 python3-argcomplete
+python3-cairo
 python3-click
 python3-dbus
+python3-gobject
 python3-notify2
 python3-packaging
 python3-parsing
@@ -502,6 +553,7 @@ python3-userpath
 removed-packages
 rtkit
 run-parts
+runc
 runit
 runit-void
 runit-void-apparmor
@@ -520,6 +572,7 @@ sratom
 tar
 texinfo
 tiff
+tini
 tlp
 traceroute
 tree-sitter
@@ -554,6 +607,7 @@ xdg-dbus-proxy
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-user-dirs
+xdg-utils
 xf86-input-libinput
 xfsprogs
 xinit
@@ -564,6 +618,7 @@ xorg-server
 xorg-server-common
 xorgproto
 xprop
+xset
 xtrans
 xvidcore
 xz
