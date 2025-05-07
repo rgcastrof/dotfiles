@@ -59,5 +59,3 @@ eval "$(zoxide init bash)"
 
 # Created by `pipx` on 2025-05-01 18:24:03
 export PATH="$PATH:/home/falcon/.local/bin"
-
-fetch
