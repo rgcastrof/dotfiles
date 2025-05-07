@@ -1,6 +1,6 @@
 #!/bin/bash
 
-day=$(date +"%d de %b")
+day=$(date +"%a %d de %b.")
 time=$(date +"%H:%M")
 
-echo "$day $time;"
+echo "$day $time"
