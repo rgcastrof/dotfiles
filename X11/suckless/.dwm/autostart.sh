@@ -2,6 +2,6 @@
 
 dwmblocks &
 dunst &
-nitrogen --restore
-picom -b
+# picom -b
+feh --bg-fill /home/falcon/Imagens/Wallpapers/bridge.jpg
 xautolock -time 10 -locker slock
