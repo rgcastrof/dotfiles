@@ -11,7 +11,7 @@ ssid=$(nmcli -t -f IN-USE,SSID device wifi | grep "*" | tr -d "*:")
 #fi
 
 if [ -z "$bssid" ]; then
-    echo "󰤭 "
+    echo "󰤭  "
 else
     signalStrength=$(nmcli -t -f BSSID,SIGNAL device wifi | tr -d '\\' | grep "$bssid" | cut -d ':' -f7)
     if [[ $signalStrength -le 100 && $signalStrength -gt 70 ]]; then
