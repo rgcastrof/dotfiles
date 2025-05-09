@@ -398,6 +398,41 @@ arrange(Monitor *m)
 		restack(m);
 	} else for (m = mons; m; m = m->next)
 		arrangemon(m);
+
+    if (!m)
+        return;
+
+    /* Verifica se há janelas (clients) */
+    Client *c;
+    int has_clients = 0;
+    for (c = m->clients; c; c = c->next) {
+        if (ISVISIBLE(c)) {
+            has_clients = 1;
+            break;
+        }
+    }
+
+    /* if (has_clients && !m->showbar) {
+        if (!selmon->showbar) {
+            togglebar(NULL);
+        }
+        
+    } else if (!has_clients && m->showbar) {
+        if (selmon->showbar) {
+            togglebar(NULL);
+        }
+    } */
+
+    if (has_clients && m->showbar) {
+        if (selmon->showbar) {
+            togglebar(NULL);
+        }
+
+    } else if (!has_clients && !m->showbar) {
+        if (!selmon->showbar) {
+            togglebar(NULL);
+        }
+    }
 }
 
 void

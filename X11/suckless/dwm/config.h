@@ -2,10 +2,10 @@
 
 /* appearance */
 
-#include "/home/falcon/.config/dwm/themes/breeze-dark.h"
+#include "/home/falcon/.config/dwm/themes/dark.h"
 
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 15;
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int gappx     = 0;
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
