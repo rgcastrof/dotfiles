@@ -63,7 +63,7 @@ vim.cmd("set termguicolors")
 
 -- colorscheme
 require('onedark').setup {
-    style = 'warmer'
+    style = 'deep'
 }
 require('onedark').load()
 
@@ -119,7 +119,7 @@ require'nvim-treesitter.configs'.setup {
 -- Indent blankline
 require("ibl").setup {
     indent = {
-        char = "┊",
+        char = "▏",
     },
     scope = {
         show_start = false,
@@ -302,8 +302,21 @@ map("n", "<C-s>5", ":vnew<CR>", opts)
 map("n", "<C-s>'", ":new<CR>", opts)
 map("n", "<C-s>z", ":MaximizerToggle<CR>", opts)
 map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
-map("n", "<C-b>",   ":Vexplore 23<CR>", opts)
+
 vim.g.netrw_browse_split = 4
+vim.keymap.set("n", "<C-b>", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+    if ft == "netrw" then
+      vim.api.nvim_set_current_win(win)
+      vim.cmd("quit")
+      return
+    end
+  end
+
+  vim.cmd("Sex! 23")
+end, { noremap = true, silent = true })
 
 
 -- git maps
