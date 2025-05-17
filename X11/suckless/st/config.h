@@ -5,7 +5,7 @@
 
 #include "/home/falcon/.config/st/themes/pop-dark.h"
  
-static char *font = "AgaveNerdFont:pixelsize=18:antialias=true:autohint=true";
+static char *font = "AgaveNerdFont:pixelsize=20:antialias=true:autohint=true";
 static int borderpx = 10;
 
 /*
