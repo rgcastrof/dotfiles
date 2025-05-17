@@ -46,6 +46,8 @@ celt
 chromaprint
 coreutils
 cpio
+cups
+cups-filters
 curl
 dash
 dbus
@@ -68,6 +70,7 @@ e2fsprogs-libs
 ed
 efibootmgr
 elogind
+epson-inkjet-printer-escpr
 ethtool
 eudev
 eudev-libudev
@@ -99,6 +102,9 @@ gcc
 gdbm
 gdk-pixbuf
 gettext
+ghostscript
+ghostty
+ghostty-terminfo
 giflib
 girara
 git
@@ -115,6 +121,7 @@ gnome-themes-extra
 gnupg
 gnutls
 go
+gpgmepp
 graphene
 graphite
 grep
@@ -122,6 +129,7 @@ groff
 grub
 grub-x86_64-efi
 gsettings-desktop-schemas
+gsfonts
 gst-plugins-bad1
 gst-plugins-base1
 gstreamer1
@@ -195,6 +203,7 @@ libXt
 libXtst
 libXv
 libXxf86vm
+libadwaita
 libaio
 libaom
 libapparmor
@@ -226,6 +235,7 @@ libcolord
 libconfig
 libcrypto3
 libcups
+libcupsfilters
 libcurl
 libdatrie
 libdav1d
@@ -274,6 +284,7 @@ libharfbuzz
 libheif
 libid3tag
 libidn2
+libijs
 libinput
 libinstpatch
 libjack
@@ -321,9 +332,12 @@ libpipewire
 libplacebo
 libpng
 libpng-devel
+libpoppler
 libpostproc6
+libppd
 libpsl
 libpulseaudio
+libqpdf
 libraptor
 libreadline8
 librist
@@ -436,7 +450,6 @@ neovim
 nettle
 newt
 nghttp2
-nitrogen
 npth
 nspr
 nss
@@ -483,6 +496,9 @@ pinentry
 pixman
 pkg-config
 polkit
+poppler
+poppler-cpp
+poppler-data
 popt
 procps-ng
 public-suffix
@@ -554,6 +570,7 @@ xdg-dbus-proxy
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-user-dirs
+xdg-utils
 xf86-input-libinput
 xfsprogs
 xinit
@@ -564,6 +581,7 @@ xorg-server
 xorg-server-common
 xorgproto
 xprop
+xset
 xtrans
 xvidcore
 xz
