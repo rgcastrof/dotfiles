@@ -143,6 +143,12 @@ configurar_fontes() {
     fc-cache -f -v
 }
 
+configurar_ghostty() {
+    echo "copiando arquivo de configuração do ghostty"
+    mkdir -p $HOME/.config/ghostty/
+    cp $HOME/dotfiles/ghostty/config $HOME/.config/ghostty/
+}
+
 configurar_git() {
     echo "configurando usuário git"
     git config --global user.email "rogeriogirao1@proton.me"
@@ -178,6 +184,7 @@ configurar_picom
 configurar_permissoes
 configurar_hosts
 configurar_fontes
+configurar_ghostty
 configurar_git
 configurar_neovim
 configurar_doas
