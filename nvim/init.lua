@@ -72,6 +72,12 @@ vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
 vim.cmd("highlight EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("highlight SignColumn guibg=NONE ctermbg=NONE")
 
+-- Transparency diagnostic text
+vim.cmd("highlight DiagnosticVirtualTextError guibg=NONE")
+vim.cmd("highlight DiagnosticVirtualTextWarn guibg=NONE")
+vim.cmd("highlight DiagnosticVirtualTextInfo guibg=NONE")
+vim.cmd("highlight DiagnosticVirtualTextHint guibg=NONE")
+
 
 -- Bufferline
 require("bufferline").setup {
@@ -203,26 +209,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Lsp's setup
-lspconfig.lua_ls.setup {}
-lspconfig.clangd.setup {}
-
--- LSP Configuration (GO)
-lspconfig.gopls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {"gopls"},
-    filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    settings = {
-        gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            analyses = {
-                unusedparams = true,
-            },
-        },
-    },
-}
 
 -- LSP Configuration (JDTLS)
 require('lspconfig').jdtls.setup({
@@ -247,26 +233,82 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local cmp = require('cmp')
 
+local kind_icons = {
+    Text = '  ',
+    Method = '  ',
+    Function = '  ',
+    Constructor = '  ',
+    Field = '  ',
+    Variable = '  ',
+    Class = '  ',
+    Interface = '  ',
+    Module = '  ',
+    Property = '  ',
+    Unit = '  ',
+    Value = '  ',
+    Enum = '  ',
+    Keyword = '  ',
+    Snippet = '  ',
+    Color = '  ',
+    File = '  ',
+    Reference = '  ',
+    Folder = '  ',
+    EnumMember = '  ',
+    Constant = '  ',
+    Struct = '  ',
+    Event = '  ',
+    Operator = '  ',
+    TypeParameter = '  ',
+}
+
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-->'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-    ['<C-=>'] = cmp.mapping.select_next_item({behavior = 'select'}),
-    -- `Enter` key to confirm completion
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-    -- Ctrl+Space to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
-    -- Scroll up and down in the completion documentation
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  }),
-  snippet = {
-    expand = function(args)
-        vim.snippet.expand(args.body)
-    end,
-  },
+
+    window = {
+        completion = {
+            border = 'rounded',
+            winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,Search:CmpPmenuSel",
+            col_offset = 5,
+            side_padding = 0,
+        },
+    },
+
+    formatting = {
+        format = function(entry, vim_item)
+        -- Kind icons
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+        -- Source
+        vim_item.menu = ({
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            nvim_lua = "[Lua]",
+            latex_symbols = "[LaTeX]",
+        })[entry.source.name]
+        return vim_item
+        end
+    },
+
+    sources = {
+        {name = 'nvim_lsp'},
+    },
+
+    mapping = cmp.mapping.preset.insert({
+        ['<C-->'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+        ['<C-=>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+        -- `Enter` key to confirm completion
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        -- Ctrl+Space to trigger completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
+        -- Scroll up and down in the completion documentation
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    }),
+
+    snippet = {
+        expand = function(args)
+            vim.snippet.expand(args.body)
+        end,
+    },
 })
 
 
@@ -274,7 +316,7 @@ cmp.setup({
 local x = vim.diagnostic.severity
 
 vim.diagnostic.config {
-    virtual_text = { prefix = "a" },
+    virtual_text = true,
     signs = { text = { [x.ERROR] = " ", [x.WARN] = " ", [x.INFO] = " ", [x.HINT] = "󰠠 " } },
     underline = true,
 }
