@@ -125,14 +125,13 @@ require'nvim-treesitter.configs'.setup {
 -- Indent blankline
 require("ibl").setup {
     indent = {
-        char = "▏",
+        char = "│",
     },
     scope = {
         show_start = false,
         show_end = false,
-    }
+    },
 }
-
 
 -- Alpha-nvim(dashboard)
 local alpha = require("alpha")
@@ -371,3 +370,15 @@ vim.cmd("map <C-s>h <C-w>h")
 vim.cmd("map <C-s>l <C-w>l")
 vim.cmd("map <C-s>k <C-w>k")
 vim.cmd("map <C-s>j <C-w>j")
+
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = '│·',
+  trail = '·',
+  extends = '»',
+  precedes = '«',
+  nbsp = '␣',
+  eol = '↲',
+  space = '·'
+}
+
