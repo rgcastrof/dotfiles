@@ -3,7 +3,7 @@
 update_count=$(xbps-install -nuM | wc -l)
 
 if [[ $update_count -eq 0 ]]; then
-    echo ";"
+    echo ""
 else
-    echo ";󱑤 $update_count  "
+    echo "󱑤 $update_count  "
 fi

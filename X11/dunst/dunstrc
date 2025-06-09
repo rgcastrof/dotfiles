@@ -4,7 +4,7 @@
     width = (250, 500)
     height = (0, 750)
     origin = top-center
-    offset = 10x25
+    offset = (10, 25)
     scale = 0
     notification_limit = 20
     progress_bar = true
@@ -74,6 +74,6 @@
     timeout = 0
     override_pause_level = 60
 
-# [play_sound]
-#    summary = "*"
-#    script = /home/rogerio/.config/dunst/alert.sh
+[play_sound]
+    summary = "*"
+    script = /home/goku/.config/dunst/alert.sh
