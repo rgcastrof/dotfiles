@@ -1,12 +1,14 @@
 /* See LICENSE file for copyright and license details. */
 
 /*
- * appearance */
-
-#include "/home/falcon/.config/st/themes/rose-pine-moon.h"
+ * appearance
+ *
+ * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+ */
+#include "/home/goku/.config/st/themes/rose-pine-moon.h"
  
 static char *font = "JetBrainsMonoNerdFont:pixelsize=15:antialias=true:autohint=true";
-static int borderpx = 10;
+static int borderpx = 7;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -93,9 +95,6 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* bg opacity */
-float alpha = 0.85;
-
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
@@ -127,7 +126,6 @@ static const char *colorname[] = {
 	background, /* default background colour */
 };
 
-
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
@@ -144,7 +142,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 6;
+static unsigned int cursorshape = 2;
 
 /*
  * Default columns and rows numbers
@@ -204,8 +202,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ControlMask,          XK_Up,          kscrollup,      {.i =  3} },
-    { ControlMask,          XK_Down,        kscrolldown,    {.i =  3} },
 };
 
 /*

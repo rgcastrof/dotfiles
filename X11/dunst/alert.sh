@@ -1,3 +1,3 @@
 #!/bin/bash
 
-paplay /home/rogerio/.config/dunst/popup.mp3
+paplay /home/goku/.config/dunst/popup.mp3

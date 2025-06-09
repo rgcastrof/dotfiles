@@ -1,27 +1,23 @@
 /* See LICENSE file for copyright and license details. */
 
+#include "themes/dark.h"
+
 /* appearance */
-
-#include "/home/falcon/.config/dwm/themes/dark.h"
-
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 15;
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int splitstatus        = 1;        /* 1 for split status items */
-static const char *splitdelim        = ";";       /* Character used for separating status */
 static const char *fonts[]          = { "JetBrainsMonoNerdFont:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
-
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray2, col_gray1, col_cyan },
-	[SchemeSel]  = { col_gray3, col_gray4,  col_gray5  },
+        /*               fg         bg         border   */
+        [SchemeNorm] = { col_gray2, col_gray1, col_cyan },
+        [SchemeSel]  = { col_gray3, col_gray4,  col_gray5  },
+        [SchemeTitle]  = { col_gray3, col_gray1,  col_cyan  },
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", "󰨞 ", " ",  };
+static const char *tags[] = { " ", " ", " ", "󰨞 ", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -29,13 +25,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Pcmanfm",  NULL,       NULL,       0,            True,        -1 },
-    { "feh",      "feh",      NULL,       0,            True,        -1 },
-    { "Zathura",  NULL,       NULL,       0,            True,        -1 },
+    { "st-256color", NULL,    "ranger",   0,            True,        -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -61,10 +55,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-l", "7", "-bw", "3", NULL };
-static const char *termcmd[]  = { "ghostty", NULL };
 static const char *lockcmd[] = { "slock", NULL };
-static const char *browsercmd[]  = { "zen", NULL };
-static const char *explorercmd[]  = { "pcmanfm", NULL };
+static const char *browsercmd[] = { "/opt/zen/zen", NULL };
+static const char *explorercmd[] = { "st", "-e", "ranger", NULL };
+static const char *termcmd[]  = { "st", NULL };
+
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
@@ -102,9 +97,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -133,4 +125,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
