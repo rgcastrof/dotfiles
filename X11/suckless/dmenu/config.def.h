@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 /* Default settings; can be overriden by command line. */
 
-#include "/home/falcon/.config/dmenu/themes/dark.h"
+#include "/home/goku/.config/dmenu/themes/dark.h"
 
 static int topbar = 0;                      /* -b  option; if 0, dmenu appears at bottom     */
 static int centered = 1;                    /* -c option; centers dmenu on screen */
