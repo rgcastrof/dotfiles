@@ -40,22 +40,12 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 
-
-# Xbps
-alias xu='doas xbps-install -Su'
-alias xi='doas xbps-install -S'
-alias xr='doas xbps-remove -R'
-alias xo='doas xbps-remove -o'
-alias xq='xbps-query -Rs'
-
-
 # git
 alias gi='git init'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 
-eval "$(zoxide init bash)"
-
 # Created by `pipx` on 2025-05-01 18:24:03
-export PATH="$PATH:/home/falcon/.local/bin"
+export PATH="$PATH:/home/goku/.local/bin"
+eval "$(zoxide init bash)"
