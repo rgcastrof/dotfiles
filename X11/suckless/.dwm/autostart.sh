@@ -2,5 +2,6 @@
 
 dwmblocks &
 dunst &
-feh --bg-scale /home/goku/Imagens/Wallpapers/forest-clearing.jpeg
+picom -b
+feh --bg-scale /home/goku/Imagens/Wallpapers/artix_minimalist.png
 xautolock -time 10 -locker slock
