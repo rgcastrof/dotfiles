@@ -3,12 +3,11 @@
 # Modules
 
 User=$(whoami)
-Hostname=$(hostname)
+Hostname=$(cat /etc/hostname)
 OS=$(awk -F= '/^PRETTY_NAME/ {gsub(/"/, "", $2); print $2}' /etc/os-release)
 Kernel=$(uname -r)
-Xbps=$(xbps-query -l | wc -l)
-Flatpak=$(flatpak list | wc -l)
-Shell_name=$(echo $SHELL | sed 's/\/bin\///')
+Pacman=$(pacman -Q | wc -l)
+Shell_name=$(echo $SHELL | sed 's/\/usr\/bin\///')
 Shell=$($SHELL --version | grep $Shell_name | awk '{print $2}' | tr -d ',')
 Uptime=$(uptime -p | awk '{gsub(/up /, ""); print}')
 Wm=$(ps -e | grep -m 1 dwm | awk '{print $4}')
@@ -17,12 +16,13 @@ Wm=$(ps -e | grep -m 1 dwm | awk '{print $4}')
 # Void ascii art
 cat <<EOF
 
-      [0;32m_______[0m      [1;32m$User[0m@[1;32m$Hostname[0m
-      [0;32m\_____ \`-[0m    [1;32mdistro[0m->  $OS
-   [0;32m/\   ___ \`- \[0m   [1;32mkernel[0m->  $Kernel
-  [0;32m| |  /   \  | |[0m  [1;32muptime[0m->  $Uptime
-  [0;32m| |  \___/  | |[0m  [1;32mpkgs[0m->    $Xbps, $Flatpak
-   [0;32m\ \`-_____  \/[0m   [1;32mshell[0m->   $Shell
-    [0;32m\`-______\[0m      [1;32mwm[0m->      $Wm
-	  
+   [1;32m       /\\[0m	     [1;32m$User[0m@[1;32m$Hostname[0m
+   [1;32m      /  \\[0m	     [1;32mdistro[0m->  $OS
+   [1;32m     /\`'.,\\[0m	     [1;32mkernel[0m->  $Kernel
+   [1;32m    /     ',[0m	     [1;32muptime[0m->  $Uptime
+   [1;32m   /      ,\`\\[0m     [1;32mpkgs[0m->    $Pacman
+   [1;32m  /   ,.'\`.  \\[0m    [1;32mshell[0m->   $Shell
+   [1;32m /.,'\`     \`'.\\[0m   [1;32mwm[0m->      $Wm
+      
+    
 EOF
