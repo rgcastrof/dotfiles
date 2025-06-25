@@ -63,7 +63,7 @@ vim.cmd("set termguicolors")
 
 -- colorscheme
 require('onedark').setup {
-    style = 'deep'
+    style = 'warmer'
 }
 require('onedark').load()
 
@@ -295,7 +295,7 @@ cmp.setup({
         ['<C-->'] = cmp.mapping.select_prev_item({behavior = 'select'}),
         ['<C-=>'] = cmp.mapping.select_next_item({behavior = 'select'}),
         -- `Enter` key to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<Tab>'] = cmp.mapping.confirm({select = true}),
         -- Ctrl+Space to trigger completion menu
         ['<C-Space>'] = cmp.mapping.complete(),
         -- Scroll up and down in the completion documentation
@@ -378,7 +378,6 @@ vim.opt.listchars = {
   extends = '»',
   precedes = '«',
   nbsp = '␣',
-  eol = '↲',
   space = '·'
 }
 
