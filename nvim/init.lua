@@ -17,7 +17,6 @@ vim.cmd([[
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
     Plug 'numToStr/Comment.nvim'
 
-
     " Lsp's
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
@@ -27,15 +26,7 @@ vim.cmd([[
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-nvim-lsp'
 
-    " Snippets
-    Plug 'rafamadriz/friendly-snippets'
-    Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'}
-    Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v4.x'}
-
-    " Themes
-    Plug 'folke/tokyonight.nvim'
-    Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'ellisonleao/gruvbox.nvim'
+    " Theme
     Plug 'navarasu/onedark.nvim'
 
     " Git
@@ -78,7 +69,6 @@ vim.cmd("highlight DiagnosticVirtualTextWarn guibg=NONE")
 vim.cmd("highlight DiagnosticVirtualTextInfo guibg=NONE")
 vim.cmd("highlight DiagnosticVirtualTextHint guibg=NONE")
 
-
 -- Bufferline
 require("bufferline").setup {
     options = {
@@ -86,12 +76,10 @@ require("bufferline").setup {
     }
 }
 
-
 -- Lualine
 require('lualine').setup {
     options = { theme = 'onedark' }
 }
-
 
 -- Telescope
 require('telescope').setup {
@@ -106,21 +94,19 @@ require('telescope').setup {
     }
 }
 
-
 -- Treesiter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "lua", "java", "go"},
+    ensure_installed = {"c", "lua", "java", "go"},
 
-  sync_install = false,
+    sync_install = false,
 
-  auto_install = true,
+    auto_install = true,
 
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
 }
-
 
 -- Indent blankline
 require("ibl").setup {
@@ -166,7 +152,6 @@ dashboard.section.footer.val = {
 dashboard.section.footer.opts.hl = "Comment"
 
 alpha.setup(dashboard.opts)
-
 
 -- Lsps
 require("mason").setup()
@@ -310,7 +295,6 @@ cmp.setup({
     },
 })
 
-
 -- Add signs icons
 local x = vim.diagnostic.severity
 
@@ -319,7 +303,6 @@ vim.diagnostic.config {
     signs = { text = { [x.ERROR] = " ", [x.WARN] = " ", [x.INFO] = " ", [x.HINT] = "󰠠 " } },
     underline = true,
 }
-
 
 -- Gitsigns
 require('gitsigns').setup()
@@ -346,17 +329,17 @@ map("n", "<C-s>t", ":belowright new<CR>:terminal<CR>:resize 10<CR>", opts)
 
 vim.g.netrw_browse_split = 4
 vim.keymap.set("n", "<C-b>", function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-    if ft == "netrw" then
-      vim.api.nvim_set_current_win(win)
-      vim.cmd("quit")
-      return
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+        if ft == "netrw" then
+            vim.api.nvim_set_current_win(win)
+            vim.cmd("quit")
+            return
+        end
     end
-  end
 
-  vim.cmd("Sex! 23")
+    vim.cmd("Sex! 23")
 end, { noremap = true, silent = true })
 
 
@@ -373,11 +356,10 @@ vim.cmd("map <C-s>j <C-w>j")
 
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = '│·',
-  trail = '·',
-  extends = '»',
-  precedes = '«',
-  nbsp = '␣',
-  space = '·'
+    tab = '│·',
+    trail = '·',
+    extends = '»',
+    precedes = '«',
+    nbsp = '␣',
+    space = '·'
 }
-
