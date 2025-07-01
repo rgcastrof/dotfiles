@@ -17,10 +17,10 @@ else
     if [[ $signalStrength -le 100 && $signalStrength -gt 70 ]]; then
         echo "[ 󰤨 $signalStrength ] "
     elif [[ $signalStrength -le 70 && $signalStrength -gt 50 ]]; then
-        echo "󰤥  "
+        echo "[ 󰤥 $signalStrength ] "
     elif [[ $signalStrength -le 50 && $signalStrength -gt 30 ]]; then
-        echo "󰤢  "
+        echo "[ 󰤢 $signalStrength ] "
     elif [[ $signalStrength -le 30 && $signalStrength -gt 0 ]]; then
-        echo "󰤟  "
+        echo "[ 󰤟 $signalStrength ] "
     fi
 fi
