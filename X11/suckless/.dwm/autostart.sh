@@ -3,5 +3,5 @@
 dwmblocks &
 dunst &
 picom -b
-feh --bg-scale /home/goku/Imagens/Wallpapers/artix_minimalist.png
+feh --bg-scale /home/goku/Imagens/Wallpapers/gradient_glow_blue.png
 xautolock -time 10 -locker slock

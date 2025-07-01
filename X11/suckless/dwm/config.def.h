@@ -3,11 +3,13 @@
 #include "themes/dark.h"
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 20;       /* gaps between windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 10;       /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int vertpad            = 7;       /* vertical padding of bar */
+static const int sidepad            = 10;       /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrainsMonoNerdFont:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
@@ -56,7 +58,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-l", "7", "-bw", "3", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-l", "11", "-bw", "3", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 static const char *browsercmd[] = { "brave", NULL };
 static const char *explorercmd[] = { "st", "-e", "ranger", NULL };
@@ -67,14 +69,14 @@ static const Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
-    { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
+    { MODKEY|ControlMask,           XK_l,      spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { 0,                            XK_F3,     spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
-    { 0,                            XK_F2,     spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh && ~/.config/dwm/scripts/notify_volume_down.sh") },
-    { 0,                            XK_F1,     spawn,          SHCMD("~/.config/dwm/scripts/toggle_volume.sh") },
-    { 0,                            XK_F6,     spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
-    { 0,                            XK_F5,     spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
+    { 0,                            XF86XK_AudioRaiseVolume,     spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
+    { 0,                            XF86XK_AudioLowerVolume,     spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh && ~/.config/dwm/scripts/notify_volume_down.sh") },
+    { 0,                            XF86XK_AudioMute,     spawn,          SHCMD("~/.config/dwm/scripts/toggle_volume.sh") },
+    { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
+    { 0,                            XF86XK_MonBrightnessDown,     spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
     { 0,                            XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
     { ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
     { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },

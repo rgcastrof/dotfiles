@@ -15,7 +15,7 @@ if [ -z "$bssid" ]; then
 else
     signalStrength=$(nmcli -t -f BSSID,SIGNAL device wifi | tr -d '\\' | grep "$bssid" | cut -d ':' -f7)
     if [[ $signalStrength -le 100 && $signalStrength -gt 70 ]]; then
-        echo "󰤨  "
+        echo "[ 󰤨 $signalStrength ] "
     elif [[ $signalStrength -le 70 && $signalStrength -gt 50 ]]; then
         echo "󰤥  "
     elif [[ $signalStrength -le 50 && $signalStrength -gt 30 ]]; then
