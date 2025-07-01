@@ -1,7 +1,16 @@
 #!/bin/bash
 
+DIR="/home/goku/Imagens/Screenshots/"
+
+mkdir -p "$DIR"
+
 current=$(date +%Y-%m-%d_%H-%M-%S).png
+name="screenshot_$current"
+file="$DIR/$name"
 
-/usr/bin/scrot -s /home/goku/Imagens/Screenshots/screenshot_$current
+/usr/bin/maim -s "$file"
 
-notify-send "Screenshot ${current} taken successfully!"
+if [ -f "$file" ]; then
+    notify-send "Screenshot ${current} taken successfully!"
+fi
+
