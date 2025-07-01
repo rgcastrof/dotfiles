@@ -4,6 +4,7 @@
 #include "/home/goku/.config/dmenu/themes/dark.h"
 
 static int topbar = 0;                      /* -b  option; if 0, dmenu appears at bottom     */
+static const unsigned int alpha = 0xAA;     /* Amount of opacity. 0xff is opaque             */
 static int centered = 1;                    /* -c option; centers dmenu on screen */
 static int min_width = 500;                    /* minimum width when centered */
 static const float menu_height_ratio = 4.0f;  /* This is the ratio used in the original calculation */
@@ -17,6 +18,12 @@ static const char *colors[SchemeLast][2] = {
 	[SchemeNorm] = { foreground_norm, background_norm },
 	[SchemeSel] = {  foreground_sel, background_sel },
 	[SchemeOut] = { "#000000", "#00ffff" },
+};
+
+static const unsigned int alphas[SchemeLast][2] = {
+	[SchemeNorm] = { OPAQUE, alpha },
+	[SchemeSel] = { OPAQUE, alpha },
+	[SchemeOut] = { OPAQUE, alpha },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines      = 0;
