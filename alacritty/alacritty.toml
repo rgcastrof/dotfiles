@@ -1,0 +1,21 @@
+[window]
+
+opacity = 1.0
+
+padding.x = 10
+padding.y = 7
+
+decorations = "None"
+decorations_theme_variant = "Dark"
+
+[font]
+
+normal.family = "JetBrainsMono Nerd Font"
+bold.family = "JetBrainsMono Nerd Font"
+italic.family = "JetBrainsMono Nerd Font"
+
+size = 12.0
+
+[colors.primary]
+background = "#0f0f0f"
+foreground = "#e0def4"
