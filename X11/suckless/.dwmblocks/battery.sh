@@ -15,7 +15,7 @@ if [ "$charging_status" = "Charging" ]; then
     elif [[ $battery -le 70 && $battery -gt 60 ]]; then
         echo "[ 󰢞 $battery% ] "
     elif [[ $battery -le 60 && $battery -gt 50 ]]; then
-        echo "[ 󰂉 $battert% ] "
+        echo "[ 󰂉 $battery% ] "
     elif [[ $battery -le 50 && $battery -gt 40 ]]; then
         echo "[ 󰢝 $battery% ] "
     elif [[ $battery -le 40 && $battery -gt 30 ]]; then
