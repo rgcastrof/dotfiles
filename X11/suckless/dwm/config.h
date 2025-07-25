@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", "󰨞 ", " " };
+static const char *tags[] = { " ", " ", " ", "󰨞 ", " ", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -81,6 +81,7 @@ static const Key keys[] = {
     { ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
     { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },
     { MODKEY,                       XK_w,      spawn,          SHCMD("~/.config/dwm/scripts/wallpaper_picker.sh") },
+    { MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("~/.config/dwm/scripts/play_music.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
