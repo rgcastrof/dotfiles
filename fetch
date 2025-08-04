@@ -11,18 +11,19 @@ Shell_name=$(echo $SHELL | sed 's/\/usr\/bin\///')
 Shell=$($SHELL --version | grep $Shell_name | awk '{print $2}' | tr -d ',')
 Uptime=$(uptime -p | awk '{gsub(/up /, ""); print}')
 Wm=$(ps -e | grep -m 1 dwm | awk '{print $4}')
+Init=$(ps -p 1 -o comm=)
 
 
 # Void ascii art
 cat <<EOF
 
-   [1;32m       /\\[0m	     [1;32m$User[0m@[1;32m$Hostname[0m
-   [1;32m      /  \\[0m	     [1;32mdistro[0m->  $OS
-   [1;32m     /\`'.,\\[0m	     [1;32mkernel[0m->  $Kernel
-   [1;32m    /     ',[0m	     [1;32muptime[0m->  $Uptime
-   [1;32m   /      ,\`\\[0m     [1;32mpkgs[0m->    $Pacman
-   [1;32m  /   ,.'\`.  \\[0m    [1;32mshell[0m->   $Shell
-   [1;32m /.,'\`     \`'.\\[0m   [1;32mwm[0m->      $Wm
+   [1;34m       /\\[0m	     [1;34m$User[0m@[1;34m$Hostname[0m
+   [1;34m      /  \\[0m	     [1;34mdistro[0m->  $OS
+   [1;34m     /\`'.,\\[0m	     [1;34mkernel[0m->  $Kernel
+   [1;34m    /     ',[0m	     [1;34muptime[0m->  $Uptime
+   [1;34m   /      ,\`\\[0m     [1;34mpkgs[0m->    $Pacman
+   [1;34m  /   ,.'\`.  \\[0m    [1;34minit[0m->    $Init
+   [1;34m /.,'\`     \`'.\\[0m   [1;34mwm[0m->      $Wm
       
     
 EOF
