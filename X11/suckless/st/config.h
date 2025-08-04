@@ -7,7 +7,7 @@
  */
 #include "/home/goku/.config/st/themes/rose-pine-moon.h"
  
-static char *font = "JetBrainsMonoNerdFont:pixelsize=15:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNerdFont:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 7;
 
 /*
@@ -126,6 +126,8 @@ static const char *colorname[] = {
 	background, /* default background colour */
 };
 
+
+
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
@@ -203,6 +205,7 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 };
+
 
 /*
  * Special keys (change & recompile st.info accordingly)

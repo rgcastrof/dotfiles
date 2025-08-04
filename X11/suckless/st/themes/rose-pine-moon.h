@@ -17,6 +17,4 @@ static const char bright_cyan[]    = "#ea9a97";
 static const char bright_white[]   = "#e0def4";
 
 static const char foreground[]     = "#e0def4";
-static const char background[]     = "#000000";
-
-// standard background = #232136
+static const char background[]     = "#0f0f0f";
