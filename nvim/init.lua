@@ -43,6 +43,16 @@ require'nvim-treesitter.configs'.setup({
 })
 local cmp = require('cmp')
 cmp.setup({
+	window = {
+		completion = {
+			border = 'rounded',
+			winhighlight = "Normal:Normal,FloatBorder:Normal,Search:None",
+		},
+		documentation = {
+			border = 'rounded',
+			winhighlight = "Normal:Normal,FloatBorder:Normal,Search:None",
+		}
+	},
     sources = {
         { name = 'nvim_lsp' },
     },
@@ -65,4 +75,4 @@ vim.diagnostic.config {
     signs = { text = { [x.ERROR] = " ", [x.WARN] = " ", [x.INFO] = " ", [x.HINT] = "󰠠 " } },
 }
 
-vim.cmd(":hi statusline guibg=NONE")
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "None" })
