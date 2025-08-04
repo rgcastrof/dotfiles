@@ -75,4 +75,9 @@ vim.diagnostic.config {
     signs = { text = { [x.ERROR] = " ", [x.WARN] = " ", [x.INFO] = " ", [x.HINT] = "󰠠 " } },
 }
 
+for _, group in ipairs({ "Error", "Warn", "Info", "Hint"}) do
+	local hl = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualText" .. group, link = false})
+	hl.bg = "None"
+	vim.api.nvim_set_hl(0, "DiagnosticVirtualText" .. group, hl)
+end
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "None" })
