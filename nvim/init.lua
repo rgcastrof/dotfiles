@@ -13,7 +13,7 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
 vim.pack.add({
-    { src = "https://github.com/vague2k/vague.nvim" },
+    { src = "https://github.com/navarasu/onedark.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/echasnovski/mini.pick" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
@@ -24,11 +24,11 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
+vim.lsp.enable({ "lua_ls", "clangd", "gopls" })
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
-vim.lsp.enable({ "lua_ls", "clangd", "gopls" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.diagnostic.config ({ virtual_text = true })
+vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 
 require('gitsigns').setup()
 require('mason').setup()
@@ -45,7 +45,6 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
       ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     }),
     snippet = {
@@ -55,6 +54,6 @@ cmp.setup({
     },
 })
 
-require "vague".setup({ transparent = true })
-vim.cmd.colorscheme "vague"
+require 'onedark'.setup({ style = 'darker', transparent = true })
+require('onedark').load()
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "None" })
