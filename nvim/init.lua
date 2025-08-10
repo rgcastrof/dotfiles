@@ -2,7 +2,6 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.tabstop = 4
-vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.swapfile = false
 vim.o.signcolumn = "yes"
@@ -27,8 +26,6 @@ vim.pack.add({
 vim.lsp.enable({ "lua_ls", "clangd", "gopls" })
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 
 require('gitsigns').setup()
 require('mason').setup()
