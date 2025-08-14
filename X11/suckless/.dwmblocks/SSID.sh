@@ -11,16 +11,16 @@ ssid=$(nmcli -t -f IN-USE,SSID device wifi | grep "*" | tr -d "*:")
 #fi
 
 if [ -z "$bssid" ]; then
-    echo "[ 󰤭 disconnected ] "
+    echo "󰤭 disconnected | "
 else
     signalStrength=$(nmcli -t -f BSSID,SIGNAL device wifi | tr -d '\\' | grep "$bssid" | cut -d ':' -f7)
     if [[ $signalStrength -le 100 && $signalStrength -gt 70 ]]; then
-        echo "[ 󰤨 $signalStrength ] "
+        echo "󰤨 $signalStrength | "
     elif [[ $signalStrength -le 70 && $signalStrength -gt 50 ]]; then
-        echo "[ 󰤥 $signalStrength ] "
+        echo "󰤥 $signalStrength | "
     elif [[ $signalStrength -le 50 && $signalStrength -gt 30 ]]; then
-        echo "[ 󰤢 $signalStrength ] "
+        echo "󰤢 $signalStrength | "
     elif [[ $signalStrength -le 30 && $signalStrength -gt 0 ]]; then
-        echo "[ 󰤟 $signalStrength ] "
+        echo "󰤟 $signalStrength | "
     fi
 fi
