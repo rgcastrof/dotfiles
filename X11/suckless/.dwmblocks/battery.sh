@@ -1,7 +1,7 @@
 #!/bin/bash
 
-battery=$(acpi | grep "ing" | awk '{print $4}' | tr -d '%,')
-charging_status=$(acpi | awk '{print $3}' | tr -d ',')
+battery=$(cat /sys/class/power_supply/BAT0/capacity)
+charging_status=$(cat /sys/class/power_supply/BAT0/status)
 
 if [ "$charging_status" = "Charging" ]; then
     if [[ $battery -gt 95 ]]; then
