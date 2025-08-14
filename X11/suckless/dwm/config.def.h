@@ -16,11 +16,12 @@ static const char *colors[][3]      = {
         /*               fg         bg         border   */
         [SchemeNorm] = { col_gray2, col_gray1, col_cyan },
         [SchemeSel]  = { col_gray3, col_gray4,  col_gray5  },
-        [SchemeTitle]  = { col_gray3, col_gray1,  col_cyan  },
+        [SchemeTitle]  = { col_gray1, col_gray3,  col_cyan  },
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", "󰨞 ", " ", " " };
+// static const char *tags[] = { " ", " ", " ", "󰨞 ", " ", " " };
+static const char *tags[] = { " ", " ", " ", "󰨞 " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -72,16 +73,16 @@ static const Key keys[] = {
     { MODKEY|ControlMask,           XK_l,      spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { 0,                            XF86XK_AudioRaiseVolume,     spawn,          SHCMD("~/.config/dwm/scripts/volume_up.sh && ~/.config/dwm/scripts/notify_volume_up.sh") },
-    { 0,                            XF86XK_AudioLowerVolume,     spawn,          SHCMD("~/.config/dwm/scripts/volume_down.sh && ~/.config/dwm/scripts/notify_volume_down.sh") },
-    { 0,                            XF86XK_AudioMute,     spawn,          SHCMD("~/.config/dwm/scripts/toggle_volume.sh") },
-    { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD("~/.config/dwm/scripts/bright_up.sh") },
-    { 0,                            XF86XK_MonBrightnessDown,     spawn,          SHCMD("~/.config/dwm/scripts/bright_down.sh") },
-    { 0,                            XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/screenshot.sh") },
-    { ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/dwm/scripts/fullscreenshot.sh") },
-    { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/dwm/scripts/power_menu.sh") },
-    { MODKEY,                       XK_w,      spawn,          SHCMD("~/.config/dwm/scripts/wallpaper_picker.sh") },
-    { MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("~/.config/dwm/scripts/play_music.sh") },
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("~/.config/scripts/volume/volume_up.sh && ~/.config/scripts/volume/notify_volume_up.sh") },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD("~/.config/scripts/volume/volume_down.sh && ~/.config/scripts/volume/notify_volume_down.sh") },
+    { 0,                            XF86XK_AudioMute,     	   spawn,          SHCMD("~/.config/scripts/volume/toggle_volume.sh") },
+    { 0,                            XF86XK_MonBrightnessUp,    spawn,          SHCMD("~/.config/scripts/bright/bright_up.sh") },
+    { 0,                            XF86XK_MonBrightnessDown,  spawn,          SHCMD("~/.config/scripts/bright/bright_down.sh") },
+    { 0,                            XK_Print,  spawn,          SHCMD("~/.config/scripts/utils/screenshot.sh") },
+    { ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/scripts/utils/fullscreenshot.sh") },
+    { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/scripts/utils/power_menu.sh") },
+    { MODKEY,                       XK_w,      spawn,          SHCMD("~/.config/scripts/utils/wallpaper_picker.sh") },
+    { MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("~/.config/scripts/utils/play_music.sh") },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
