@@ -11,7 +11,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-my_prompt() {
+prompt() {
 
     local git_branch=""
     local git_status=""
@@ -28,10 +28,10 @@ my_prompt() {
             git_status="\[\e[31m\]✗ "
         fi
     fi
-    PS1="\[\e[33m\]➜  \[\e[1;37m\]\W $git_branch$git_status\[\e[0m\]"
+    PS1="\[\e[33m\]➜ \[\e[1;37m\]\W $git_branch$git_status\[\e[0m\]"
 }
 
-PROMPT_COMMAND='my_prompt'
+PROMPT_COMMAND='prompt'
 
 # Comandos Básicos
 alias la='ls -a'
@@ -48,4 +48,3 @@ alias gc='git commit'
 
 # Created by `pipx` on 2025-05-01 18:24:03
 export PATH="$PATH:/home/goku/.local/bin"
-eval "$(zoxide init bash)"
