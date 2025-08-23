@@ -12,8 +12,6 @@ sudo pacman -Syu --noconfirm
 echo "installing packages from pkgs.txt"
 sudo pacman -S --needed --noconfirm $(< pkgs.txt)
 
-clear
-
 echo "enabling services"
 echo "enabling tlp"
 sudo ln -sf /etc/runit/sv/tlp /run/runit/service
@@ -33,6 +31,19 @@ echo "enabling docker"
 sudo ln -sf /etc/runit/sv/docker /run/runit/service
 sudo usermod -aG docker "$USER"
 
+copy_config() {
+	echo "copying config files"
+
+	mkdir -p "$DIR_CONFIG"
+
+	cp "bash/.bashrc" "$HOME"
+	cp -rf nvim "$DIR_CONFIG"
+	cp -rf ranger "$DIR_CONFIG"
+	cp -rf scripts "$DIR_CONFIG"
+	cp -rf "X11/dunst" "$DIR_CONFIG"
+	cp -rf "X11/picom" "$DIR_CONFIG"
+}
+
 setup_dwm() {
 	cp -rf "X11/suckless/.dwm" "$HOME"
 	cp -rf "X11/suckless/.dwmblocks" "$HOME"
@@ -47,19 +58,12 @@ setup_dwm() {
 	make -C "$DIR_CONFIG/slock" && sudo make -C "$DIR_CONFIG/slock" install
 }
 
-clear
-
 echo "configuring graphic session"
 sudo cp "X11/*.conf" "/etc/X11/xorg.conf.d/"
-mkdir -p "$DIR_CONFIG"
-cp -rf "scripts" "$DIR_CONFIG"
+copy_config
 setup_dwm
-cp -rf "X11/dunst" "$DIR_CONFIG"
-cp -rf "X11/picom" "$DIR_CONFIG"
 xdg-user-dirs-update
 echo "exec dbus-run-session dwm" > "$HOME/.xinitrc"
-
-clear
 
 echo "Finished setup"
 read -p "You want to reboot the system [s/n]: " answer
@@ -67,5 +71,6 @@ read -p "You want to reboot the system [s/n]: " answer
 if [[ "$answer" == "s" || "$answer" == "S" ]]; then
 	sudo reboot
 else
+	clear
 	exit 0
 fi
