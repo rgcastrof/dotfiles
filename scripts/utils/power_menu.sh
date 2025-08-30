@@ -10,12 +10,12 @@ options="$shutdown\n$reboot\n$suspend\n"
 chosen="$(echo -e "$options" | dmenu -l 7 -bw 3 -i -p "Power-Menu " )"
 case $chosen in
     $shutdown)
-        sudo /usr/sbin/poweroff
+		doas poweroff
         ;;
     $reboot)
-        sudo /usr/sbin/reboot
+		doas reboot
         ;;
     $suspend)
-        sudo /usr/sbin/zzz
+		doas zzz
         ;;
 esac
