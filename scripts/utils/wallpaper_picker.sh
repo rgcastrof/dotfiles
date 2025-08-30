@@ -1,10 +1,10 @@
 #!/bin/bash
-wallpaper=$(ls "$HOME/Imagens/Wallpapers" | dmenu -l 7 -bw 3 -p "select:")
+wallpaper=$(ls "$HOME/Pictures/Wallpapers" | dmenu -l 7 -bw 3 -p "select:")
 
 if [ -z "$wallpaper" ]; then
-    echo "Nothing was selected"
+    notify-send "Nothing was selected"
 else
-    feh --bg-scale "$HOME/Imagens/Wallpapers/$wallpaper"
+    feh --bg-scale "$HOME/Pictures/Wallpapers/$wallpaper"
     sed -i "6s|[^/]*$|$wallpaper|" "$HOME/.dwm/autostart.sh"
     echo "wallpaper: $wallpaper set"
 fi
