@@ -19,9 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", "󰨞 " };
-// static const char *tags[] = { "1", "2", "3", "4" };
-// static const char *alttags[] = { "{1}", "{2}", "{3}", "{4}" };
+static const char *tags[] = { " ", " ", " ", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -59,11 +57,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-l", "11", "-bw", "3", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-l", "4", "-bw", "3", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
-static const char *explorercmd[] = { "st", "-e", "ranger", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *explorercmd[] = { "alacritty", "-e", "ranger", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 
 static const Key keys[] = {
