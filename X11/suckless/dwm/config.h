@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
-#include "themes/dark.h"
+#include "themes/void.h"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -60,8 +60,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-l", "4", "-bw", "3", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
-static const char *explorercmd[] = { "alacritty", "-e", "ranger", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *explorercmd[] = { "st", "-e", "ranger", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 
 static const Key keys[] = {
