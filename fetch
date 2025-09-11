@@ -1,20 +1,17 @@
 #!/bin/bash
 
 # Modules
-
 User=$(whoami)
 Hostname=$(cat /etc/hostname)
-OS=$(awk -F= '/^PRETTY_NAME/ {gsub(/"/, "", $2); print $2}' /etc/os-release)
+OS=$(grep "PRETTY_NAME" /etc/os-release | cut -d '"' -f2)
 Kernel=$(uname -r)
 Pacman=$(pacman -Q | wc -l)
-Shell_name=$(echo $SHELL | sed 's/\/usr\/bin\///')
-Shell=$($SHELL --version | grep $Shell_name | awk '{print $2}' | tr -d ',')
+Shell=$($SHELL --version | grep $(basename $SHELL) | awk '{print $2 $4}' | tr ',' ' ' | cut -d '(' -f1)
 Uptime=$(uptime -p | awk '{gsub(/up /, ""); print}')
 Wm=$(ps -e | grep -m 1 dwm | awk '{print $4}')
 Init=$(ps -p 1 -o comm=)
 
-
-# Void ascii art
+# Ascii art
 cat <<EOF
 
    [1;34m       /\\[0m	     [1;34m$User[0m@[1;34m$Hostname[0m
