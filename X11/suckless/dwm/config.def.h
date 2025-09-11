@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
-#include "themes/void.h"
+#include "themes/artix.h"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -57,7 +57,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-l", "4", "-bw", "3", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-l", "11", "-bw", "2", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
 static const char *explorercmd[] = { "st", "-e", "ranger", NULL };
