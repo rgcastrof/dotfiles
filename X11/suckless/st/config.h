@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-#include "/home/goku/.config/st/themes/alacritty.h"
+#include "themes/alacritty.h"
  
 static char *font = "JetBrainsMonoNerdFont:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 7;
