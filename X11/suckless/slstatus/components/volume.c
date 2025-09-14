@@ -189,7 +189,7 @@
 	const char *
 	vol_perc(const char *unused)
 	{
-		static char buf[32];  // buffer maior pra caber ícone + número
+		static char buf[124];  // buffer maior pra caber ícone + número
 		char raw[8];
 		FILE *fp = popen("amixer get Master | grep -o '[0-9]*%' | head -1", "r");
 		if (!fp)
@@ -210,20 +210,15 @@
 
 		int volume = atoi(raw);
 
-		// Escolhe o ícone baseado no volume
 		const char *icon;
-		if (volume > 70)
-			icon = " "; // mudo
-		else if (volume <= 70 && volume > 40)
-			icon = " "; // volume baixo
-		else if (volume <= 40 && volume > 0)
-			icon = " "; // volume médio
+		if (volume > 50)
+			icon = "^c#98c379^ ";
+		else if (volume <= 50 && volume > 0)
+			icon = "^c#e5c07b^ ";
 		else
-			icon = " "; // volume alto
+			icon = "^c#e06c75^ ";
 	
-
-		// Monta a string final com ícone + número
-		snprintf(buf, sizeof(buf), "%s %d", icon, volume);
+		snprintf(buf, sizeof(buf), "%s ^c#F2F2F2^%d", icon, volume);
 
 		return buf;
 	}

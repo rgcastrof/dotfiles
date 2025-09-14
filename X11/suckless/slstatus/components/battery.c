@@ -131,26 +131,26 @@
 
 		if (!strcmp(status, "Discharging")) {
 			if (cap > 80)
-				return " ";
+				return "^c#56b6c2^ ";
 			else if (cap <= 80 && cap > 60)
-			 	return " ";
+			 	return "^c#7EC07E^ ";
 			else if (cap <= 60 && cap > 40)
-				return " ";
+				return "^c#e5c07b^ ";
 			else if (cap <= 40 && cap > 20)
-				return " ";
+				return "^c#d19a66^ ";
 			else
-				return " ";
+				return "^c#e06c75^ ";
 		} else {
 			if (cap > 80)
-				return " 󱐋";
+				return "^c#61afef^ 󱐋";
 			else if (cap <= 80 && cap > 60)
-			 	return " 󱐋";
+			 	return "^c#61afef^ 󱐋";
 			else if (cap <= 60 && cap > 40)
-				return " 󱐋";
+				return "^c#61afef^ 󱐋";
 			else if (cap <= 40 && cap > 20)
-				return " 󱐋";
+				return "^c#61afef^ 󱐋";
 			else
-				return " 󱐋";
+				return "^c#61afef^ 󱐋";
 		}
 	}
 #elif defined(__OpenBSD__)

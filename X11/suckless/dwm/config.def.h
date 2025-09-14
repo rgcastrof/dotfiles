@@ -8,8 +8,6 @@ static const unsigned int gappx     = 10;       /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 7;       /* vertical padding of bar */
-static const int sidepad            = 10;       /* horizontal padding of bar */
 static const char *fonts[]          = { "JetBrainsMonoNerdFont:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
