@@ -3,8 +3,8 @@
     follow = none
     width = (250, 500)
     height = (0, 750)
-    origin = top-center
-    offset = (10, 25)
+    origin = top-right
+    offset = (15, 30)
     scale = 0
     notification_limit = 20
     progress_bar = true
@@ -17,13 +17,13 @@
     icon_corner_radius = 0
     icon_corners = all
     indicate_hidden = yes
-    transparency = 20
+    transparency = 0
     separator_height = 2
     padding = 8
     horizontal_padding = 8
     text_icon_padding = 0
-    frame_width = 3
-    frame_color = "#90909C"
+    frame_width = 2
+    frame_color = "#4fc3f7"
     gap_size = 0
     separator_color = frame
     sort = yes
@@ -50,7 +50,7 @@
     title = Dunst
     class = Dunst
 
-    corner_radius = 7
+    corner_radius = 0
 
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
@@ -73,7 +73,3 @@
     frame_color = "#ff0000"
     timeout = 0
     override_pause_level = 60
-
-[play_sound]
-    summary = "*"
-    script = /home/goku/.config/dunst/alert.sh
