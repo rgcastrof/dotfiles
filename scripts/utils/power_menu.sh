@@ -16,6 +16,6 @@ case $chosen in
 		doas reboot
         ;;
     $suspend)
-		doas zzz
+		doas sh -c "echo mem > /sys/power/state"
         ;;
 esac
