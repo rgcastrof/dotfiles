@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 /* Default settings; can be overriden by command line. */
 
-#include "themes/artix.h"
+#include "themes/slackware.h"
 
 static int topbar = 0;                      /* -b  option; if 0, dmenu appears at bottom     */
 static const unsigned int alpha = 0xAA;     /* Amount of opacity. 0xff is opaque             */

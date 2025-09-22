@@ -17,7 +17,7 @@ config.h:
 	cp config.def.h $@
 
 slock: ${OBJ}
-	${CC} -o $@ ${OBJ} ${LDFLAGS}
+	${CC} -lpthread -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
 	rm -f slock ${OBJ} slock-${VERSION}.tar.gz

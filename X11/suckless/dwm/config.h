@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
-#include "themes/artix.h"
+#include "themes/slackware.h"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -13,7 +13,8 @@ static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
         /*               fg         bg         border   */
         [SchemeNorm] = { col_gray2, col_gray1, col_cyan },
-        [SchemeSel]  = { col_gray1, col_gray3,  col_gray5  },
+        [SchemeSel]  = { col_gray1, col_gray3,  col_gray5 },
+	[SchemeTitle] = { col_gray2, col_gray1, col_cyan },
 };
 
 /* tagging */
