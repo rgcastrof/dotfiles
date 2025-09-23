@@ -1,5 +1,5 @@
 #!/bin/bash
-wallpaper=$(ls "$HOME/Pictures/Wallpapers" | dmenu -l 7 -bw 3 -p "select:")
+wallpaper=$(ls "$HOME/Pictures/Wallpapers" | dmenu -l 7 -p "select wallpaper:")
 
 if [ -z "$wallpaper" ]; then
     notify-send "Nothing was selected"
