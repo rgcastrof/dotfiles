@@ -69,7 +69,7 @@ static const struct arg args[] = {
 	{ ram_perc,     "^c#4fc3f7^   ^c#F2F2F2^%s%% | ", NULL },
 	{ disk_perc,    "^c#ffc107^󰋊 ^c#F2F2F2^%s%% | ",  "/" },
 	{ vol_perc,     "%s%% | ",    NULL },
-	{ battery_icon, "%s",       "BAT0" },
+	{ battery_icon, "%s ",       "BAT0" },
 	{ battery_perc, "^c#F2F2F2^%s%% | ",    "BAT0" },
 	{ datetime,     "^c#9c27b0^󰥔 ^c#F2F2F2^%s ",     "%H:%M %P" },
 };

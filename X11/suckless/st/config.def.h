@@ -7,7 +7,7 @@
  */
 #include "themes/alacritty.h"
  
-static char *font = "JetBrainsMonoNerdFont:pixelsize=17:antialias=true:autohint=true";
+static char *font = "Jet Brains Mono Nerd Font:pixelsize=18:antialias=true:autohint=true";
 static int borderpx = 7;
 
 /*
