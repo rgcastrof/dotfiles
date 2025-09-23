@@ -10,12 +10,10 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
-#include <X11/Xproto.h>
 #include <X11/Xutil.h>
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
 #endif
-#include <X11/extensions/Xrender.h>
 #include <X11/Xft/Xft.h>
 
 #include "drw.h"
@@ -25,8 +23,6 @@
 #define INTERSECT(x,y,w,h,r)  (MAX(0, MIN((x)+(w),(r).x_org+(r).width)  - MAX((x),(r).x_org)) \
                              * MAX(0, MIN((y)+(h),(r).y_org+(r).height) - MAX((y),(r).y_org)))
 #define TEXTW(X)              (drw_fontset_getwidth(drw, (X)) + lrpad)
-
-#define OPAQUE                0xffu
 
 /* enums */
 enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
@@ -56,16 +52,10 @@ static XIC xic;
 static Drw *drw;
 static Clr *scheme[SchemeLast];
 
-static int useargb = 0;
-static Visual *visual;
-static int depth;
-static Colormap cmap;
-
 #include "config.h"
 
 static int (*fstrncmp)(const char *, const char *, size_t) = strncmp;
 static char *(*fstrstr)(const char *, const char *) = strstr;
-static void xinitvisual();
 
 static unsigned int
 textw_clamp(const char *str, unsigned int n)
@@ -93,7 +83,7 @@ calcoffsets(void)
 	int i, n;
 
 	if (lines > 0)
-		n = (lines * bh) - 1;
+		n = lines * bh;
 	else
 		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">"));
 	/* calculate which items will begin the next page and previous page */
@@ -105,21 +95,12 @@ calcoffsets(void)
 			break;
 }
 
-static int
-max_textw(void)
-{
-	int len = 0;
-	for (struct item *item = items; item && item->text; item++)
-		len = MAX(TEXTW(item->text), len);
-	return len;
-}
-
 static void
 cleanup(void)
 {
 	size_t i;
 
-	XUngrabKey(dpy, AnyKey, AnyModifier, root);
+	XUngrabKeyboard(dpy, CurrentTime);
 	for (i = 0; i < SchemeLast; i++)
 		free(scheme[i]);
 	for (i = 0; items && items[i].text; ++i)
@@ -161,22 +142,6 @@ drawitem(struct item *item, int x, int y, int w)
 	return drw_text(drw, x, y, w, bh, lrpad / 2, item->text, 0);
 }
 
-static int
-drawdate(int x, int y, int w)
-{
-    char date[128];
-    time_t t = time(NULL);
-    struct tm *tm = localtime(&t);
-
-    /* Hour:Minute DayOfTheWeek DayOfTheMonth Month Year */
-    strftime(date, sizeof(date), "%H:%M %A %d %B %Y", tm);
-
-	drw_setscheme(drw, scheme[SchemeSel]);
-
-	int r = drw_text(drw, x, y, w, bh, lrpad / 2, date, 0);
-	return r;
-}
-
 static void
 drawmenu(void)
 {
@@ -206,8 +171,6 @@ drawmenu(void)
 		/* draw vertical list */
 		for (item = curr; item != next; item = item->right)
 			drawitem(item, x, y += bh, mw - x);
-
-        drawdate(x, lines * bh, w);
 	} else if (matches) {
 		/* draw horizontal list */
 		x += inputw;
@@ -650,7 +613,7 @@ run(void)
 static void
 setup(void)
 {
-	int x, y, i = 0, j;
+	int x, y, i, j;
 	unsigned int du;
 	XSetWindowAttributes swa;
 	XIM xim;
@@ -664,7 +627,7 @@ setup(void)
 #endif
 	/* init appearance */
 	for (j = 0; j < SchemeLast; j++)
-		scheme[j] = drw_scm_create(drw, colors[j], alphas[i], 2);
+		scheme[j] = drw_scm_create(drw, colors[j], 2);
 
 	clip = XInternAtom(dpy, "CLIPBOARD",   False);
 	utf8 = XInternAtom(dpy, "UTF8_STRING", False);
@@ -673,7 +636,6 @@ setup(void)
 	bh = drw->fonts->h + 2;
 	lines = MAX(lines, 0);
 	mh = (lines + 1) * bh;
-	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 #ifdef XINERAMA
 	i = 0;
 	if (parentwin == root && (info = XineramaQueryScreens(dpy, &n))) {
@@ -700,16 +662,9 @@ setup(void)
 				if (INTERSECT(x, y, 1, 1, info[i]) != 0)
 					break;
 
-		if (centered) {
-			mw = MIN(MAX(max_textw() + promptw, min_width), info[i].width);
-			x = info[i].x_org + ((info[i].width  - mw) / 2);
-			y = info[i].y_org + ((info[i].height - mh) / 2);
-		} else {
-			x = info[i].x_org;
-			y = info[i].y_org + (topbar ? 0 : info[i].height - mh);
-			mw = info[i].width;
-		}
-
+		x = info[i].x_org;
+		y = info[i].y_org + (topbar ? 0 : info[i].height - mh);
+		mw = info[i].width;
 		XFree(info);
 	} else
 #endif
@@ -717,16 +672,9 @@ setup(void)
 		if (!XGetWindowAttributes(dpy, parentwin, &wa))
 			die("could not get embedding window attributes: 0x%lx",
 			    parentwin);
-
-		if (centered) {
-			mw = MIN(MAX(max_textw() + promptw, min_width), wa.width);
-			x = (wa.width  - mw) / 2;
-			y = (wa.height - mh) / 2;
-		} else {
-			x = 0;
-			y = topbar ? 0 : wa.height - mh;
-			mw = wa.width;
-		}
+		x = 0;
+		y = topbar ? 0 : wa.height - mh;
+		mw = wa.width;
 	}
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 	inputw = mw / 3; /* input width: ~33% of monitor width */
@@ -734,15 +682,11 @@ setup(void)
 
 	/* create menu window */
 	swa.override_redirect = True;
-	swa.background_pixel = 0;
-	swa.border_pixel = 0;
-	swa.colormap = cmap;
+	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
 	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
-	win = XCreateWindow(dpy, root, x, y, mw, mh, border_width,
-	                    depth, CopyFromParent, visual,
-	                    CWOverrideRedirect | CWBackPixel | CWBorderPixel | CWColormap | CWEventMask, &swa);
-	if (border_width)
-		XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
+	win = XCreateWindow(dpy, root, x, y, mw, mh, 0,
+	                    CopyFromParent, CopyFromParent, CopyFromParent,
+	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
 	XSetClassHint(dpy, win, &ch);
 
 	/* input methods */
@@ -789,8 +733,6 @@ main(int argc, char *argv[])
 			topbar = 0;
 		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
 			fast = 1;
-		else if (!strcmp(argv[i], "-c"))   /* centers dmenu on screen */
-			centered = 1;
 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
 			fstrncmp = strncasecmp;
 			fstrstr = cistrstr;
@@ -815,8 +757,6 @@ main(int argc, char *argv[])
 			colors[SchemeSel][ColFg] = argv[++i];
 		else if (!strcmp(argv[i], "-w"))   /* embedding window id */
 			embed = argv[++i];
-		else if (!strcmp(argv[i], "-bw"))
-			border_width = atoi(argv[++i]); /* border width */
 		else
 			usage();
 
@@ -831,8 +771,7 @@ main(int argc, char *argv[])
 	if (!XGetWindowAttributes(dpy, parentwin, &wa))
 		die("could not get embedding window attributes: 0x%lx",
 		    parentwin);
-	xinitvisual();
-	drw = drw_create(dpy, screen, root, wa.width, wa.height, visual, depth, cmap);
+	drw = drw_create(dpy, screen, root, wa.width, wa.height);
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
@@ -853,41 +792,4 @@ main(int argc, char *argv[])
 	run();
 
 	return 1; /* unreachable */
-}
-
-void
-xinitvisual()
-{
-	XVisualInfo *infos;
-	XRenderPictFormat *fmt;
-	int nitems;
-	int i;
-
-	XVisualInfo tpl = {
-		.screen = screen,
-		.depth = 32,
-		.class = TrueColor
-	};
-	long masks = VisualScreenMask | VisualDepthMask | VisualClassMask;
-
-	infos = XGetVisualInfo(dpy, masks, &tpl, &nitems);
-	visual = NULL;
-	for(i = 0; i < nitems; i ++) {
-		fmt = XRenderFindVisualFormat(dpy, infos[i].visual);
-		if (fmt->type == PictTypeDirect && fmt->direct.alphaMask) {
-			 visual = infos[i].visual;
-			 depth = infos[i].depth;
-			 cmap = XCreateColormap(dpy, root, visual, AllocNone);
-			 useargb = 1;
-			 break;
-		}
-	}
-
-	XFree(infos);
-
-	if (! visual) {
-		visual = DefaultVisual(dpy, screen);
-		depth = DefaultDepth(dpy, screen);
-		cmap = DefaultColormap(dpy, screen);
-	}
 }
