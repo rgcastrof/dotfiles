@@ -43,3 +43,7 @@ alias ..='cd ..'
 
 # Created by `pipx` on 2025-05-01 18:24:03
 export PATH="$PATH:/home/goku/.local/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
