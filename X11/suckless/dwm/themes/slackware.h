@@ -1,6 +1,6 @@
-static const char bgnorm[]      = "#111111";
-static const char fgnorm[]      = "#bbbbbb";
-static const char fgsel[]       = "#eeeeee";
-static const char bgsel[]       = "#005577";
-static const char bdnorm[]      = "#222222";
-static const char bdsel[]       = "#005577";
+static const char bgnorm[]      = "#2C2C2E";
+static const char fgnorm[]      = "#F2F2F2";
+static const char fgsel[]       = "#2C2C2E";
+static const char bgsel[]       = "#5555FF";
+static const char bdnorm[]      = "#4c4c4c";
+static const char bdsel[]       = "#5555FF";
