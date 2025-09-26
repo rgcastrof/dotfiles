@@ -41,6 +41,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 
+export EDITOR=nvim
 # Created by `pipx` on 2025-05-01 18:24:03
 export PATH="$PATH:/home/goku/.local/bin"
 
