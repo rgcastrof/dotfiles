@@ -40,13 +40,35 @@
 	{
 		int cap_perc;
 		char path[PATH_MAX];
+		char status[16];
+		char color[16];
 
 		if (esnprintf(path, sizeof(path), POWER_SUPPLY_CAPACITY, bat) < 0)
 			return NULL;
 		if (pscanf(path, "%d", &cap_perc) != 1)
 			return NULL;
 
-		return bprintf("%d", cap_perc);
+		if (esnprintf(path, sizeof(path), POWER_SUPPLY_STATUS, bat) < 0)
+			return NULL;
+		if (pscanf(path, "%15s", status) != 1)
+			return NULL;
+
+		if (!strcmp(status, "Discharging")) {
+			if (cap_perc > 80)
+				strncpy(color, "^c#56b6c2^", 16);
+			else if (cap_perc <= 80 && cap_perc > 60)
+				strncpy(color, "^c#7EC07E^", 16);
+			else if (cap_perc <= 60 && cap_perc > 40)
+				strncpy(color, "^c#e5c07b^", 16);
+			else if (cap_perc <= 40 && cap_perc > 20)
+				strncpy(color, "^c#d19a66^", 16);
+			else
+				strncpy(color, "^c#e06c75^", 16);
+		} else
+				strncpy(color, "^c#61afef^", 16);
+
+
+		return bprintf("%s%d", color, cap_perc);
 	}
 
 	const char *
@@ -112,47 +134,6 @@
 		return "";
 	}
 
-	const char *
-	battery_icon(const char *bat)
-	{
-		int cap;
-		char status[16];
-		char path[PATH_MAX];
-
-		if (esnprintf(path, sizeof(path), POWER_SUPPLY_CAPACITY, bat) < 0)
-			return NULL;
-		if (pscanf(path, "%d", &cap) != 1)
-			return NULL;
-
-		if (esnprintf(path, sizeof(path), POWER_SUPPLY_STATUS, bat) < 0)
-			return NULL;
-		if (pscanf(path, "%15s", status) != 1)
-			return NULL;
-
-		if (!strcmp(status, "Discharging")) {
-			if (cap > 80)
-				return "^c#56b6c2^ ";
-			else if (cap <= 80 && cap > 60)
-			 	return "^c#7EC07E^ ";
-			else if (cap <= 60 && cap > 40)
-				return "^c#e5c07b^ ";
-			else if (cap <= 40 && cap > 20)
-				return "^c#d19a66^ ";
-			else
-				return "^c#e06c75^ ";
-		} else {
-			if (cap > 80)
-				return "^c#61afef^ 󱐋";
-			else if (cap <= 80 && cap > 60)
-			 	return "^c#61afef^ 󱐋";
-			else if (cap <= 60 && cap > 40)
-				return "^c#61afef^ 󱐋";
-			else if (cap <= 40 && cap > 20)
-				return "^c#61afef^ 󱐋";
-			else
-				return "^c#61afef^ 󱐋";
-		}
-	}
 #elif defined(__OpenBSD__)
 	#include <fcntl.h>
 	#include <machine/apmvar.h>

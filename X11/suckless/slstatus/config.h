@@ -66,10 +66,9 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ ram_perc,     "^c#4fc3f7^   ^c#F2F2F2^%s%% | ", NULL },
-	{ disk_perc,    "^c#ffc107^󰋊 ^c#F2F2F2^%s%% | ",  "/" },
-	{ vol_perc,     "%s%% | ",    NULL },
-	{ battery_icon, "%s ",       "BAT0" },
-	{ battery_perc, "^c#F2F2F2^%s%% | ",    "BAT0" },
-	{ datetime,     "^c#9c27b0^󰥔 ^c#F2F2F2^%s ",     "%H:%M %P" },
+	{ cpu_perc,     "^c#ffc107^CPU: ^c#bbbbbb^%s%% | ", NULL },
+	{ ram_perc,     "^c#4fc3f7^RAM: ^c#bbbbbb^%s%% | ", NULL },
+	{ wifi_essid,   "^c#e06c75^%s^c#bbbbbb^ | ",    "wlan0" },
+	{ battery_perc, "%s%%^c#bbbbbb^ | ",    "BAT0" },
+	{ datetime,     "%s ",     "%H:%M:%S" },
 };
