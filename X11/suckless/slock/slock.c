@@ -1,4 +1,5 @@
 /* See LICENSE file for license details. */
+#include <cairo/cairo.h>
 #define _XOPEN_SOURCE 500
 #if HAVE_SHADOW_H
 #include <shadow.h>
@@ -134,23 +135,35 @@ gethash(void)
 
 	return hash;
 }
+
 static void
 refresh(Display *dpy, Window win , int screen, struct tm time, cairo_t* cr, cairo_surface_t* sfc)
 {/*Function that displays given time on the given screen*/
 	static char tm[64]="";
 	int xpos,ypos;
-	xpos=DisplayWidth(dpy, screen)/2;
-	ypos=DisplayHeight(dpy, screen)/2;
-	snprintf(tm, sizeof(tm), "%02d/%02d/%d %02d:%02d",time.tm_mday,time.tm_mon + 1,time.tm_year+1900,time.tm_hour,time.tm_min);
+	int hour12 = time.tm_hour % 12;
+	if (hour12 == 0) hour12 = 12;
+
+	const char *suffix = (time.tm_hour < 12) ? "AM" : "PM";
+
+	snprintf(tm, sizeof(tm), "%02d:%02d:%02d %s",time.tm_hour,time.tm_min, time.tm_sec, suffix);
 	XClearWindow(dpy, win);
     cairo_set_source_rgb(cr, textcolorred, textcolorgreen, textcolorblue);
 	cairo_select_font_face(cr, textfamily, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
     cairo_set_font_size(cr, textsize);
+
+	cairo_text_extents_t extents;
+	cairo_text_extents(cr, tm, &extents);
+
+	xpos=(DisplayWidth(dpy, screen) - extents.width) / 2 - extents.x_bearing;
+	ypos=(DisplayHeight(dpy, screen) - extents.height) / 2 - extents.y_bearing;
+
 	cairo_move_to(cr, xpos, ypos);
 	cairo_show_text(cr, tm);
 	cairo_surface_flush(sfc);
 	XFlush(dpy);
 }
+
 static void*
 displayTime(void* input)
 { /*Thread that keeps track of time and refreshes it every 5 seconds */
