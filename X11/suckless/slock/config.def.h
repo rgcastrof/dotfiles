@@ -3,7 +3,7 @@ static const char *user  = "nobody";
 static const char *group = "users";
 /*Font settings for the time text*/
 static const float textsize=41.0;
-static const char* textfamily="CaskaydiaCoveNerdFont";
+static const char* textfamily="Noto Serif";
 static const double textcolorred=255;
 static const double textcolorgreen=255;
 static const double textcolorblue=255;

@@ -70,5 +70,5 @@ static const struct arg args[] = {
 	{ ram_perc,     "^c#4fc3f7^RAM: ^c#bbbbbb^%s%% | ", NULL },
 	{ wifi_essid,   "^c#e06c75^%s^c#bbbbbb^ | ",    "wlan0" },
 	{ battery_perc, "%s%%^c#bbbbbb^ | ",    "BAT0" },
-	{ datetime,     "%s ",     "%H:%M:%S" },
+	{ datetime,     "%s ",     "%d - %H:%M" },
 };
