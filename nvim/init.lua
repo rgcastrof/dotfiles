@@ -23,7 +23,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "gopls", "pyright" })
+vim.lsp.enable({ "lua_ls", "clangd", "gopls", "ruff" })
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
