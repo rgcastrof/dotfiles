@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="/home/goku/Pictures/Screenshots/"
+DIR="$HOME/Pictures/Screenshots/"
 
 mkdir -p "$DIR"
 

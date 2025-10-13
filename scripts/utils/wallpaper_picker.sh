@@ -5,6 +5,6 @@ if [ -z "$wallpaper" ]; then
     dunstify -a "Wallpaper" -r 9993 -u low "Nothing was selected"
 else
     feh --bg-scale "$HOME/Pictures/Wallpapers/$wallpaper"
-    sed -i "6s|[^/]*$|$wallpaper|" "$HOME/.config/suckless/dwm/autostart.sh"
+    sed -i "7s|[^/]*$|$wallpaper|" "$HOME/.config/suckless/dwm/autostart.sh"
     dunstify -a "Wallpaper" -r 9993 -u normal "wallpaper: $wallpaper set"
 fi

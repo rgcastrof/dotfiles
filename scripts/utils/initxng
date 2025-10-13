@@ -1,6 +1,12 @@
 #!/bin/bash
 
-SEARXNG_DIR="$HOME/searxng"
+if [ -x /etc/rc.d/rc.unbound ]; then
+        /etc/rc.d/rc.docker start
+fi
+
+sleep 2
+
+SEARXNG_DIR="/home/tom/searxng"
 CONTAINER_NAME="searxng"
 IMAGE_NAME="docker.io/searxng/searxng:latest"
 

@@ -10,10 +10,10 @@ options="$shutdown\n$reboot\n$suspend\n"
 chosen="$(echo -e "$options" | dmenu -l 3 -i -p "Power-Menu:" )"
 case $chosen in
     $shutdown)
-		doas poweroff
+		doas shutdown -P -h now
         ;;
     $reboot)
-		doas reboot
+		doas shutdown -r now
         ;;
     $suspend)
 		doas sh -c "echo mem > /sys/power/state"
