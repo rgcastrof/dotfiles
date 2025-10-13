@@ -3,6 +3,13 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Load system-wide bash completions for interactive shells
+if [ -f /etc/profile.d/bash_completion.sh ]; then
+    . /etc/profile.d/bash_completion.sh
+fi
+
+complete -F _command doas
+
 prompt() {
     local git_branch=""
     local git_status=""
@@ -30,3 +37,4 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 export EDITOR=nvim
+export PATH="/opt/python3.12.11/bin:/sbin:/usr/sbin:/usr/local/go/bin:$PATH"
