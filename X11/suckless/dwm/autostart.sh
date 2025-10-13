@@ -4,4 +4,4 @@ slstatus &
 dunst &
 picom -b
 xautolock -time 15 -locker slock &
-feh --bg-scale /home/goku/Pictures/Wallpapers/slackware_ascii.png
+feh --bg-scale "$HOME/Pictures/Wallpapers/slackware_ascii.png"

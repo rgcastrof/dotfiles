@@ -141,12 +141,8 @@ refresh(Display *dpy, Window win , int screen, struct tm time, cairo_t* cr, cair
 {/*Function that displays given time on the given screen*/
 	static char tm[64]="";
 	int xpos,ypos;
-	int hour12 = time.tm_hour % 12;
-	if (hour12 == 0) hour12 = 12;
 
-	const char *suffix = (time.tm_hour < 12) ? "AM" : "PM";
-
-	snprintf(tm, sizeof(tm), "%02d:%02d:%02d %s",hour12,time.tm_min, time.tm_sec, suffix);
+	snprintf(tm, sizeof(tm), "%02d:%02d",time.tm_hour,time.tm_min);
 	XClearWindow(dpy, win);
     cairo_set_source_rgb(cr, textcolorred, textcolorgreen, textcolorblue);
 	cairo_select_font_face(cr, textfamily, CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);

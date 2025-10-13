@@ -8,7 +8,7 @@ static const unsigned int gappx     = 10;       /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "FiraCode Nerd Font:size=11" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=11" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
         /*               fg         bg         border   */
@@ -58,7 +58,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *lockcmd[] = { "slock", NULL };
-static const char *browsercmd[] = { "firefox", NULL };
+static const char *browsercmd[] = { "librewolf", NULL };
 static const char *explorercmd[] = { "st", "-e", "nnn", NULL };
 static const char *termcmd[]  = { "st", NULL };
 

@@ -4,7 +4,7 @@
 const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
-static const char unknown_str[] = "n/a";
+static const char unknown_str[] = "^c#FF3333^n/a^c#bbbbbb^";
 
 /* maximum output string length */
 #define MAXLEN 2048
@@ -66,9 +66,11 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ cpu_perc,     "^c#ffc107^CPU: ^c#bbbbbb^%s%% | ", NULL },
-	{ ram_perc,     "^c#4fc3f7^RAM: ^c#bbbbbb^%s%% | ", NULL },
-	{ wifi_essid,   "^c#e06c75^%s^c#bbbbbb^ | ",    "wlan0" },
+	{ disk_free,    "^c#26a69a^󰋊 ^c#bbbbbb^: %s | ", "/" },
+	{ cpu_perc,     "^c#ffc107^ ^c#bbbbbb^: %s%% | ", NULL },
+	{ ram_perc,     "^c#4fc3f7^ ^c#bbbbbb^: %s%% | ", NULL },
+	{ wifi_perc,    "^c#1E90FF^ ^c#bbbbbb^: %s | ",    "wlan0" },
+	// { wifi_essid,   "^c#1E90FF^%s^c#bbbbbb^ | ",    "wlan0" },
 	{ battery_perc, "%s%%^c#bbbbbb^ | ",    "BAT0" },
 	{ datetime,     "%s ",     "%d - %H:%M" },
 };

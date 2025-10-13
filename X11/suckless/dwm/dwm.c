@@ -2232,7 +2232,7 @@ main(int argc, char *argv[])
 		fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
-    system("/home/goku/.config/suckless/dwm/autostart.sh"); // autostart
+    system("$HOME/.config/suckless/dwm/autostart.sh"); // autostart
 	checkotherwm();
 	setup();
 #ifdef __OpenBSD__
