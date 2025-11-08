@@ -4,7 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 10;       /* gaps between windows */
+static const unsigned int gappx     = 15;       /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -17,8 +17,18 @@ static const char *colors[][3]      = {
 	[SchemeTitle] = { fgnorm, bgnorm, bdnorm },
 };
 
+static const char *const autostart[] = {
+	"slstatus", NULL,
+	"dunst", NULL,
+	"picom", NULL,
+	"xautolock", "-time", "10", "-locker", "slock", NULL,
+	"feh", "--bg-scale", "/home/tom/Pictures/Wallpapers/nord-theme-wallpaper.jpg", NULL,
+	NULL /* terminate */
+};
+
 /* tagging */
-static const char *tags[] = { " ", "󰖟 ", " ", " ", "󰈙 " };
+// static const char *tags[] = { " ", "󰖟 ", " ", " ", "󰈙 " };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -70,11 +80,11 @@ static const Key keys[] = {
     { MODKEY|ControlMask,           XK_l,      spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = explorercmd }},
-    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("~/.config/scripts/volume/volume_up.sh && ~/.config/scripts/volume/notify_volume_up.sh") },
-    { 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD("~/.config/scripts/volume/volume_down.sh && ~/.config/scripts/volume/notify_volume_down.sh") },
-    { 0,                            XF86XK_AudioMute,     	   spawn,          SHCMD("~/.config/scripts/volume/toggle_volume.sh") },
-    { 0,                            XF86XK_MonBrightnessUp,    spawn,          SHCMD("~/.config/scripts/bright/bright_up.sh") },
+    { 0,                            XF86XK_AudioMute,     	   spawn,          SHCMD("~/.config/scripts/volume/mute.sh") },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD("~/.config/scripts/volume/volume_down.sh") },
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("~/.config/scripts/volume/volume_up.sh") },
     { 0,                            XF86XK_MonBrightnessDown,  spawn,          SHCMD("~/.config/scripts/bright/bright_down.sh") },
+    { 0,                            XF86XK_MonBrightnessUp,    spawn,          SHCMD("~/.config/scripts/bright/bright_up.sh") },
     { 0,                            XK_Print,  spawn,          SHCMD("~/.config/scripts/utils/screenshot.sh") },
     { ShiftMask,                    XK_Print,  spawn,          SHCMD("~/.config/scripts/utils/fullscreenshot.sh") },
     { MODKEY,                       XK_x,      spawn,          SHCMD("~/.config/scripts/utils/power_menu.sh") },
