@@ -23,7 +23,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "gopls", "ruff" })
+vim.lsp.enable({ "lua_ls", "clangd", "gopls", "pyright", "ruby_lsp" })
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
@@ -32,7 +32,7 @@ require('mason').setup()
 require('mini.pick').setup()
 require('oil').setup()
 require'nvim-treesitter.configs'.setup({
-	ensure_installed = { "c", "lua", "go", "python" },
+	ensure_installed = { "c", "lua", "go", "python", "ruby" },
 	highlight = { enable = true }
 })
 local cmp = require('cmp')
