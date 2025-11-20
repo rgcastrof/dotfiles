@@ -1,20 +1,20 @@
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.wrap = false
+vim.g.mapleader = " "
+vim.o.winborder = "rounded"
+vim.o.signcolumn = "yes"
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.showtabline = 2
+vim.o.wrap = false
 vim.o.swapfile = false
-vim.o.signcolumn = "yes"
-vim.g.mapleader = " "
-vim.o.winborder = 'rounded'
-
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.ignorecase = true
+vim.o.smartindent = true
+vim.o.termguicolors = true
 
 vim.pack.add({
     { src = "https://github.com/navarasu/onedark.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/echasnovski/mini.pick" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/hrsh7th/nvim-cmp" },
@@ -23,18 +23,22 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "gopls", "pyright", "ruby_lsp" })
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
+vim.keymap.set('n', '<leader>t', ":tabnew<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
+
+vim.lsp.enable({ "lua_ls", "clangd", "gopls", "pyright" })
 
 require('gitsigns').setup()
 require('mason').setup()
 require('mini.pick').setup()
 require('oil').setup()
 require'nvim-treesitter.configs'.setup({
-	ensure_installed = { "c", "lua", "go", "python", "ruby" },
+	ensure_installed = { "c", "lua", "go", "python" },
 	highlight = { enable = true }
 })
+
 local cmp = require('cmp')
 cmp.setup({
 	window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered(), },
