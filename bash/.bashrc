@@ -11,20 +11,18 @@ fi
 complete -F _command doas
 
 prompt() {
-    local git_branch=""
-    local git_status=""
+	branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+	dirty=""
+	staged=""
 
-    if git rev-parse --is-inside-work-tree &>/dev/null; then
-        git_branch="\[\e[1;35m\]git:(\[\e[1;31m\]$(git symbolic-ref --short HEAD)\[\e[1;35m\])\[\e[0m\]"
+	if [ -n "$branch" ]; then
+		branch="\[\e[1;36m\]git:\[\e[0;32m\]($branch)"
+		! git diff --quiet 2>/dev/null || [ -n "$(git ls-files --others --exclude-standard)" ] && dirty="\[\e[31m\]*"
+		! git diff --cached --quiet 2>/dev/null && staged="\[\e[32m\]+"
+	fi
 
-    git_status=$(git status --porcelain 2>/dev/null)
-    if [ -z "$git_status" ]; then
-        git_status="\[\e[32m\]✔ "
-        else
-            git_status="\[\e[31m\]✗ "
-        fi
-    fi
-    PS1="\[\e[33m\]➜ \[\e[1;37m\]\W $git_branch$git_status\[\e[0m\]"
+	git_prompt=$branch$dirty$staged
+    PS1="\[\e[34m\]➜ \[\e[1;37m\]\W $git_prompt\[\e[0m\] "
 }
 
 HISTSIZE=10000
