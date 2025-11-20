@@ -177,7 +177,8 @@
 	const char *
 	wifi_perc(const char *interface)
 	{
-		static char strength[4];
+		static char strength[8];
+		int signal = 0;
 		struct nlmsghdr hdr;
 		uint16_t fam = nl80211fam();
 		ssize_t r;
@@ -234,11 +235,22 @@
 					p = findattr(NL80211_ATTR_STA_INFO, p, e, &len);
 					if (p)
 						p = findattr(NL80211_STA_INFO_SIGNAL_AVG, p, e, &len);
-					if (p && len == 1)
-						snprintf(strength, sizeof(strength), "%d", RSSI_TO_PERC(*p));
+					if (p && len == 1) {
+						signal = RSSI_TO_PERC(*p);
+						const char *icon;
+						if (signal <= 25)
+							icon = "󰤟";
+						else if (signal <= 50)
+							icon = "󰤢";
+						else if (signal <= 75)
+							icon = "󰤥";
+						else
+							icon = "󰤨";
+						snprintf(strength, sizeof(strength), "%s", icon);
+					}
 				}
 				if (hdr.nlmsg_type == NLMSG_DONE)
-					return *strength ? strength : NULL;
+					return *strength ? strength : "󰤭";
 			}
 		}
 	}

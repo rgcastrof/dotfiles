@@ -189,9 +189,10 @@
 	const char *
 	vol_perc(const char *unused)
 	{
-		static char buf[124];  // buffer maior pra caber ícone + número
+		static char buf[32];
 		char raw[8];
-		FILE *fp = popen("amixer get Master | grep -o '[0-9]*%' | head -1", "r");
+		char raw_state[8];
+		FILE *fp = popen("amixer get Master | grep -Eo '\\[[0-9]+%\\]|\\[(on|off)\\]' | tail -n2 | tr -d '[]'", "r");
 		if (!fp)
 			return NULL;
 
@@ -200,9 +201,15 @@
 			return NULL;
 		}
 
+		if (!fgets(raw_state, sizeof(raw_state), fp)) {
+			pclose(fp);
+			return NULL;
+		}
+
 		pclose(fp);
 
 		raw[strcspn(raw, "\n")] = 0;
+		raw_state[strcspn(raw_state, "\n")] = 0;
 
 		char *pct = strchr(raw, '%');
 		if (pct)
@@ -211,14 +218,16 @@
 		int volume = atoi(raw);
 
 		const char *icon;
-		if (volume > 50)
-			icon = "^c#98c379^ ";
-		else if (volume <= 50 && volume > 0)
-			icon = "^c#e5c07b^ ";
-		else
-			icon = "^c#e06c75^ ";
+		if (strcmp(raw_state, "off") == 0)
+			icon = " ";
+		else {
+			if (volume > 50)
+				icon = " ";
+			else
+				icon = "";
+		}
 	
-		snprintf(buf, sizeof(buf), "%s ^c#F2F2F2^%d", icon, volume);
+		snprintf(buf, sizeof(buf), "^c#f87c63^%s %d", icon, volume);
 
 		return buf;
 	}

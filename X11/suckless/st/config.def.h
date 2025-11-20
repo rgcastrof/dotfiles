@@ -7,7 +7,7 @@
  */
 #include "themes/alacritty.h"
  
-static char *font = "JetBrainsMono Nerd Font:pixelsize=17:antialias=true:autohint=true";
+static char *font = "FiraCode Nerd Font:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 7;
 
 /*
@@ -95,7 +95,7 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-float alpha = 1.0;
+float alpha = 0.90;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */

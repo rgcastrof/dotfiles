@@ -66,11 +66,12 @@ static const char unknown_str[] = "^c#FF3333^n/a^c#bbbbbb^";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ disk_free,    "^c#26a69a^󰋊 ^c#bbbbbb^: %s | ", "/" },
-	{ cpu_perc,     "^c#ffc107^ ^c#bbbbbb^: %s%% | ", NULL },
-	{ ram_perc,     "^c#4fc3f7^ ^c#bbbbbb^: %s%% | ", NULL },
-	{ wifi_perc,    "^c#1E90FF^ ^c#bbbbbb^: %s | ",    "wlan0" },
+	{ vol_perc,     " %s%% ", NULL },
+	{ battery_perc, " %s%%^c#bbbbbb^ ",    "BAT0" },
+	{ wifi_perc,    "^c#0B7CF4^ %s ^c#bbbbbb^ | ",    "wlan0" },
+	// { disk_free,    "|^c#26a69a^ 󰋊 ^c#bbbbbb^: %s ", "/" },
+	{ cpu_freq,     "^c#ffc107^ ^c#bbbbbb^: %s ", NULL },
+	{ ram_used,     "^c#4fc3f7^  ^c#bbbbbb^: %s | ", NULL },
 	// { wifi_essid,   "^c#1E90FF^%s^c#bbbbbb^ | ",    "wlan0" },
-	{ battery_perc, "%s%%^c#bbbbbb^ | ",    "BAT0" },
-	{ datetime,     "%s ",     "%d - %H:%M" },
+	{ datetime,     "^c#63B5F8^%s^c#bbbbbb^ ",     "%d - %H:%M" },
 };

@@ -1,4 +1,5 @@
-static const char black[]   = "#1d1f21";
+// static const char black[]   = "#1d1f21";
+static const char black[]   = "#191724";
 static const char red[]     = "#cc6666";
 static const char green[]   = "#b5bd68";
 static const char yellow[]  = "#f0c674";
