@@ -21,6 +21,8 @@ vim.pack.add({
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/iamcco/markdown-preview.nvim" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
 })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
@@ -32,8 +34,13 @@ vim.lsp.enable({ "lua_ls", "clangd", "gopls", "pyright" })
 
 require('gitsigns').setup()
 require('mason').setup()
-require('mini.pick').setup()
-require('oil').setup()
+require('oil').setup({
+	default_file_explorer = true,
+	columns = {
+		"size",
+		"icon",
+	},
+})
 require'nvim-treesitter.configs'.setup({
 	ensure_installed = { "c", "lua", "go", "python" },
 	highlight = { enable = true }
