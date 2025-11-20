@@ -8,13 +8,13 @@ static const unsigned int gappx     = 15;       /* gaps between windows */
 static const unsigned int snap      = 15;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=11" };
+static const char *fonts[]          = { "FiraCode Nerd Font:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
         /*               fg         bg         border   */
         [SchemeNorm] = { fgnorm, bgnorm, bdnorm },
         [SchemeSel]  = { fgsel, bgsel,  bdsel },
-	[SchemeTitle] = { fgnorm, bgnorm, bdnorm },
+	[SchemeTitle] = { fgsel, bgsel, bdnorm },
 };
 
 static const char *const autostart[] = {
@@ -22,13 +22,13 @@ static const char *const autostart[] = {
 	"dunst", NULL,
 	"picom", NULL,
 	"xautolock", "-time", "10", "-locker", "slock", NULL,
-	"feh", "--bg-scale", "/home/tom/Pictures/Wallpapers/nord-theme-wallpaper.jpg", NULL,
+	"feh", "--bg-scale", "/home/tom/Pictures/Wallpapers/polygons.jpg", NULL,
 	NULL /* terminate */
 };
 
 /* tagging */
 // static const char *tags[] = { " ", "󰖟 ", " ", " ", "󰈙 " };
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
