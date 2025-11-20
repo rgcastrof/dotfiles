@@ -13,7 +13,7 @@ vim.o.smartindent = true
 vim.o.termguicolors = true
 
 vim.pack.add({
-    { src = "https://github.com/navarasu/onedark.nvim" },
+    { src = "https://github.com/rose-pine/neovim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -55,6 +55,24 @@ cmp.setup({
     },
 })
 
-require 'onedark'.setup({ style = 'darker', transparent = true })
-require('onedark').load()
+require("rose-pine").setup({
+    variant = "auto",
+    dark_variant = "main",
+    dim_inactive_windows = false,
+    extend_background_behind_borders = true,
+
+    enable = {
+        terminal = true,
+        legacy_highlights = true,
+        migrations = true,
+    },
+
+    styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
+    },
+})
+
+vim.cmd("colorscheme rose-pine")
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "None" })
