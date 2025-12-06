@@ -22,7 +22,7 @@ prompt() {
 	fi
 
 	git_prompt=$branch$dirty$staged
-    PS1="\[\e[34m\]➜ \[\e[1;37m\]\W $git_prompt\[\e[0m\] "
+    PS1="\[\e[34m\]\W \[\e[1;37m\]λ $git_prompt\[\e[0m\] "
 }
 
 HISTSIZE=10000
@@ -36,3 +36,7 @@ alias grep='grep --color=auto'
 
 export EDITOR=nvim
 export PATH="/opt/python3.12.11/bin:/sbin:/usr/sbin:/usr/local/go/bin:$HOME/.local/bin:$PATH"
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
