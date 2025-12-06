@@ -1,0 +1,27 @@
+#!/bin/bash
+
+ram=$(free -h | awk 'NR==2 {print $3}')
+disk=$(df -h | grep ' /$' | awk '{print $4}')
+ssid=$(iwgetid -r)
+vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1 {print $5}')
+datetime=$(date +"%d - %H:%M")
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+status=$(cat /sys/class/power_supply/BAT0/status)
+case "$status" in
+	Charging)
+		icon="+"
+		;;
+	Discharging)
+		icon="-"
+		;;
+	*)
+		icon="o"
+		;;
+esac
+
+echo "<span color='#81A1C1'>vol: $vol</span>  \
+<span color='#B48EAD'>ram: $ram</span>  \
+<span color='#88C0D0'>disk: $disk</span>  \
+<span color='#D08770'>wifi: $ssid</span>  \
+<span color='#A3BE8C'>bat: $bat$icon</span>  \
+<span color='#E5E9F0'>$datetime</span>"
