@@ -4,6 +4,8 @@ ram=$(free -h | awk 'NR==2 {print $3}')
 disk=$(df -h | grep ' /$' | awk '{print $4}')
 ssid=$(iwgetid -r)
 vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1 {print $5}')
+mute_status=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+[ "$mute_status" == "yes" ] && mute=" (mute)" || mute=""
 datetime=$(date +"%d - %H:%M")
 bat=$(cat /sys/class/power_supply/BAT0/capacity)
 status=$(cat /sys/class/power_supply/BAT0/status)
@@ -19,7 +21,7 @@ case "$status" in
 		;;
 esac
 
-echo "<span color='#81A1C1'>vol: $vol</span>  \
+echo "<span color='#81A1C1'>vol: $vol$mute</span>  \
 <span color='#B48EAD'>ram: $ram</span>  \
 <span color='#88C0D0'>disk: $disk</span>  \
 <span color='#D08770'>wifi: $ssid</span>  \
