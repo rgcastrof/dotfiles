@@ -3,14 +3,6 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
-xwayland disable
-
-exec pipewire
-exec pipewire-media-session
-exec pipewire-pulse
-
-exec /usr/libexec/xdg-desktop-portal
-exec /usr/libexec/xdg-desktop-portal-wlr
 
 ### Variables
 #
@@ -25,17 +17,16 @@ set $right l
 set $term alacritty
 set $browser librewolf
 
-font pango:JetBrains Mono NerdFont 10
+font pango:Iosevka NerdFont 11
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wmenu-run
+set $menu wmenu-run -f "Iosevka NerdFont 12" -p "run:"
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
+output * bg "$HOME/Pictures/Wallpapers/Sway_dark.png" fill
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -46,10 +37,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -96,7 +87,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 	bindsym --locked XF86MonBrightnessDown exec $HOME/.config/scripts/bright/bright_down.sh
 	bindsym --locked XF86MonBrightnessUp exec $HOME/.config/scripts/bright/bright_up.sh
 
-	bindsym Print exec grim
+	bindsym Print exec grim -g "$(slurp)"
+	bindsym Shift+Print exec grim
+
+	bindsym $mod+x exec $HOME/.config/scripts/utils/power_menu.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -233,13 +227,15 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command while $HOME/.config/sway/swaybar; do sleep 1; done
-	pango_markup enabled
 
-    colors {
+	colors {
         statusline #ffffff
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+default_border pixel 2
+gaps inner 5
 
 include /etc/sway/config.d/*

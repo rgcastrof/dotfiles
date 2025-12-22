@@ -8,8 +8,8 @@ mute_status=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
 [ "$mute_status" == "yes" ] && mute=" (mute)" || mute=""
 datetime=$(date +"%d - %H:%M")
 bat=$(cat /sys/class/power_supply/BAT0/capacity)
-status=$(cat /sys/class/power_supply/BAT0/status)
-case "$status" in
+bat_status=$(cat /sys/class/power_supply/BAT0/status)
+case "$bat_status" in
 	Charging)
 		icon="+"
 		;;

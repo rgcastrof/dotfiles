@@ -1,0 +1,12 @@
+#!/bin/sh
+export XDG_CURRENT_DESKTOP=sway
+
+/usr/bin/daemon -rB --pidfiles=~/.run --name=pipewire /usr/bin/pipewire
+/usr/bin/daemon -rB --pidfiles=~/.run --name=pipewire-media-session /usr/bin/pipewire-media-session
+/usr/bin/daemon -rB --pidfiles=~/.run --name=pipewire-pulse /usr/bin/pipewire-pulse
+
+exec sway
+
+/usr/bin/daemon --pidfiles=~/.run --name=pipewire --stop
+/usr/bin/daemon --pidfiles=~/.run --name=pipewire-media-session --stop
+/usr/bin/daemon --pidfiles=~/.run --name=pipewire-pulse --stop
