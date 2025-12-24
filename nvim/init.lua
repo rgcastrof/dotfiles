@@ -13,7 +13,7 @@ vim.o.smartindent = true
 vim.o.termguicolors = true
 
 vim.pack.add({
-    { src = "https://github.com/rose-pine/neovim" },
+    { src = "https://github.com/folke/tokyonight.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
@@ -23,6 +23,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/iamcco/markdown-preview.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/nvim-lualine/lualine.nvim" },
 })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
@@ -36,10 +37,7 @@ require('gitsigns').setup()
 require('mason').setup()
 require('oil').setup({
 	default_file_explorer = true,
-	columns = {
-		"size",
-		"icon",
-	},
+	columns = { "permissions", "icon" },
 })
 require'nvim-treesitter.configs'.setup({
 	ensure_installed = { "c", "lua", "go", "python" },
@@ -51,9 +49,9 @@ cmp.setup({
 	window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered(), },
     sources = { { name = 'nvim_lsp' }, },
 	mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     }),
     snippet = {
         expand = function(args)
@@ -62,24 +60,35 @@ cmp.setup({
     },
 })
 
-require("rose-pine").setup({
-    variant = "auto",
-    dark_variant = "main",
-    dim_inactive_windows = false,
-    extend_background_behind_borders = true,
+require('lualine').setup({
+	options = { component_separators = '' },
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {'branch', 'diff'},
+		lualine_c = {'filename'},
+		lualine_x = {
+			{
+				'diagnostics',
+				sections = { 'error', 'warn', 'info', 'hint' },
 
-    enable = {
-        terminal = true,
-        legacy_highlights = true,
-        migrations = true,
-    },
-
-    styles = {
-        bold = true,
-        italic = true,
-        transparency = true,
-    },
+				diagnostics_color = {
+					error = 'DiagnosticError',
+					warn  = 'DiagnosticWarn',
+					info  = 'DiagnosticInfo',
+					hint  = 'DiagnosticHint',
+			  },
+			  symbols = {error = '⚫', warn = '⚫', info = '⚫', hint = '⚫'},
+			}, 'filetype'
+		},
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
+	},
 })
 
-vim.cmd("colorscheme rose-pine")
-vim.api.nvim_set_hl(0, "StatusLine", { bg = "None" })
+local signs = {}
+for _, sev in pairs(vim.diagnostic.severity) do
+	signs[sev] = "⚫"
+end
+vim.diagnostic.config ({ signs = { text = signs } })
+
+vim.cmd[[colorscheme tokyonight-night]]
