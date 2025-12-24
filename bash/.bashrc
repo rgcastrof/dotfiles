@@ -35,7 +35,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 export EDITOR=nvim
-export PATH="/opt/python3.12.11/bin:/sbin:/usr/sbin:/usr/local/go/bin:$HOME/.local/bin:$PATH"
+export GOPATH="$HOME"
+export PATH="/opt/python3.12.11/bin:/sbin:/usr/sbin:$HOME/.local/bin:$PATH"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
