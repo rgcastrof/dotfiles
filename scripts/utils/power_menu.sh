@@ -2,12 +2,11 @@
 
 shutdown=" Shutdown"
 reboot=" Reboot"
-suspend="󰒲 Suspend"
+suspend="󰿅 Logout"
 
-# Variable passed to rofi
 options="$shutdown\n$reboot\n$suspend\n"
 
-chosen="$(echo -e "$options" | dmenu -l 3 -i -p "Power-Menu:" )"
+chosen="$(echo -e "$options" | wmenu -f "JetBrains Mono NerdFont 11" -l 3 -p "Power-Menu:" )"
 case $chosen in
     $shutdown)
 		doas shutdown -P -h now
@@ -16,6 +15,6 @@ case $chosen in
 		doas shutdown -r now
         ;;
     $suspend)
-		doas sh -c "echo mem > /sys/power/state"
+		swaymsg exit
         ;;
 esac
