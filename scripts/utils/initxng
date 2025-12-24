@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ -x /etc/rc.d/rc.unbound ]; then
+if [ -x /etc/rc.d/rc.docker ]; then
         /etc/rc.d/rc.docker start
 fi
 
 sleep 1
 
-SEARXNG_DIR="/home/tom/searxng"
+SEARXNG_DIR="/home/rogi/searxng"
 CONTAINER_NAME="searxng"
 IMAGE_NAME="docker.io/searxng/searxng:latest"
 
