@@ -17,7 +17,7 @@ set $right l
 set $term alacritty
 set $browser librewolf
 
-font pango:Iosevka NerdFont 11
+font pango:JetBrains Mono NerdFont 10
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -26,7 +26,7 @@ set $menu wmenu-run -f "Iosevka NerdFont 12" -p "run:"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg "$HOME/Pictures/Wallpapers/Sway_dark.png" fill
+output * bg "$HOME/Pictures/Wallpapers/night-waves.jpg" fill
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -222,7 +222,7 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position bottom
+    position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
@@ -230,8 +230,9 @@ bar {
 
 	colors {
         statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background #1a1b26
+        inactive_workspace #1a1b26 #1a1b26 #414868
+        focused_workspace #285577 #285577 #c0caf5
     }
 }
 
