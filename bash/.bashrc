@@ -22,7 +22,7 @@ prompt() {
 	fi
 
 	git_prompt=$branch$dirty$staged
-    PS1="\[\e[34m\]\W \[\e[1;37m\]λ $git_prompt\[\e[0m\] "
+    PS1="\[\e[34m\]\w $git_prompt\n\[\e[1;37m\]λ \[\e[0m\]"
 }
 
 HISTSIZE=10000
@@ -36,7 +36,8 @@ alias grep='grep --color=auto'
 
 export EDITOR=nvim
 export GOPATH="$HOME"
-export PATH="/opt/python3.12.11/bin:/sbin:/usr/sbin:$HOME/.local/bin:$PATH"
+export JAVA_HOME=/usr/lib64/java
+export PATH="$HOME/.local/bin:$JAVA_HOME/bin:/bin:/sbin:/usr/sbin:$PATH"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
