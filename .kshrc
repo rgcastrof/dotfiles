@@ -6,45 +6,31 @@ esac
 export HISTFILE=$HOME/.ksh_history
 export HISTSIZE=20000
 
-export EDITOR=nvim
+export EDITOR=hx
 set -o emacs
 set -o ignoreeof
 
-export PATH="/opt/python3.12.11/bin:/sbin:/usr/sbin:/usr/local/go/bin:$HOME/.local/bin:$PATH"
-
 function git_status_prompt {
   branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  dirty=""
+  staged=""
 
-  if [ -z "$branch" ]; then
-    print ""
-    return
+  if [ -n "$branch" ]; then
+    branch="\033[1;36m\]git:\033[0;32m\]($branch)"
+    ! git diff --quiet 2>/dev/null || [ -n "$(git ls-files --others --exclude-standard)" ] && dirty="\033[31m\]*"
+    ! git diff --cached --quiet 2>/dev/null && staged="\033[32m\]+"
   fi
 
-  if git diff --quiet 2>/dev/null; then
-    dirty=""
-  else
-    dirty="*"
-  fi
-
-  if git diff --cached --quiet 2>/dev/null; then
-    staged=""
-  else
-    staged="+"
-  fi
-
-  print "\033[32m ($branch)\033[33m$staged\033[31m$dirty\033[0m"
+  print "${branch}${dirty}${staged}"
 }
 
 function prompt_command {
 	if [ "$PWD" = "$HOME" ]; then
 		dir="~"
 	else
-		dir=$(basename "$PWD")
+		dir="$PWD"
 	fi
-  	print "\033[35m➜ \033[1;37m${dir}\033[0m$(git_status_prompt)"
+    print "\033[34m${dir} $(git_status_prompt)\n\033[1;37m󰘧\033[0m "
 }
 
-PS1='$(prompt_command) '
-
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+PS1='$(prompt_command)'
