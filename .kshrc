@@ -14,7 +14,8 @@ RESET="\033[0m"
 
 export HISTFILE=$HOME/.ksh_history
 export HISTSIZE=20000
-export PATH="$HOME/.local/bin:$HOME/go/bin:${PATH}"
+export JAVA_HOME=/usr/local/jdk-21
+export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$HOME/go/bin:${PATH}"
 
 export EDITOR=hx
 set -o emacs
