@@ -1,94 +1,87 @@
-vim.g.mapleader = " "
-vim.o.winborder = "rounded"
-vim.o.signcolumn = "yes"
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.showtabline = 2
-vim.o.wrap = false
-vim.o.swapfile = false
-vim.o.number = true
+vim.g.mapleader      = " "
+vim.o.winborder      = "single"
+vim.o.signcolumn     = "yes"
+vim.o.colorcolumn    = "80"
+vim.o.tabstop        = 4
+vim.o.shiftwidth     = 4
+vim.o.wrap           = false
+vim.o.swapfile       = false
+vim.o.number         = true
 vim.o.relativenumber = true
-vim.o.ignorecase = true
-vim.o.smartindent = true
-vim.o.termguicolors = true
+vim.o.ignorecase     = true
+vim.o.smartindent    = true
+vim.o.termguicolors  = true
 
 vim.pack.add({
-    { src = "https://github.com/folke/tokyonight.nvim" },
+    { src = "https://github.com/vague-theme/vague.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/nvim-mini/mini.pick" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/mason-org/mason.nvim" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/hrsh7th/nvim-cmp" },
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-    { src = "https://github.com/lewis6991/gitsigns.nvim" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-    { src = "https://github.com/iamcco/markdown-preview.nvim" },
-    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/nvim-lualine/lualine.nvim" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 })
 
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
-vim.keymap.set('n', '<leader>t', ":tabnew<CR>")
 vim.keymap.set('n', '<leader>e', ":Oil<CR>")
+vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 
-vim.lsp.enable({ "lua_ls", "clangd", "gopls", "pyright" })
-
+require('vague').setup({ transparent = true })
+require('mini.pick').setup({})
 require('gitsigns').setup()
-require('mason').setup()
-require('oil').setup({
-	default_file_explorer = true,
-	columns = { "permissions", "icon" },
-})
-require'nvim-treesitter.configs'.setup({
-	ensure_installed = { "c", "lua", "go", "python" },
-	highlight = { enable = true }
-})
+require('oil').setup({ default_file_explorer = true, columns = { "permissions", "size" } })
 
-local cmp = require('cmp')
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>",     function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
+
+local cmp = require'cmp'
 cmp.setup({
-	window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered(), },
-    sources = { { name = 'nvim_lsp' }, },
-	mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-})
-
-require('lualine').setup({
-	options = { component_separators = '' },
-	sections = {
-		lualine_a = {'mode'},
-		lualine_b = {'branch', 'diff'},
-		lualine_c = {'filename'},
-		lualine_x = {
-			{
-				'diagnostics',
-				sections = { 'error', 'warn', 'info', 'hint' },
-
-				diagnostics_color = {
-					error = 'DiagnosticError',
-					warn  = 'DiagnosticWarn',
-					info  = 'DiagnosticInfo',
-					hint  = 'DiagnosticHint',
-			  },
-			  symbols = {error = '⚫', warn = '⚫', info = '⚫', hint = '⚫'},
-			}, 'filetype'
-		},
-		lualine_y = {'progress'},
-		lualine_z = {'location'}
+	snippet = {
+		expand = function(args)
+			vim.snippet.expand(args.body)
+		end,
 	},
+
+	window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered(), },
+
+	mapping = cmp.mapping.preset.insert({
+		["<Tab>"]        = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+		["<S-Tab>"]      = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+		['<C-b>']        = cmp.mapping.scroll_docs(-4),
+		['<C-f>']        = cmp.mapping.scroll_docs(4),
+		['<C-e>']        = cmp.mapping.abort(),
+		['<C-Space>']    = cmp.mapping.confirm({ select = true }),
+	}),
+
+	sources = cmp.config.sources({ { name = 'nvim_lsp' } }, { { name = 'buffer' } })
 })
 
-local signs = {}
-for _, sev in pairs(vim.diagnostic.severity) do
-	signs[sev] = "⚫"
-end
-vim.diagnostic.config ({ signs = { text = signs } })
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(ev)
+		local opts = { buffer = ev.buf, silent = true }
 
-vim.cmd[[colorscheme tokyonight-night]]
+		vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
+		vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+		vim.keymap.set('n', '<leader>x', vim.lsp.buf.format, opts)
+		vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+		vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, opts)
+		vim.keymap.set('n', 'gd',        vim.lsp.buf.definition, opts)
+		vim.keymap.set('n', 'gD',        vim.lsp.buf.declaration, opts)
+		vim.keymap.set('n', 'gy',        vim.lsp.buf.type_definition, opts)
+		vim.keymap.set('n', 'gr',        vim.lsp.buf.references, opts)
+		vim.keymap.set('n', 'gi',        vim.lsp.buf.implementation, opts)
+	end,
+})
+vim.lsp.enable({ "lua_ls", "clangd", "gopls", "zls" })
+
+vim.cmd.colorscheme('vague')
