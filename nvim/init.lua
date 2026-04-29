@@ -20,6 +20,9 @@ vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/hrsh7th/nvim-cmp" },
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+    { src = "https://github.com/saadparwaiz1/cmp_luasnip" },
+    { src = "https://github.com/rafamadriz/friendly-snippets" },
+    { src = "https://github.com/L3MON4D3/LuaSnip" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
 })
@@ -32,6 +35,7 @@ require('vague').setup({ transparent = true })
 require('mini.pick').setup({})
 require('gitsigns').setup()
 require('oil').setup({ default_file_explorer = true, columns = { "permissions", "size" } })
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local harpoon = require("harpoon")
 harpoon:setup()
@@ -48,7 +52,7 @@ local cmp = require'cmp'
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.snippet.expand(args.body)
+			require('luasnip').lsp_expand(args.body)
 		end,
 	},
 
@@ -63,7 +67,7 @@ cmp.setup({
 		['<C-Space>']    = cmp.mapping.confirm({ select = true }),
 	}),
 
-	sources = cmp.config.sources({ { name = 'nvim_lsp' } }, { { name = 'buffer' } })
+	sources = cmp.config.sources({ { name = 'nvim_lsp' }, { name = 'luasnip' }, }, { { name = 'buffer' } })
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -82,6 +86,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', 'gi',        vim.lsp.buf.implementation, opts)
 	end,
 })
-vim.lsp.enable({ "lua_ls", "clangd", "gopls", "zls" })
+vim.lsp.enable({ "lua_ls", "clangd", "gopls", "zls", "css", "html" })
 
 vim.cmd.colorscheme('vague')
+
+local ls = require("luasnip")
+
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
