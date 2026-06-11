@@ -1,0 +1,30 @@
+Config {
+	font = "xft:IosevkaTerm Nerd Font Mono:size=11:antialias=true:hinting=true"
+	, bgColor  = "#080808"
+	, fgColor  = "#eeeeee"
+	, position = Top
+	, commands =
+		[ Run XMonadLog
+		, Run Com "uname" ["-r"] "" 36000
+		, Run BatteryP ["BAT0"]
+			[ "-t", "<acstatus>"
+			, "-L", "30"
+            , "-l", "#ff5454"
+			, "-n", "#e3c78a"
+			, "--"
+			, "-o", "<fc=#e3c78a><left>% (<timeleft>)</fc>"
+			, "-O", "<fc=#8cc85f>󱐋 <leftvbar> <left>%</fc>"
+			, "-i", "<fc=#80a0ff>󰚥 <left>%</fc>"
+			] 50
+		, Run Memory
+			[ "-t", "<fc=#d183e8>RAM <usedratio>%</fc>"
+			, "-H", "70"
+            , "-h", "#ff5454"
+			] 50
+		, Run Wireless "wlan0" [ "-t", "<fc=#79dac8><ssid> <qualitybar></fc>" ] 50
+		, Run Date "<fc=#a1aab8>%d, %B %H:%M</fc>" "date" 600
+	]
+	, sepChar  = "%"
+	, alignSep = "}{"
+	, template = "%XMonadLog% }{ <fc=#ff5454>%uname%</fc>  %battery%  %wlan0wi%  %memory% | %date%"
+}
