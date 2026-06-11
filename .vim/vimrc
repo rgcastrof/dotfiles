@@ -1,0 +1,5 @@
+source ~/.vim/plugins.vim
+source ~/.vim/options.vim
+source ~/.vim/keybinds.vim
+source ~/.vim/statusline.vim
+source ~/.vim/lsp.vim
