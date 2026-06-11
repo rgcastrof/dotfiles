@@ -1,44 +1,36 @@
-# .bashrc
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-# Load system-wide bash completions for interactive shells
-if [ -f /etc/profile.d/bash_completion.sh ]; then
-    . /etc/profile.d/bash_completion.sh
-fi
+[[ $PS1 &&
+  ! ${BASH_COMPLETION_VERSINFO:-} &&
+  -f /usr/share/bash-completion/bash_completion ]] &&
+    . /usr/share/bash-completion/bash_completion
 
 complete -F _command doas
 
-prompt() {
-	branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-	dirty=""
-	staged=""
-
-	if [ -n "$branch" ]; then
-		branch="\[\e[1;36m\]git:\[\e[0;32m\]($branch)"
-		! git diff --quiet 2>/dev/null || [ -n "$(git ls-files --others --exclude-standard)" ] && dirty="\[\e[31m\]*"
-		! git diff --cached --quiet 2>/dev/null && staged="\[\e[32m\]+"
-	fi
-
-	git_prompt=$branch$dirty$staged
-    PS1="\[\e[34m\]\w $git_prompt\n\[\e[1;37m\]λ \[\e[0m\]"
-}
-
 HISTSIZE=10000
 HISTFILESIZE=20000
-HISTCONTROL=ignoredups
 
-PROMPT_COMMAND='history -a; prompt'
+export EDITOR=vim
+export NNN_OPTS="cEr"
+export PATH="/usr/local/go/bin:$HOME/.local/bin:/sbin:/usr/sbin:${PATH}"
 
 alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+alias nvm-init='source ~/.nvm-init.sh'
 
-export EDITOR=nvim
-export GOPATH="$HOME"
-export JAVA_HOME=/usr/lib64/java
-export PATH="$HOME/.local/bin:$JAVA_HOME/bin:/bin:/sbin:/usr/sbin:$PATH"
+git_branch() {
+	local branch
+	branch=$(git branch --show-current 2>/dev/null)
+	[ ! -z "$branch" ] && echo -e "\001\e[0;35m\002[$branch] "
+}
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+prompt_status() {
+	if [ $? -eq 0 ]; then
+		echo -e "\001\e[0;32m\002✔"
+	else
+		echo -e "\001\e[0;31m\002✘"
+	fi
+}
+
+PS1="\$(prompt_status) \[\e[0;34m\]\u:\[\e[0;33m\]\W \$(git_branch)\[\e[0;33m\]-\[\e[0m\]> "
+
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
