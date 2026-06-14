@@ -4,6 +4,7 @@ import XMonad.Util.Ungrab
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spiral
+import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
@@ -49,8 +50,9 @@ myTerminal = "st"
 myLayout = avoidStruts . smartBorders $
     renamed [Replace "Tile"] (mySpacing tiled)
     ||| renamed [Replace "Mirror"] (mySpacing (Mirror tiled))
-    ||| renamed [Replace "Full"] (mySpacing Full)
+    ||| renamed [Replace "Grid"] (mySpacing Grid)
     ||| renamed [Replace "Spiral"] (mySpacing (spiral (6/7)))
+    ||| renamed [Replace "Full"] (mySpacing Full)
     where
     tiled = Tall nmaster delta ratio
     nmaster = 1
