@@ -1,0 +1,37 @@
+xterm*faceName: IosevkaTerm Nerd Font
+xterm*faceSize: 12
+xterm*renderFont: true
+xterm*utf8: 1
+xterm*termName: xterm-256color
+
+xterm*loginshell: true
+
+xterm*savelines: 16384
+xterm*ScrollBar: false
+
+xterm*foreground: #eeeeee
+xterm*background: #080808
+xterm*cursorColor:        #282a36
+xterm*reverseCursorColor: #f8f8f2
+xterm*color0:  #323437
+xterm*color1:  #ff5454
+xterm*color2:  #8cc85f
+xterm*color3:  #e3c78a
+xterm*color4:  #80a0ff
+xterm*color5:  #d183e8
+xterm*color6:  #79dac8
+xterm*color7:  #a1aab8
+xterm*color8:  #7c8f8f
+xterm*color9:  #ff5189
+xterm*color10: #36c692
+xterm*color11: #bfbf97
+xterm*color12: #74b2ff
+xterm*color13: #ae81ff
+xterm*color14: #85dc85
+xterm*color15: #e2637f
+
+xterm*vt100.translations: #override \
+	Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+	Shift Ctrl <Key> V: insert-selection(CLIPBOARD) \n\
+	Ctrl <Key> minus: smaller-vt-font() \n\
+	Ctrl <Key> plus: larger-vt-font()
