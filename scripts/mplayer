@@ -1,0 +1,11 @@
+#!/bin/sh
+
+MUSICS="$(ls $HOME/Music)"
+PATH="$HOME/Music"
+
+if [ ! -z "$MUSICS" ]; then
+	selected="$(echo "$MUSICS" | /usr/local/bin/fzf)"
+	if [ ! -z "$selected" ]; then
+		/usr/bin/mpv --no-audio-display "$PATH/$selected"
+	fi
+fi
