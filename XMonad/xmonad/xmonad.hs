@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.ManageHook
 import XMonad.Util.EZConfig
 import XMonad.Util.Ungrab
 import XMonad.Layout.Spacing
@@ -10,6 +11,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.ManageDocks
+import XMonad.Util.NamedScratchpad
 import XMonad.Util.Loggers
 
 import qualified XMonad.StackSet as W
@@ -41,11 +43,13 @@ myNormalBorderColor = color0
 myFocusedBorderColor = color4
 
 mySpacing = spacingWithEdge 3
+myCustomFloating = (customFloating $ W.RationalRect (1/10) (1/10) (8/10) (8/10))
+
 myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 
 myModMask = mod4Mask
 
-myTerminal = "st"
+myTerminal = "xterm"
 
 myLayout = avoidStruts . smartBorders $
     renamed [Replace "Tile"] (mySpacing tiled)
@@ -77,6 +81,20 @@ myXmobarPP = def
 
 myStatusBar = statusBarProp "xmobar" (pure myXmobarPP)
 
+myScratchpads :: [NamedScratchpad]
+myScratchpads = [
+    NS "term" spawnTerm findTerm myCustomFloating
+	, NS "mplayer" spawnMPlayer findMPlayer myCustomFloating
+	, NS "filemanager" spawnFileManager findFileManager myCustomFloating
+	]
+	where
+	spawnTerm = myTerminal ++ " -title scratchpad"
+	findTerm = (title =? "scratchpad")
+	spawnMPlayer = myTerminal ++ " -title mplayer -e mplayer"
+	findMPlayer = (title =? "mplayer")
+	spawnFileManager = "pcmanfm"
+	findFileManager = (className =? "Pcmanfm")
+
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . withEasySB myStatusBar defToggleStrutsKey $ myConfig
 
@@ -89,12 +107,16 @@ myConfig = def
 	, focusedBorderColor = myFocusedBorderColor
 	, mouseBindings = myMouseBindings
     , layoutHook = myLayout
+	, manageHook = namedScratchpadManageHook myScratchpads
     }
 	`additionalKeysP`
 	[ ("M-p", spawn "dmenu_run -l 10 -bw 3")
-	, ("M-q", kill)
-	, ("M-S-r", spawn "xmonad --recompile && xmonad --restart")
+	, ("M-<Return>", spawn myTerminal)
 	, ("<Print>", unGrab *> spawn "scrot -s | xclip -selection clipboard -t image/png")
+	-- scratchpad actions
+	, ("M-S-<Return>", namedScratchpadAction myScratchpads "term")
+	, ("M-S-m", namedScratchpadAction myScratchpads "mplayer")
+	, ("M-S-e", namedScratchpadAction myScratchpads "filemanager")
 	]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
