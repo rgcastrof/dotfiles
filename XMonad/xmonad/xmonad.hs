@@ -88,12 +88,12 @@ myScratchpads = [
 	, NS "filemanager" spawnFileManager findFileManager myCustomFloating
 	]
 	where
-	spawnTerm = myTerminal ++ " -title scratchpad"
+	spawnTerm = myTerminal ++ " -title scratchpad -e tmux new-session -s scratchpad"
 	findTerm = (title =? "scratchpad")
 	spawnMPlayer = myTerminal ++ " -title mplayer -e mplayer"
 	findMPlayer = (title =? "mplayer")
-	spawnFileManager = "pcmanfm"
-	findFileManager = (className =? "Pcmanfm")
+	spawnFileManager = myTerminal ++ " -title lf -e lf"
+	findFileManager = (title =? "lf")
 
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . withEasySB myStatusBar defToggleStrutsKey $ myConfig
@@ -111,7 +111,10 @@ myConfig = def
     }
 	`additionalKeysP`
 	[ ("M-p", spawn "dmenu_run -l 10 -bw 3")
+	, ("M-q", kill)
+	, ("M-S-r", spawn "xmonad --recompile && xmonad --restart")
 	, ("M-<Return>", spawn myTerminal)
+	, ("M-f", spawn "firefox")
 	, ("<Print>", unGrab *> spawn "scrot -s | xclip -selection clipboard -t image/png")
 	-- scratchpad actions
 	, ("M-S-<Return>", namedScratchpadAction myScratchpads "term")
