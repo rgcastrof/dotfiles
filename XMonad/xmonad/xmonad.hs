@@ -6,7 +6,6 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spiral
 import XMonad.Layout.Grid
-import XMonad.Layout.NoBorders
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
@@ -43,7 +42,7 @@ myBorderWidth = 2
 myNormalBorderColor = color0
 myFocusedBorderColor = color4
 
-mySpacing = spacingWithEdge 3
+mySpacing = spacingWithEdge 5
 myCustomFloating = (customFloating $ W.RationalRect (1/10) (1/10) (8/10) (8/10))
 
 myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
@@ -52,7 +51,7 @@ myModMask = mod4Mask
 
 myTerminal = "xterm"
 
-myLayout = avoidStruts . smartBorders $
+myLayout = avoidStruts $
     renamed [Replace "Tile"] (mySpacing tiled)
     ||| renamed [Replace "Mirror"] (mySpacing (Mirror tiled))
     ||| renamed [Replace "Grid"] (mySpacing Grid)
@@ -128,7 +127,8 @@ myStartupHook :: X ()
 myStartupHook = do
 	spawnOnce "export LC_CTYPE=en_US.UTF-8"
 	spawnOnce "setxkbmap -option ctrl:nocaps"
-	spawnOnce "/usr/bin/xwallpaper --zoom /home/rogi/Pictures/Wallpapers/xmowall.png"
+	spawnOnce "/usr/bin/xwallpaper --zoom /home/rogi/Pictures/Wallpapers/haskell.png"
+	spawnOnce "xcompmgr -c -C -t 1 -l 1 -r 2.5 &"
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
