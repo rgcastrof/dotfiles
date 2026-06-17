@@ -5,7 +5,6 @@ Config {
 	, position = Top
 	, commands =
 		[ Run XMonadLog
-		, Run Com "uname" ["-r"] "" 36000
 		, Run BatteryP ["BAT0"]
 			[ "-t", "<acstatus>"
 			, "-L", "30"
@@ -26,5 +25,5 @@ Config {
 	]
 	, sepChar  = "%"
 	, alignSep = "}{"
-	, template = "%XMonadLog% }{ <fc=#ff5454>%uname%</fc>  %battery%  %wlan0wi%  %memory% | %date%"
+	, template = "%XMonadLog% }{ %battery%  %wlan0wi%  %memory% | %date%"
 }

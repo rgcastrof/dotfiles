@@ -13,6 +13,7 @@ import XMonad.Hooks.StatusBar
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Loggers
+import XMonad.Util.SpawnOnce (spawnOnce)
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -108,6 +109,7 @@ myConfig = def
 	, mouseBindings = myMouseBindings
     , layoutHook = myLayout
 	, manageHook = namedScratchpadManageHook myScratchpads
+	, startupHook = myStartupHook
     }
 	`additionalKeysP`
 	[ ("M-p", spawn "dmenu_run -l 10 -bw 3")
@@ -121,6 +123,12 @@ myConfig = def
 	, ("M-S-m", namedScratchpadAction myScratchpads "mplayer")
 	, ("M-S-e", namedScratchpadAction myScratchpads "filemanager")
 	]
+
+myStartupHook :: X ()
+myStartupHook = do
+	spawnOnce "export LC_CTYPE=en_US.UTF-8"
+	spawnOnce "setxkbmap -option ctrl:nocaps"
+	spawnOnce "/usr/bin/xwallpaper --zoom /home/rogi/Pictures/Wallpapers/xmowall.png"
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
