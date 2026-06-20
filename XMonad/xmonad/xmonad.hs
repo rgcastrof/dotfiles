@@ -42,7 +42,7 @@ myBorderWidth = 2
 myNormalBorderColor = color0
 myFocusedBorderColor = color4
 
-mySpacing = spacingWithEdge 5
+mySpacing = spacingWithEdge 3
 myCustomFloating = (customFloating $ W.RationalRect (1/10) (1/10) (8/10) (8/10))
 
 myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
@@ -65,7 +65,7 @@ myLayout = avoidStruts $
 
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppSep = xmobarColor color15 "" " | "
+    { ppSep = xmobarColor color15 "" " : "
 	, ppTitleSanitize = xmobarStrip
 	, ppCurrent = xmobarColor color0 color4
 	, ppHidden = xmobarColor color8 ""
@@ -92,8 +92,8 @@ myScratchpads = [
 	findTerm = (title =? "scratchpad")
 	spawnMPlayer = myTerminal ++ " -title mplayer -e mplayer"
 	findMPlayer = (title =? "mplayer")
-	spawnFileManager = myTerminal ++ " -title lf -e lf"
-	findFileManager = (title =? "lf")
+	spawnFileManager = myTerminal ++ " -title nnn -e nnn"
+	findFileManager = (title =? "nnn")
 
 main :: IO ()
 main = xmonad . ewmhFullscreen . ewmh . withEasySB myStatusBar defToggleStrutsKey $ myConfig
@@ -128,7 +128,7 @@ myStartupHook = do
 	spawnOnce "export LC_CTYPE=en_US.UTF-8"
 	spawnOnce "setxkbmap -option ctrl:nocaps"
 	spawnOnce "/usr/bin/xwallpaper --zoom /home/rogi/Pictures/Wallpapers/haskell.png"
-	spawnOnce "xcompmgr -c -C -t 1 -l 1 -r 2.5 &"
+	spawnOnce "xautolock -time 10 -locker slock"
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
