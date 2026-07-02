@@ -15,7 +15,7 @@ unbind-key all
 bind-key 4S-q quit
 bind-key 4S-r restart
 
-bind-key 4S-Return terminal
+bind-key 4-Return terminal
 
 bind-key 4-p menu-exec
 bind-key 4-w menu-window
@@ -42,7 +42,7 @@ bind-key 4S-9 window-movetogroup-9
 
 bind-key 4-0 group-toggle-all
 
-bind-key 4S-c window-delete
+bind-key 4-q window-delete
 bind-key 4-g window-group
 bind-key 4-BackSpace window-hide
 bind-key 4-s window-stick
