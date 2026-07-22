@@ -11,3 +11,5 @@ vim.o.relativenumber = true
 vim.o.ignorecase     = true
 vim.o.smartindent    = true
 vim.o.termguicolors  = true
+vim.o.list = true
+vim.o.listchars = 'tab:» ,lead:·,trail:·'
