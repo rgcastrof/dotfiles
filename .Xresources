@@ -1,7 +1,4 @@
-xterm*faceName: IosevkaTerm Nerd Font
-xterm*faceSize: 12
-xterm*renderFont: true
-xterm*utf8: 1
+xterm*faceName: IosevkaTerm Nerd Font:pixelsize=16:antialias=true:autohint=true
 xterm*termName: xterm-256color
 
 xterm*loginshell: true
