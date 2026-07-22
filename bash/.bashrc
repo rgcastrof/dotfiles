@@ -8,9 +8,8 @@ complete -F _command doas
 HISTSIZE=10000
 HISTFILESIZE=20000
 
-export EDITOR=vim
-export NNN_OPTS="cEr"
-export PATH="/usr/local/go/bin:$HOME/.local/bin:/sbin:/usr/sbin:${PATH}"
+export EDITOR=nvim
+export PATH=$HOME/.local/bin:${PATH}
 
 alias ls='ls --color=auto'
 alias nvm-init='source ~/.nvm-init.sh'
@@ -31,6 +30,3 @@ prompt_status() {
 
 PS1="\$(prompt_status) \[\e[0;34m\]\u:\[\e[0;33m\]\W \$(git_branch)\[\e[0;33m\]-\[\e[0m\]> "
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
