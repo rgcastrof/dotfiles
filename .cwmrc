@@ -2,6 +2,7 @@ fontname "IosevkaTerm Nerd Font:pixelsize=16"
 sticky yes
 borderwidth 2
 snapdist 10
+gap 5 5 5 5
 
 color activeborder "#80a0ff"
 color inactiveborder "#323437"
@@ -50,7 +51,7 @@ bind-key 4-r window-menu-label
 bind-key 4-j window-cycle
 bind-key 4-k window-rcycle
 bind-key 4-v window-vtile
-bind-key 4-i window-htile
+bind-key 4-h window-htile
 bind-key 4-f window-fullscreen
 bind-key 4-m window-maximize
 
